@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 232218154}
   m_Layer: 0
   m_Name: Item1
-  m_TagString: Untagged
+  m_TagString: DesiredProduct
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,6 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a337fb611954f43adfaccac2c4ce35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxFails: 3
+  _howManyRounds: 5
 --- !u!1 &237202463
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,12 +307,13 @@ GameObject:
   - component: {fileID: 237202466}
   - component: {fileID: 237202465}
   - component: {fileID: 237202464}
+  - component: {fileID: 237202470}
   - component: {fileID: 237202469}
   - component: {fileID: 237202468}
-  - component: {fileID: 237202470}
+  - component: {fileID: 237202471}
   m_Layer: 0
   m_Name: Catcher
-  m_TagString: Correct
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,7 +347,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -422,7 +425,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4, z: 0}
-  m_LocalScale: {x: 2.5, y: 0.75, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -479,6 +482,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &237202471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237202463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afde1179e3c798e41880857e883be37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &455221421
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455221423}
   - component: {fileID: 455221422}
+  - component: {fileID: 455221424}
   m_Layer: 0
   m_Name: GameLogicHandler
   m_TagString: Untagged
@@ -508,10 +524,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2d6c7d4f158b4b408a63dfec911aba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dropDelay: 2
   _dropThese:
   - {fileID: 232218150}
   - {fileID: 669341452}
+  _dropDelay: 2
+  _gravityScale: 1
 --- !u!4 &455221423
 Transform:
   m_ObjectHideFlags: 0
@@ -527,6 +544,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &455221424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455221421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1a337fb611954f43adfaccac2c4ce35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxFails: 3
+  _howManyRounds: 5
 --- !u!1 &573854207
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +665,7 @@ GameObject:
   - component: {fileID: 669341456}
   m_Layer: 0
   m_Name: Item2
-  m_TagString: Untagged
+  m_TagString: UndesiredProduct
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -790,6 +821,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a337fb611954f43adfaccac2c4ce35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxFails: 3
+  _howManyRounds: 5
 --- !u!1 &980268125
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +834,7 @@ GameObject:
   - component: {fileID: 980268128}
   - component: {fileID: 980268127}
   - component: {fileID: 980268126}
+  - component: {fileID: 980268129}
   m_Layer: 0
   m_Name: Destroyer
   m_TagString: Untagged
@@ -837,7 +871,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -920,6 +954,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &980268129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980268125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8036062b3de976e4c896d1f99312038f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1354438020
 GameObject:
   m_ObjectHideFlags: 0

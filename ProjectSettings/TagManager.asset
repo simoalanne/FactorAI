@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Correct
   - TargetObject
+  - DesiredProduct
+  - UndesiredProduct
   layers:
   - Default
   - TransparentFX

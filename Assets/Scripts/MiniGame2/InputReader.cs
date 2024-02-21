@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using GameInputs;
 
-namespace MiniGame1
+namespace MiniGame2
 {
     public class InputReader : MonoBehaviour
     {

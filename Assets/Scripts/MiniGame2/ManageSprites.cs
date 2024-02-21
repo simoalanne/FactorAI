@@ -1,25 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-namespace MiniGame1
+namespace MiniGame2
 {
     public class ManageSprites : MonoBehaviour
     {
-        [SerializeField] private float _dropDelay;
         [SerializeField] private SpriteRenderer[] _dropThese;
+        [SerializeField] private float _dropDelay;
+        [SerializeField] private float _gravityScale = 1f;
 
         private Camera mainCamera;
 
         private void Start()
         {
             mainCamera = Camera.main;
-
-            if (mainCamera == null)
-            {
-                Debug.LogError("Main camera not found!");
-                return;
-            }
-
             SetSpritePositions();
             StartCoroutine(SetGravityAfterDelay(_dropDelay));
         }
@@ -32,21 +26,11 @@ namespace MiniGame1
             float cameraHeight = mainCamera.orthographicSize;
             float yPosition = cameraHeight;
 
-            // Assuming you have two sprites to set positions for
-            if (_dropThese != null && _dropThese.Length >= 2)
-            {
-                // Set position for sprite 1
-                _dropThese[0].transform.position = new Vector2(randomX1, yPosition);
-                _dropThese[0].enabled = true;
+            _dropThese[0].transform.position = new Vector2(randomX1, yPosition);
+            _dropThese[0].enabled = true;
 
-                // Set position for sprite 2
-                _dropThese[1].transform.position = new Vector2(randomX2, yPosition);
-                _dropThese[1].enabled = true;
-            }
-            else
-            {
-                Debug.LogError("DropThese array not properly initialized or insufficient elements.");
-            }
+            _dropThese[1].transform.position = new Vector2(randomX2, yPosition);
+            _dropThese[1].enabled = true;
         }
 
         private IEnumerator SetGravityAfterDelay(float delay)
@@ -58,7 +42,7 @@ namespace MiniGame1
                 Rigidbody2D[] bodies = spriteRenderer.GetComponentsInChildren<Rigidbody2D>();
                 foreach (Rigidbody2D body in bodies)
                 {
-                    body.gravityScale = 0.5f;
+                    body.gravityScale = _gravityScale;
                 }
             }
         }
