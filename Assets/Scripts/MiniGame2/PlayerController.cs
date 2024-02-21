@@ -1,11 +1,10 @@
 using UnityEngine;
 
-namespace MiniGame1
+namespace MiniGame2
 {
 	public class PlayerController : MonoBehaviour
 	{
-		[SerializeField]
-		private float _speed = 1;
+		[SerializeField] private float _speed = 2;
 		private Rigidbody2D _rb2D;
 		private InputReader _inputReader;
 		private Vector2 _direction = Vector2.zero;
@@ -28,9 +27,7 @@ namespace MiniGame1
 
 		private void Move(Vector2 direction)
 		{
-			Vector2 velocity = _rb2D.velocity;
-			velocity.x = direction.x * _speed;
-			_rb2D.velocity = velocity;
+			_rb2D.velocity = new Vector2(direction.x * _speed, _rb2D.velocity.y);
 		}
 	}
 }
