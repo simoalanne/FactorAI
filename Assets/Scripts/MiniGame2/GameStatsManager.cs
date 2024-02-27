@@ -7,6 +7,7 @@ namespace MiniGame2
     {
         [SerializeField] int _maxFails = 3;
         [SerializeField] int _howManyRounds = 5;
+        [SerializeField] string _sceneToLoad;
         private int _score = 0;
         private int _fails = 0;
         private int _roundsPlayed = 0;
@@ -79,13 +80,13 @@ namespace MiniGame2
         private void ContinueGame()
         {
             SaveStats();
-            SceneManager.LoadScene("MiniGame2");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         private void EndGame()
         {
             PlayerPrefs.DeleteAll();
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene(_sceneToLoad);
         }
     }
 }

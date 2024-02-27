@@ -2,7 +2,35 @@
     "name": "Inputs",
     "maps": [
         {
-            "name": "Game",
+            "name": "Menu",
+            "id": "b167283b-083f-4d18-b3e1-bdb67dc27c6d",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "ae647613-0034-46ea-bbff-9e0e83a7e155",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9ec2ea45-1b17-4b0a-a5e9-9767ef83af9d",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MiniGame2",
             "id": "c1dd424c-38cb-4234-953f-ebeafd317663",
             "actions": [
                 {

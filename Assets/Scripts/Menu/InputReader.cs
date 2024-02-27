@@ -1,17 +1,15 @@
 using UnityEngine;
 using GameInputs;
 
-namespace MiniGame2
+namespace Menu
 {
     public class InputReader : MonoBehaviour
     {
         private Inputs _inputs = null;
-        private Vector2 _movementInput = Vector2.zero;
+        private bool _interactInput = false;
 
-        public Vector2 Movement
-        {
-            get { return _movementInput; }
-        }
+        public bool InteractInput => _interactInput;
+
 
         private void Awake()
         {
@@ -20,17 +18,17 @@ namespace MiniGame2
 
         private void OnEnable()
         {
-            _inputs.MiniGame2.Enable();
+            _inputs.Menu.Enable();
         }
 
         void OnDisable()
         {
-            _inputs.MiniGame2.Disable();
+            _inputs.Menu.Disable();
         }
 
         private void Update()
         {
-            _movementInput = _inputs.MiniGame2.Move.ReadValue<Vector2>();
+            _interactInput = _inputs.Menu.Interact.WasPressedThisFrame();
         }
     }
 }

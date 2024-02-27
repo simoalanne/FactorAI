@@ -26,7 +26,35 @@ namespace GameInputs
     ""name"": ""Inputs"",
     ""maps"": [
         {
-            ""name"": ""Game"",
+            ""name"": ""Menu"",
+            ""id"": ""b167283b-083f-4d18-b3e1-bdb67dc27c6d"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""ae647613-0034-46ea-bbff-9e0e83a7e155"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9ec2ea45-1b17-4b0a-a5e9-9767ef83af9d"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""MiniGame2"",
             ""id"": ""c1dd424c-38cb-4234-953f-ebeafd317663"",
             ""actions"": [
                 {
@@ -78,9 +106,12 @@ namespace GameInputs
     ],
     ""controlSchemes"": []
 }");
-            // Game
-            m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-            m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
+            // Menu
+            m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+            m_Menu_Interact = m_Menu.FindAction("Interact", throwIfNotFound: true);
+            // MiniGame2
+            m_MiniGame2 = asset.FindActionMap("MiniGame2", throwIfNotFound: true);
+            m_MiniGame2_Move = m_MiniGame2.FindAction("Move", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -139,52 +170,102 @@ namespace GameInputs
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Game
-        private readonly InputActionMap m_Game;
-        private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
-        private readonly InputAction m_Game_Move;
-        public struct GameActions
+        // Menu
+        private readonly InputActionMap m_Menu;
+        private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
+        private readonly InputAction m_Menu_Interact;
+        public struct MenuActions
         {
             private @Inputs m_Wrapper;
-            public GameActions(@Inputs wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_Game_Move;
-            public InputActionMap Get() { return m_Wrapper.m_Game; }
+            public MenuActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Interact => m_Wrapper.m_Menu_Interact;
+            public InputActionMap Get() { return m_Wrapper.m_Menu; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(GameActions set) { return set.Get(); }
-            public void AddCallbacks(IGameActions instance)
+            public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+            public void AddCallbacks(IMenuActions instance)
             {
-                if (instance == null || m_Wrapper.m_GameActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_GameActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+
+            private void UnregisterCallbacks(IMenuActions instance)
+            {
+                @Interact.started -= instance.OnInteract;
+                @Interact.performed -= instance.OnInteract;
+                @Interact.canceled -= instance.OnInteract;
+            }
+
+            public void RemoveCallbacks(IMenuActions instance)
+            {
+                if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IMenuActions instance)
+            {
+                foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public MenuActions @Menu => new MenuActions(this);
+
+        // MiniGame2
+        private readonly InputActionMap m_MiniGame2;
+        private List<IMiniGame2Actions> m_MiniGame2ActionsCallbackInterfaces = new List<IMiniGame2Actions>();
+        private readonly InputAction m_MiniGame2_Move;
+        public struct MiniGame2Actions
+        {
+            private @Inputs m_Wrapper;
+            public MiniGame2Actions(@Inputs wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Move => m_Wrapper.m_MiniGame2_Move;
+            public InputActionMap Get() { return m_Wrapper.m_MiniGame2; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(MiniGame2Actions set) { return set.Get(); }
+            public void AddCallbacks(IMiniGame2Actions instance)
+            {
+                if (instance == null || m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Add(instance);
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
             }
 
-            private void UnregisterCallbacks(IGameActions instance)
+            private void UnregisterCallbacks(IMiniGame2Actions instance)
             {
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
             }
 
-            public void RemoveCallbacks(IGameActions instance)
+            public void RemoveCallbacks(IMiniGame2Actions instance)
             {
-                if (m_Wrapper.m_GameActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IGameActions instance)
+            public void SetCallbacks(IMiniGame2Actions instance)
             {
-                foreach (var item in m_Wrapper.m_GameActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_MiniGame2ActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_GameActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public GameActions @Game => new GameActions(this);
-        public interface IGameActions
+        public MiniGame2Actions @MiniGame2 => new MiniGame2Actions(this);
+        public interface IMenuActions
+        {
+            void OnInteract(InputAction.CallbackContext context);
+        }
+        public interface IMiniGame2Actions
         {
             void OnMove(InputAction.CallbackContext context);
         }
