@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Settings.unity
     guid: 1460d9b095c82aa44b33226a8ee803dc
   - enabled: 1
-    path: Assets/Scenes/Minigame1.unity
+    path: Assets/Scenes/Minigame2.unity
     guid: 129d31c3e9635f549a80de6a49d520b1
   - enabled: 1
-    path: Assets/Scenes/Minigame2.unity
+    path: Assets/Scenes/Minigame1.unity
     guid: 65d94e7a079fefa4da5cd06fb9f48b44
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 213cff5d5c8bd2c4d97015808e741c0f, type: 2}

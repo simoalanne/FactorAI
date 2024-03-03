@@ -6,6 +6,9 @@ public class ObjectCollider : MonoBehaviour
     private GameObject replacementObject;
     private bool isReplaced = false;
 
+    [SerializeField]
+    private int scoreValue = 10; // Score value to add when objects are destroyed
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isReplaced && collision.gameObject.CompareTag("TargetObject"))
@@ -18,6 +21,9 @@ public class ObjectCollider : MonoBehaviour
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
                 Instantiate(replacementObject, transform.position, Quaternion.identity);
+                
+                // Add score when objects are destroyed
+                ScoreManager.instance.AddScore(scoreValue);
             }
         }
     }
