@@ -58,48 +58,46 @@ namespace GameInputs
             ""id"": ""c1dd424c-38cb-4234-953f-ebeafd317663"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""name"": ""MoveLeft"",
+                    ""type"": ""Button"",
                     ""id"": ""88a621c9-a11e-4f5a-800a-60911f14e3c1"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""1a604c4b-bbb8-4e75-87a7-edaf7e70c5a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""7b69baa0-4433-4514-af3d-57ab7aed3e6d"",
-                    ""path"": ""2DVector"",
+                    ""name"": """",
+                    ""id"": ""1a7a491f-77cb-4f3d-9d40-928902f37166"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
+                    ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
-                    ""id"": ""99ec71df-43a0-4678-8c42-03a8dd0ea238"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""name"": """",
+                    ""id"": ""854995c3-b868-43ed-b7aa-091f13f931da"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveRight"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""b0fe7e8f-3e89-4fc5-9a2c-6f6c249f18b9"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -111,7 +109,8 @@ namespace GameInputs
             m_Menu_Interact = m_Menu.FindAction("Interact", throwIfNotFound: true);
             // MiniGame2
             m_MiniGame2 = asset.FindActionMap("MiniGame2", throwIfNotFound: true);
-            m_MiniGame2_Move = m_MiniGame2.FindAction("Move", throwIfNotFound: true);
+            m_MiniGame2_MoveLeft = m_MiniGame2.FindAction("MoveLeft", throwIfNotFound: true);
+            m_MiniGame2_MoveRight = m_MiniGame2.FindAction("MoveRight", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -219,12 +218,14 @@ namespace GameInputs
         // MiniGame2
         private readonly InputActionMap m_MiniGame2;
         private List<IMiniGame2Actions> m_MiniGame2ActionsCallbackInterfaces = new List<IMiniGame2Actions>();
-        private readonly InputAction m_MiniGame2_Move;
+        private readonly InputAction m_MiniGame2_MoveLeft;
+        private readonly InputAction m_MiniGame2_MoveRight;
         public struct MiniGame2Actions
         {
             private @Inputs m_Wrapper;
             public MiniGame2Actions(@Inputs wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_MiniGame2_Move;
+            public InputAction @MoveLeft => m_Wrapper.m_MiniGame2_MoveLeft;
+            public InputAction @MoveRight => m_Wrapper.m_MiniGame2_MoveRight;
             public InputActionMap Get() { return m_Wrapper.m_MiniGame2; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -234,16 +235,22 @@ namespace GameInputs
             {
                 if (instance == null || m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Add(instance);
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
+                @MoveLeft.started += instance.OnMoveLeft;
+                @MoveLeft.performed += instance.OnMoveLeft;
+                @MoveLeft.canceled += instance.OnMoveLeft;
+                @MoveRight.started += instance.OnMoveRight;
+                @MoveRight.performed += instance.OnMoveRight;
+                @MoveRight.canceled += instance.OnMoveRight;
             }
 
             private void UnregisterCallbacks(IMiniGame2Actions instance)
             {
-                @Move.started -= instance.OnMove;
-                @Move.performed -= instance.OnMove;
-                @Move.canceled -= instance.OnMove;
+                @MoveLeft.started -= instance.OnMoveLeft;
+                @MoveLeft.performed -= instance.OnMoveLeft;
+                @MoveLeft.canceled -= instance.OnMoveLeft;
+                @MoveRight.started -= instance.OnMoveRight;
+                @MoveRight.performed -= instance.OnMoveRight;
+                @MoveRight.canceled -= instance.OnMoveRight;
             }
 
             public void RemoveCallbacks(IMiniGame2Actions instance)
@@ -267,7 +274,8 @@ namespace GameInputs
         }
         public interface IMiniGame2Actions
         {
-            void OnMove(InputAction.CallbackContext context);
+            void OnMoveLeft(InputAction.CallbackContext context);
+            void OnMoveRight(InputAction.CallbackContext context);
         }
     }
 }

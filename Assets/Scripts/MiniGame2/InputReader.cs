@@ -30,7 +30,21 @@ namespace MiniGame2
 
         private void Update()
         {
-            _movementInput = _inputs.MiniGame2.Move.ReadValue<Vector2>();
+            if (_inputs.MiniGame2.MoveLeft.IsPressed())
+            {
+                _movementInput = Vector2.left;
+            }
+            
+            else if (_inputs.MiniGame2.MoveRight.IsPressed())
+            {
+                _movementInput = Vector2.right;
+            }
+
+            else
+            {
+                _movementInput = Vector2.zero;
+            }
+            
         }
     }
 }

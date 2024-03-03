@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,40 +6,44 @@ namespace MiniGame2
 {
     public class GameStatsManager : MonoBehaviour
     {
+        [SerializeField] float _miniGameLenghtInSeconds = 90.0f;
+        [SerializeField] int _howManyForWin = 15;
         [SerializeField] int _maxFails = 3;
-        [SerializeField] int _howManyRounds = 5;
         [SerializeField] string _sceneToLoad;
-        private int _score = 0;
-        private int _fails = 0;
-        private int _roundsPlayed = 0;
+        private int _score;
+        private int _fails;
+        private float _elapsedTime;
+        private string _printTime;
 
-        private void Start()
+        private void Update()
         {
-            LoadStats();
+            _elapsedTime += Time.deltaTime;
+            int minutes = Mathf.FloorToInt(_elapsedTime / 60);
+            int seconds = Mathf.FloorToInt(_elapsedTime % 60);
+            _printTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+            
+            if (_elapsedTime >= _miniGameLenghtInSeconds)
+            {
+                EndGame();
+            }
         }
-
-        // can be accessed by scripts in the same namespace
-        internal void UpdateStats(bool Scored)
+            
+        public void UpdateStats(bool Scored)
         {
-            IncreaseRoundsPlayed();
-
             if (Scored)
             {
                 IncreaseScore();
             }
-            else if (!Scored)
+            else
             {
                 IncreaseFails();
             }
 
-            if (_fails >= _maxFails || _roundsPlayed >= _howManyRounds)
+            if (_fails >= _maxFails || _score >= _howManyForWin)
             {
                 EndGame();
             }
-            else
-            {
-                ContinueGame();
-            }
+
         }
 
         private void IncreaseScore()
@@ -55,37 +60,8 @@ namespace MiniGame2
             // TODO: Add fails to UI and play sound/animation
         }
 
-        private void IncreaseRoundsPlayed()
-        {
-            _roundsPlayed++;
-            Debug.Log("Rounds Played: " + _roundsPlayed);
-        }
-
-        private void SaveStats()
-        {
-            PlayerPrefs.SetInt("RoundsPlayed", _roundsPlayed);
-            PlayerPrefs.SetInt("Score", _score);
-            PlayerPrefs.SetInt("Fails", _fails);
-            PlayerPrefs.Save();
-        }
-
-        private void LoadStats()
-        {
-            _roundsPlayed = PlayerPrefs.GetInt("RoundsPlayed", 0);
-            _score = PlayerPrefs.GetInt("Score", 0);
-            _fails = PlayerPrefs.GetInt("Fails", 0);
-
-        }
-
-        private void ContinueGame()
-        {
-            SaveStats();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
         private void EndGame()
         {
-            PlayerPrefs.DeleteAll();
             SceneManager.LoadScene(_sceneToLoad);
         }
     }

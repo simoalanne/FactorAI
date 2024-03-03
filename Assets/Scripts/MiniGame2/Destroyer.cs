@@ -12,12 +12,18 @@ namespace MiniGame2
             _gameStatsManager = FindObjectOfType<GameStatsManager>();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (other.CompareTag("DesiredProduct"))
+            if (collision.gameObject.CompareTag("DesiredProduct"))
             {
                 _isScored = false;
                 _gameStatsManager.UpdateStats(_isScored);
+                Destroy(collision.gameObject);
+            }
+
+            else if (collision.gameObject.CompareTag("UndesiredProduct"))
+            {
+                Destroy(collision.gameObject);
             }
         }
     }
