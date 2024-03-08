@@ -1,12 +1,15 @@
 using UnityEngine;
 using TMPro;
 
-public class PrintMainTimer : MonoBehaviour
+namespace Global
 {
-    [SerializeField] private TextMeshProUGUI MainTimerDisplay;
-
-    void Update()
+    public class PrintMainTimer : MonoBehaviour
     {
-        MainTimerDisplay.text = MainTimer.Instance.PrintTime;        
+        [SerializeField] private TextMeshProUGUI MainTimerDisplay;
+
+        void Update()
+        {
+            MainTimerDisplay.text = GameManager.Instance.GameTimer;
+        }
     }
 }

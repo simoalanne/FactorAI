@@ -1,4 +1,4 @@
-using Unity.Mathematics;
+using Global;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -64,8 +64,10 @@ namespace MiniGame2
             // TODO: Add fails to UI and play sound/animation
         }
 
+
         private void EndGame()
         {
+            GameManager.Instance.AddToGameScore(_score);
             SceneManager.LoadScene(_sceneToLoad);
         }
     }
