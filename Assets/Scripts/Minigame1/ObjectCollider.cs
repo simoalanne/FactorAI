@@ -1,9 +1,12 @@
+using TMPro;
 using UnityEngine;
 
 public class ObjectCollider : MonoBehaviour
 {
     [SerializeField]
     private GameObject replacementObject;
+    [SerializeField]
+    private string TargetTag;
     private bool isReplaced = false;
 
     [SerializeField]
@@ -11,10 +14,10 @@ public class ObjectCollider : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isReplaced && collision.gameObject.CompareTag("TargetObject"))
+        if (!isReplaced && collision.gameObject.CompareTag(TargetTag))
         {
             ObjectCollider otherObjectCollision = collision.gameObject.GetComponent<ObjectCollider>();
-            if (otherObjectCollision != null && !otherObjectCollision.IsReplaced())
+            if (otherObjectCollision != null && !otherObjectCollision.IsReplaced() && gameObject.CompareTag(otherObjectCollision.tag))
             {
                 isReplaced = true;
                 otherObjectCollision.SetReplaced(true);
@@ -38,12 +41,3 @@ public class ObjectCollider : MonoBehaviour
         isReplaced = replaced;
     }
 }
-
-    /*private void Update()
-    {
-        GameObject[] objects = GameObject.FindGameObjectsWithTag("TargetObject");
-        foreach (GameObject obj in objects)
-        {
-            Debug.Log("Object position: " + obj.transform.position);
-        }
-    }*/
