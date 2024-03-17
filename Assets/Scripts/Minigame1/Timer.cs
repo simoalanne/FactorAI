@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class Timer : MonoBehaviour
     {
         isTimerRunning = false;
         CalculatePoints();
+        MoveToMenuScene();
     }
 
     void CalculatePoints()
@@ -55,5 +57,10 @@ public class Timer : MonoBehaviour
         float points = timeRemaining * pointsPerSecondRemaining;
         // Add points to the score manager or wherever you keep track of points
         ScoreManager.instance.AddScore((int)points);
+    }
+
+    void MoveToMenuScene()
+    {
+        SceneManager.LoadScene("Factory");
     }
 }
