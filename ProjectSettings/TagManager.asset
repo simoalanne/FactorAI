@@ -8,6 +8,11 @@ TagManager:
   - DesiredProduct
   - UndesiredProduct
   - Wood
+  - Plank
+  - Head
+  - Shovel
+  - Handle
+  - Metal
   layers:
   - Default
   - TransparentFX

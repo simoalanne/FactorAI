@@ -199,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 0043ecfd4020cd2488412eda5a23eccb, type: 3}
       propertyPath: m_TagString
-      value: TargetObject
+      value: Metal
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 0043ecfd4020cd2488412eda5a23eccb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replacementObject: {fileID: 550575440}
-  TargetTag: 
+  TargetTag: Metal
   scoreValue: 250
 --- !u!114 &75112948
 MonoBehaviour:
@@ -491,7 +491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 22bfb70d748891e459bb28e784b6f074, type: 3}
       propertyPath: m_TagString
-      value: TargetObject
+      value: Handle
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 22bfb70d748891e459bb28e784b6f074, type: 3}
       propertyPath: m_FlipX
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replacementObject: {fileID: 655895336}
-  TargetTag: 
+  TargetTag: Handle
   scoreValue: 500
 --- !u!114 &550575442
 MonoBehaviour:
@@ -1489,7 +1489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: d0c8ae62e517cd744a5a190b2f578328, type: 3}
       propertyPath: m_TagString
-      value: TargetObject
+      value: Head
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: d0c8ae62e517cd744a5a190b2f578328, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2178,7 +2178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replacementObject: {fileID: 655895336}
-  TargetTag: 
+  TargetTag: Head
   scoreValue: 250
 --- !u!1 &1281932560
 GameObject:
@@ -2936,7 +2936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa8fdffa821fef4893bd3ac889cefb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 10
+  totalTime: 60
   pointsPerSecondRemaining: 10
   timerText: {fileID: 1814064398}
 --- !u!1 &1821981869
@@ -3202,7 +3202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: fc78aa3a93672a8498fd005aaaef47db, type: 3}
       propertyPath: m_TagString
-      value: TargetObject
+      value: Plank
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: fc78aa3a93672a8498fd005aaaef47db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3466,7 +3466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replacementObject: {fileID: 1126946061}
-  TargetTag: 
+  TargetTag: Plank
   scoreValue: 500
 --- !u!114 &2049944697
 MonoBehaviour:

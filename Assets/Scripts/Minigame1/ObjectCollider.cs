@@ -1,5 +1,5 @@
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class ObjectCollider : MonoBehaviour
 {
@@ -17,7 +17,7 @@ public class ObjectCollider : MonoBehaviour
         if (!isReplaced && collision.gameObject.CompareTag(TargetTag))
         {
             ObjectCollider otherObjectCollision = collision.gameObject.GetComponent<ObjectCollider>();
-            if (otherObjectCollision != null && !otherObjectCollision.IsReplaced() && gameObject.CompareTag(otherObjectCollision.tag))
+            if (otherObjectCollision != null && !otherObjectCollision.IsReplaced())
             {
                 isReplaced = true;
                 otherObjectCollision.SetReplaced(true);
