@@ -12,10 +12,21 @@ namespace Global
         private float _gameScore;
         private string _gameTimer;
         private string _miniGameName;
+        private bool _isAISkipReady;
 
         public float GameScore => _gameScore;
         public string GameTimer => _gameTimer;
-        public string MiniGameName => _miniGameName;
+        public string MiniGameName
+        {
+            get { return _miniGameName; }
+            set { _miniGameName = value; }
+        }
+
+        public bool IsAiSkipReady
+        {
+            get { return _isAISkipReady; }
+            set { _isAISkipReady = value; }
+        }
 
         private void Awake()
         {
@@ -44,16 +55,6 @@ namespace Global
         public void AddToGameScore(float miniGameScore)
         {
             _gameScore += miniGameScore;
-        }
-
-        /*
-        This method should be called from the script that handles
-        the ending of the minigame. Parameter should be the name
-        of the next minigame to be played.
-        */
-        public void SetMiniGameName(string nextMiniGame)
-        {
-            _miniGameName = nextMiniGame;
         }
     }
 }

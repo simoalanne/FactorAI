@@ -6,7 +6,7 @@ namespace MiniGame2
 {
     public class GameStatsManager : MonoBehaviour
     {
-        [SerializeField] float _miniGameLengthInSeconds = 90.0f;
+        [SerializeField] float _miniGameLengthInSeconds = 60.0f;
         [SerializeField] int _howManyForWin = 30;
         [SerializeField] int _maxFails = 5;
         [SerializeField] string _sceneToLoad;

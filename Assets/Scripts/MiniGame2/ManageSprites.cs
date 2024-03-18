@@ -55,16 +55,14 @@ namespace MiniGame2
         {
             int randomIndex = Mathf.RoundToInt(Random.Range(0, _prefabArray.Length));
             
-            if (_prefabArray[randomIndex].tag == "UndesiredProduct")
+            if (_prefabArray[randomIndex].CompareTag("Undesired"))
             {
                 _countConsecutiveWrongObjects++;
-                Debug.Log("TRASH SPAWNED" + _countConsecutiveWrongObjects);
             }
 
             else
             {
                 _countConsecutiveWrongObjects = 0;
-                Debug.Log("reset");
             }
 
             if (_countConsecutiveWrongObjects <= _maxConsecutiveWrongObjects)
@@ -72,8 +70,6 @@ namespace MiniGame2
                 return Instantiate(_prefabArray[randomIndex]);
             }
 
-            // Reset the counter
-            Debug.Log("FORCE PRODUCT");
             _countConsecutiveWrongObjects = 0;
             return Instantiate(_prefabArray[0]);
         }
@@ -95,11 +91,6 @@ namespace MiniGame2
 
         private bool IsRecentXPosition(int xToCheck)
         {
-            /*
-            Some really clean code here :D
-            For loop shifts the stored recent coordinates towards index 0
-            and the parameter is placed as the highest index.
-            */
             if (_recentXPositions.Contains(xToCheck))
             {
                 return true;

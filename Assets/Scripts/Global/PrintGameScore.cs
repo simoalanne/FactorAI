@@ -9,7 +9,10 @@ namespace Global
 
         void Update()
         {
-            GameScoreDisplay.text = GameManager.Instance.GameScore.ToString();
+            if (GameManager.Instance != null)
+            {
+                GameScoreDisplay.text = GameManager.Instance.GameScore.ToString();
+            }
         }
     }
 }

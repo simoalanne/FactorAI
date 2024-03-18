@@ -9,7 +9,10 @@ namespace Global
 
         void Update()
         {
-            MainTimerDisplay.text = GameManager.Instance.GameTimer;
+            if (GameManager.Instance != null)
+            {
+                MainTimerDisplay.text = GameManager.Instance.GameTimer;
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using GameInputs;
 
-namespace Menu
+namespace Factory
 {
     public class InputReader : MonoBehaviour
     {
