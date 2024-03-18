@@ -278,6 +278,7 @@ MonoBehaviour:
   replacementObject: {fileID: 550575440}
   TargetTag: Metal
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!114 &75112948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,6 +804,7 @@ MonoBehaviour:
   replacementObject: {fileID: 0}
   TargetTag: 
   scoreValue: 10
+  _objectspawner: {fileID: 0}
 --- !u!61 &299604395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -947,6 +949,7 @@ MonoBehaviour:
   replacementObject: {fileID: 2049944695}
   TargetTag: Wood
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!114 &301194795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,7 +1201,7 @@ MonoBehaviour:
   - prefab: {fileID: 75112946}
     amountToSpawn: 2
   - prefab: {fileID: 550575440}
-    amountToSpawn: 1
+    amountToSpawn: 0
   spawnPoints:
   - {fileID: 201435621}
   - {fileID: 1742112443}
@@ -1245,6 +1248,7 @@ MonoBehaviour:
   replacementObject: {fileID: 655895336}
   TargetTag: Handle
   scoreValue: 500
+  _objectspawner: {fileID: 0}
 --- !u!114 &550575442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2184,6 +2188,7 @@ MonoBehaviour:
   replacementObject: {fileID: 655895336}
   TargetTag: Head
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!1 &1281932560
 GameObject:
   m_ObjectHideFlags: 0
@@ -2940,7 +2945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa8fdffa821fef4893bd3ac889cefb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 60
+  totalTime: 30
   pointsPerSecondRemaining: 10
   timerText: {fileID: 1814064398}
 --- !u!1 &1821981869
@@ -3041,6 +3046,7 @@ MonoBehaviour:
   replacementObject: {fileID: 299604393}
   TargetTag: 
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!61 &1899569296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3425,6 +3431,7 @@ MonoBehaviour:
   replacementObject: {fileID: 299604393}
   TargetTag: 
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!50 &2030931953
 Rigidbody2D:
   serializedVersion: 4
@@ -3472,6 +3479,7 @@ MonoBehaviour:
   replacementObject: {fileID: 1126946061}
   TargetTag: Plank
   scoreValue: 500
+  _objectspawner: {fileID: 0}
 --- !u!114 &2049944697
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,21 +6,9 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance; // Singleton instance
 
     public TextMeshProUGUI scoreText; // TextMeshPro UI element to display the score
-    private int score = 0; // Current score
+    private float score = 0; // Current score
 
-    void Awake()
-    {
-        // Ensures only one instance of ScoreManager exists
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Don't destroy this object when loading new scenes
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy duplicates
-        }
-    }
+    public float Score => score;
 
     void Start()
     {
