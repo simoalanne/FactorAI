@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ObjectCollider : MonoBehaviour
@@ -25,6 +26,10 @@ public class ObjectCollider : MonoBehaviour
                 Destroy(gameObject);
                 Instantiate(replacementObject, transform.position, Quaternion.identity);
                 
+                if (replacementObject.CompareTag("Shovel"))
+                {
+                    SceneManager.LoadSceneAsync("Factory");
+                }
                 // Add score when objects are destroyed
                 ScoreManager.instance.AddScore(scoreValue);
             }

@@ -1560,6 +1560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lapio16x16
       objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: 38c582741bafc984cb78f292d17742f4, type: 3}
+      propertyPath: m_TagString
+      value: Shovel
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 38c582741bafc984cb78f292d17742f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.6
