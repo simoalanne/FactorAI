@@ -199,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 0043ecfd4020cd2488412eda5a23eccb, type: 3}
       propertyPath: m_TagString
-      value: TargetObject
+      value: Metal
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 0043ecfd4020cd2488412eda5a23eccb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -276,8 +276,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replacementObject: {fileID: 550575440}
-  TargetTag: 
+  TargetTag: Metal
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!114 &75112948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: 22bfb70d748891e459bb28e784b6f074, type: 3}
       propertyPath: m_TagString
-      value: TargetObject
+      value: Handle
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: 22bfb70d748891e459bb28e784b6f074, type: 3}
       propertyPath: m_FlipX
@@ -803,6 +804,7 @@ MonoBehaviour:
   replacementObject: {fileID: 0}
   TargetTag: 
   scoreValue: 10
+  _objectspawner: {fileID: 0}
 --- !u!61 &299604395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -947,6 +949,7 @@ MonoBehaviour:
   replacementObject: {fileID: 2049944695}
   TargetTag: Wood
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!114 &301194795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,7 +1201,7 @@ MonoBehaviour:
   - prefab: {fileID: 75112946}
     amountToSpawn: 2
   - prefab: {fileID: 550575440}
-    amountToSpawn: 1
+    amountToSpawn: 0
   spawnPoints:
   - {fileID: 201435621}
   - {fileID: 1742112443}
@@ -1243,8 +1246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replacementObject: {fileID: 655895336}
-  TargetTag: 
+  TargetTag: Handle
   scoreValue: 500
+  _objectspawner: {fileID: 0}
 --- !u!114 &550575442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1489,7 +1493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: d0c8ae62e517cd744a5a190b2f578328, type: 3}
       propertyPath: m_TagString
-      value: TargetObject
+      value: Head
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: d0c8ae62e517cd744a5a190b2f578328, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1559,6 +1563,10 @@ PrefabInstance:
     - target: {fileID: -2253911629886400664, guid: 38c582741bafc984cb78f292d17742f4, type: 3}
       propertyPath: m_Name
       value: lapio16x16
+      objectReference: {fileID: 0}
+    - target: {fileID: -2253911629886400664, guid: 38c582741bafc984cb78f292d17742f4, type: 3}
+      propertyPath: m_TagString
+      value: Shovel
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 38c582741bafc984cb78f292d17742f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2178,8 +2186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replacementObject: {fileID: 655895336}
-  TargetTag: 
+  TargetTag: Head
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!1 &1281932560
 GameObject:
   m_ObjectHideFlags: 0
@@ -2936,7 +2945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfa8fdffa821fef4893bd3ac889cefb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 10
+  totalTime: 30
   pointsPerSecondRemaining: 10
   timerText: {fileID: 1814064398}
 --- !u!1 &1821981869
@@ -3037,6 +3046,7 @@ MonoBehaviour:
   replacementObject: {fileID: 299604393}
   TargetTag: 
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!61 &1899569296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3202,7 +3212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2253911629886400664, guid: fc78aa3a93672a8498fd005aaaef47db, type: 3}
       propertyPath: m_TagString
-      value: TargetObject
+      value: Plank
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: fc78aa3a93672a8498fd005aaaef47db, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3421,6 +3431,7 @@ MonoBehaviour:
   replacementObject: {fileID: 299604393}
   TargetTag: 
   scoreValue: 250
+  _objectspawner: {fileID: 0}
 --- !u!50 &2030931953
 Rigidbody2D:
   serializedVersion: 4
@@ -3466,8 +3477,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   replacementObject: {fileID: 1126946061}
-  TargetTag: 
+  TargetTag: Plank
   scoreValue: 500
+  _objectspawner: {fileID: 0}
 --- !u!114 &2049944697
 MonoBehaviour:
   m_ObjectHideFlags: 0

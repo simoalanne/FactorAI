@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Global;
 
 public class Timer : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class Timer : MonoBehaviour
     public float pointsPerSecondRemaining = 10f; // Points to add per second remaining
     private float timeRemaining; // Time remaining
     private bool isTimerRunning = false; // Flag to control timer state
+    private ScoreManager _scoreManager;
 
     public TextMeshProUGUI timerText; // TextMeshPro text to display the timer
 
     void Start()
     {
+        _scoreManager = FindObjectOfType<ScoreManager>();
         timeRemaining = totalTime;
         UpdateTimerText();
         StartTimer(); // Start the timer automatically when the scene is played
@@ -48,19 +51,12 @@ public class Timer : MonoBehaviour
     void EndGame()
     {
         isTimerRunning = false;
-        CalculatePoints();
         MoveToMenuScene();
-    }
-
-    void CalculatePoints()
-    {
-        float points = timeRemaining * pointsPerSecondRemaining;
-        // Add points to the score manager or wherever you keep track of points
-        ScoreManager.instance.AddScore((int)points);
     }
 
     void MoveToMenuScene()
     {
-        SceneManager.LoadScene("Factory");
+        GameManager.Instance.AddToGameScore(_scoreManager.Score);
+        SceneManager.LoadSceneAsync("Factory");
     }
 }

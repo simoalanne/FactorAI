@@ -8,11 +8,11 @@ namespace MiniGame2
     {
         [SerializeField] private GameObject[] _prefabArray;
         [SerializeField] private float _gravityScale = 0.5f;
-        [SerializeField] private float _dropIntervalInitial = 3.0f; 
+        [SerializeField] private float _dropIntervalInitial = 3.0f;
         [SerializeField] private float _dropIntervalFastest = 0.75f;
         [SerializeField] private int _maxConsecutiveWrongObjects = 3;
         [SerializeField] private int _preventSpawnToRecents = 5;
-       
+
         private Camera _mainCamera;
         private float _cameraWidth, _yPosition;
         private bool _gameActive = true;
@@ -27,13 +27,13 @@ namespace MiniGame2
             _cameraWidth = _mainCamera.orthographicSize * _mainCamera.aspect;
             _yPosition = _mainCamera.orthographicSize - 1;
             _recentXPositions = new int[_preventSpawnToRecents];
-            
+
             // Now first oject spawn can be at x-coordinate zero.
             for (int i = 0; i < _recentXPositions.Length; i++)
             {
                 _recentXPositions[i] = (int)_cameraWidth;
             }
-            
+
             StartCoroutine(StartSpawnLoop());
         }
 
@@ -42,7 +42,7 @@ namespace MiniGame2
             while (GameActive)
             {
                 SpawnToRandomAndApplyGravity(InstantiateRandom());
-                
+
                 if (_dropIntervalInitial > _dropIntervalFastest)
                 {
                 _dropIntervalInitial -= 0.05f;
@@ -54,8 +54,8 @@ namespace MiniGame2
         private GameObject InstantiateRandom()
         {
             int randomIndex = Mathf.RoundToInt(Random.Range(0, _prefabArray.Length));
-            
-            if (_prefabArray[randomIndex].CompareTag("Undesired"))
+
+            if (_prefabArray[randomIndex].CompareTag("UndesiredProduct"))
             {
                 _countConsecutiveWrongObjects++;
             }
@@ -84,7 +84,7 @@ namespace MiniGame2
             } while (IsRecentXPosition(randomX));
 
             prefab.transform.position = new Vector2(randomX, _yPosition);
-            
+
             Rigidbody2D body = prefab.GetComponentInChildren<Rigidbody2D>();
             body.gravityScale = _gravityScale;
         }
@@ -99,8 +99,8 @@ namespace MiniGame2
             for (int i = 0; i < _recentXPositions.Length - 1; i++)
             {
                 _recentXPositions[i] = _recentXPositions[i + 1];
-            } 
-                
+            }
+
             _recentXPositions[_recentXPositions.Length - 1] = xToCheck;
             return false;
         }

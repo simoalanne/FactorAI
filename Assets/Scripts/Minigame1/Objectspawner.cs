@@ -17,7 +17,7 @@ public class Objectspawner : MonoBehaviour
         SpawnObjects();
     }
 
-    void SpawnObjects()
+    public void SpawnObjects()
     {
         foreach (ObjectToSpawn objToSpawn in objectsToSpawn)
         {
