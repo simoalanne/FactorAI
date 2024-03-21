@@ -7,9 +7,11 @@ namespace MiniGame2
     public class GameStatsManager : MonoBehaviour
     {
         [SerializeField] float _miniGameLengthInSeconds = 60.0f;
-        [SerializeField] int _howManyForWin = 30;
-        [SerializeField] int _maxFails = 5;
-        [SerializeField] string _sceneToLoad;
+        [SerializeField] int _howManyForWin = 20;
+        [SerializeField] int _maxFails = 3;
+        [SerializeField] string _nextMinigameName = "Minigame1";
+
+        private OnMinigameEnd _onMinigameEnd;
         private int _score;
         private int _collected;
         private int _fails;
@@ -17,18 +19,28 @@ namespace MiniGame2
 
         public string PrintTime => _printTime;
         public int Score => _score;
+        public int Collected => _collected;
+        public int HowManyForWin => _howManyForWin;
         public int Fails => _fails;
+        public int MaxFails => _maxFails;
+
+        private void Start()
+        {
+            _onMinigameEnd = GetComponent<OnMinigameEnd>();
+        }
 
         private void Update()
         {
             _miniGameLengthInSeconds -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(_miniGameLengthInSeconds / 60);
             int seconds = Mathf.FloorToInt(_miniGameLengthInSeconds % 60);
-            _printTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+            float fraction = _miniGameLengthInSeconds * 100 % 100;
+            _printTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, Mathf.FloorToInt(fraction));
 
             if (_miniGameLengthInSeconds <= 0.0f)
             {
-                EndGame();
+                _printTime = "00:00:00";
+                _onMinigameEnd.OnGameLost();
             }
         }
 
@@ -43,11 +55,14 @@ namespace MiniGame2
                 IncreaseFails();
             }
 
-            if (_fails >= _maxFails || _collected >= _howManyForWin)
+            if (_collected >= _howManyForWin)
             {
-                EndGame();
+                _onMinigameEnd.OnGameWon(_score, _nextMinigameName);
             }
-
+            else if (_fails >= _maxFails)
+            {
+                _onMinigameEnd.OnGameLost();
+            }
         }
 
         private void IncreaseScore()
@@ -62,13 +77,6 @@ namespace MiniGame2
         {
             _fails++;
             // TODO: Add fails to UI and play sound/animation
-        }
-
-
-        private void EndGame()
-        {
-            GameManager.Instance.AddToGameScore(_score);
-            SceneManager.LoadScene(_sceneToLoad);
         }
     }
 }

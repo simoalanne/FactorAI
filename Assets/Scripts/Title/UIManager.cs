@@ -6,7 +6,7 @@ namespace Title
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private GameObject _titlePanel;
+        [SerializeField] private GameObject _titleMenu;
         [SerializeField] private GameObject _settingsPanel;
         [SerializeField] private string _sceneToLoad;
         [SerializeField] private Button _toggleMusicButton;
@@ -26,14 +26,14 @@ namespace Title
 
         public void OpenSettings()
         {
-            _titlePanel.SetActive(false);
+            _titleMenu.SetActive(false);
             _settingsPanel.SetActive(true);
         }
 
         public void CloseSettings()
         {
             _settingsPanel.SetActive(false);
-            _titlePanel.SetActive(true);
+            _titleMenu.SetActive(true);
         }
 
         public void ToggleMusic()

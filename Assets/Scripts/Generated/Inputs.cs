@@ -26,34 +26,6 @@ namespace GameInputs
     ""name"": ""Inputs"",
     ""maps"": [
         {
-            ""name"": ""Menu"",
-            ""id"": ""b167283b-083f-4d18-b3e1-bdb67dc27c6d"",
-            ""actions"": [
-                {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""ae647613-0034-46ea-bbff-9e0e83a7e155"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""9ec2ea45-1b17-4b0a-a5e9-9767ef83af9d"",
-                    ""path"": ""<Touchscreen>/Press"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""MiniGame2"",
             ""id"": ""c1dd424c-38cb-4234-953f-ebeafd317663"",
             ""actions"": [
@@ -104,9 +76,6 @@ namespace GameInputs
     ],
     ""controlSchemes"": []
 }");
-            // Menu
-            m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-            m_Menu_Interact = m_Menu.FindAction("Interact", throwIfNotFound: true);
             // MiniGame2
             m_MiniGame2 = asset.FindActionMap("MiniGame2", throwIfNotFound: true);
             m_MiniGame2_MoveLeft = m_MiniGame2.FindAction("MoveLeft", throwIfNotFound: true);
@@ -169,52 +138,6 @@ namespace GameInputs
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // Menu
-        private readonly InputActionMap m_Menu;
-        private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
-        private readonly InputAction m_Menu_Interact;
-        public struct MenuActions
-        {
-            private @Inputs m_Wrapper;
-            public MenuActions(@Inputs wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Interact => m_Wrapper.m_Menu_Interact;
-            public InputActionMap Get() { return m_Wrapper.m_Menu; }
-            public void Enable() { Get().Enable(); }
-            public void Disable() { Get().Disable(); }
-            public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
-            public void AddCallbacks(IMenuActions instance)
-            {
-                if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-            }
-
-            private void UnregisterCallbacks(IMenuActions instance)
-            {
-                @Interact.started -= instance.OnInteract;
-                @Interact.performed -= instance.OnInteract;
-                @Interact.canceled -= instance.OnInteract;
-            }
-
-            public void RemoveCallbacks(IMenuActions instance)
-            {
-                if (m_Wrapper.m_MenuActionsCallbackInterfaces.Remove(instance))
-                    UnregisterCallbacks(instance);
-            }
-
-            public void SetCallbacks(IMenuActions instance)
-            {
-                foreach (var item in m_Wrapper.m_MenuActionsCallbackInterfaces)
-                    UnregisterCallbacks(item);
-                m_Wrapper.m_MenuActionsCallbackInterfaces.Clear();
-                AddCallbacks(instance);
-            }
-        }
-        public MenuActions @Menu => new MenuActions(this);
-
         // MiniGame2
         private readonly InputActionMap m_MiniGame2;
         private List<IMiniGame2Actions> m_MiniGame2ActionsCallbackInterfaces = new List<IMiniGame2Actions>();
@@ -268,10 +191,6 @@ namespace GameInputs
             }
         }
         public MiniGame2Actions @MiniGame2 => new MiniGame2Actions(this);
-        public interface IMenuActions
-        {
-            void OnInteract(InputAction.CallbackContext context);
-        }
         public interface IMiniGame2Actions
         {
             void OnMoveLeft(InputAction.CallbackContext context);
