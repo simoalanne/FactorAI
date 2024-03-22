@@ -2,22 +2,21 @@ using Global;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MiniGame2
+namespace Minigame2
 {
     public class GameStatsManager : MonoBehaviour
     {
         [SerializeField] float _miniGameLengthInSeconds = 60.0f;
         [SerializeField] int _howManyForWin = 20;
         [SerializeField] int _maxFails = 3;
-        [SerializeField] string _nextMinigameName = "Minigame1";
 
         private OnMinigameEnd _onMinigameEnd;
         private int _score;
         private int _collected;
         private int _fails;
-        private string _printTime;
+        private string _minigameTime;
 
-        public string PrintTime => _printTime;
+        public string MinigameTime => _minigameTime;
         public int Score => _score;
         public int Collected => _collected;
         public int HowManyForWin => _howManyForWin;
@@ -35,11 +34,11 @@ namespace MiniGame2
             int minutes = Mathf.FloorToInt(_miniGameLengthInSeconds / 60);
             int seconds = Mathf.FloorToInt(_miniGameLengthInSeconds % 60);
             float fraction = _miniGameLengthInSeconds * 100 % 100;
-            _printTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, Mathf.FloorToInt(fraction));
+            _minigameTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, Mathf.FloorToInt(fraction));
 
             if (_miniGameLengthInSeconds <= 0.0f)
             {
-                _printTime = "00:00:00";
+                _minigameTime = "00:00:00";
                 _onMinigameEnd.OnGameLost();
             }
         }
@@ -57,7 +56,7 @@ namespace MiniGame2
 
             if (_collected >= _howManyForWin)
             {
-                _onMinigameEnd.OnGameWon(_score, _nextMinigameName);
+                _onMinigameEnd.OnGameWon(_score);
             }
             else if (_fails >= _maxFails)
             {

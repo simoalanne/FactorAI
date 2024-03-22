@@ -15,12 +15,12 @@ namespace Global
             _minigameRestartMenu.SetActive(true);
         }
 
-        public void OnGameWon(float minigameScore, string nextMinigameName)
+        public void OnGameWon(float minigameScore)
         {
             if (GameManager.Instance == null) return;
             GameManager.Instance.AddToGameScore(minigameScore);
-            GameManager.Instance.AiSkipProgress(minigameScore);
-            GameManager.Instance.MiniGameName = nextMinigameName;
+            GameManager.Instance.AddAiSkipProgress(minigameScore);
+            GameManager.Instance.ChangeActiveMiniGame();
             SceneManager.LoadScene("Factory");
         }
     }

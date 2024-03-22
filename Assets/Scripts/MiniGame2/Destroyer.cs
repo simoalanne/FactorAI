@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MiniGame2
+namespace Minigame2
 {
     public class Destroyer : MonoBehaviour
     {

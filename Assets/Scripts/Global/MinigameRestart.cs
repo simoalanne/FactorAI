@@ -23,14 +23,17 @@ namespace Global
                 canvas.enabled = false;
             }
 
-            foreach (GameObject gameObject in _otherGameObjectsToDisable)
+            if (_otherGameObjectsToDisable.Length > 0)
             {
-                gameObject.SetActive(false);
+                foreach (GameObject gameObject in _otherGameObjectsToDisable)
+                {
+                    gameObject.SetActive(false);
+                }
             }
 
             _timerText = transform.Find("Timer").GetComponent<TextMeshProUGUI>();
 
-            InvokeRepeating(nameof(UpdateTimerText), 0, 1.25f);
+            InvokeRepeating(nameof(UpdateTimerText), 0, 1f);
         }
 
         public void RestartMinigame()
@@ -43,7 +46,7 @@ namespace Global
             _timerText.text = _timeToClick.ToString();
             _timeToClick -= 1;
 
-            if (_timeToClick == 0)
+            if (_timeToClick == -1)
             {
                 CancelInvoke(nameof(UpdateTimerText));
                 SceneManager.LoadSceneAsync("Factory");

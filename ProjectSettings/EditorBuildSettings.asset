@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Factory.unity
     guid: 34f0032bb6c39ff4ab65ad9deadfb573
   - enabled: 1
-    path: Assets/Scenes/Settings.unity
-    guid: 1460d9b095c82aa44b33226a8ee803dc
-  - enabled: 1
     path: Assets/Scenes/Minigame1.unity
     guid: 65d94e7a079fefa4da5cd06fb9f48b44
   - enabled: 1

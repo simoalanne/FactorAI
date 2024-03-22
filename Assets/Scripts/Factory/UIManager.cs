@@ -1,15 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Global;
-using UnityEngine.UI;
 
 namespace Factory
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _timerText;
-        [SerializeField] private TextMeshProUGUI _scoreText;
+        [SerializeField] private TMP_Text _timerText;
+        [SerializeField] private TMP_Text _scoreText;
+        [SerializeField] private TMP_Text _processTimerText;
         [SerializeField] private Button _aiSkipButton;
         [SerializeField] private float _scoreFromAiSkip = 50000f;
 
@@ -31,11 +32,12 @@ namespace Factory
             if (_scoreText == null || _timerText == null || GameManager.Instance == null) return;
             _scoreText.text = "Score: \n" + GameManager.Instance.GameScore;
             _timerText.text = "Time: \n" + GameManager.Instance.GameTimer;
+            _processTimerText.text = GameManager.Instance.ActiveMiniGameName + " Process Time: \n" + GameManager.Instance.ProcessTimer;
         }
 
         public void LoadNextMinigame()
         {
-            SceneManager.LoadSceneAsync(GameManager.Instance.MiniGameName);
+            SceneManager.LoadSceneAsync(GameManager.Instance.ActiveMiniGameName);
         }
 
         public void UseAISkip()
@@ -43,14 +45,18 @@ namespace Factory
             GameManager.Instance.IsAiSkipReady = false;
             _aiSkipButton.interactable = false;
             GameManager.Instance.AddToGameScore(_scoreFromAiSkip);
+            GameManager.Instance.ChangeActiveMiniGame();
+        }
 
-            if (GameManager.Instance.MiniGameName == "Minigame1")
+        public void DisplayProcessTimer()
+        {
+            if (_processTimerText.enabled)
             {
-                GameManager.Instance.MiniGameName = "Minigame2";
+                _processTimerText.enabled = false;
             }
             else
             {
-                GameManager.Instance.MiniGameName = "Minigame1";
+                _processTimerText.enabled = true;
             }
         }
     }

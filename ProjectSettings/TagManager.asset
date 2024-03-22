@@ -47,6 +47,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Debug
+    uniqueID: 12908065
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

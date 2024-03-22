@@ -1,14 +1,14 @@
 using UnityEngine;
 using TMPro;
 
-namespace MiniGame2
+namespace Minigame2
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI timerText;
-        [SerializeField] private TextMeshProUGUI scoreText;
-        [SerializeField] private TextMeshProUGUI failsText;
-        [SerializeField] private TextMeshProUGUI _collectedText;
+        [SerializeField] private TMP_Text timerText;
+        [SerializeField] private TMP_Text scoreText;
+        [SerializeField] private TMP_Text failsText;
+        [SerializeField] private TMP_Text _collectedText;
 
         private GameStatsManager _gameStatsManager;
 
@@ -19,7 +19,7 @@ namespace MiniGame2
   
         void Update()
         {
-            timerText.text = "TIME: \n" + _gameStatsManager.PrintTime;
+            timerText.text = "TIME: \n" + _gameStatsManager.MinigameTime;
             scoreText.text = "SCORE: \n " + _gameStatsManager.Score;
             failsText.text = "FAILS: \n" + _gameStatsManager.Fails + " / " + _gameStatsManager.MaxFails;
             _collectedText.text = "PICKED: \n" + _gameStatsManager.Collected + " / " + _gameStatsManager.HowManyForWin;

@@ -46,6 +46,15 @@ namespace GameInputs
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drag"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ee3e736a-3deb-47c2-ac9d-95e88cac400a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -70,6 +79,28 @@ namespace GameInputs
                     ""action"": ""MoveRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a65086ca-26e0-4a34-8e18-8c24ce9fbbf2"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58974446-4de6-4868-b36b-214806a7fab6"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -80,6 +111,7 @@ namespace GameInputs
             m_MiniGame2 = asset.FindActionMap("MiniGame2", throwIfNotFound: true);
             m_MiniGame2_MoveLeft = m_MiniGame2.FindAction("MoveLeft", throwIfNotFound: true);
             m_MiniGame2_MoveRight = m_MiniGame2.FindAction("MoveRight", throwIfNotFound: true);
+            m_MiniGame2_Drag = m_MiniGame2.FindAction("Drag", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -143,12 +175,14 @@ namespace GameInputs
         private List<IMiniGame2Actions> m_MiniGame2ActionsCallbackInterfaces = new List<IMiniGame2Actions>();
         private readonly InputAction m_MiniGame2_MoveLeft;
         private readonly InputAction m_MiniGame2_MoveRight;
+        private readonly InputAction m_MiniGame2_Drag;
         public struct MiniGame2Actions
         {
             private @Inputs m_Wrapper;
             public MiniGame2Actions(@Inputs wrapper) { m_Wrapper = wrapper; }
             public InputAction @MoveLeft => m_Wrapper.m_MiniGame2_MoveLeft;
             public InputAction @MoveRight => m_Wrapper.m_MiniGame2_MoveRight;
+            public InputAction @Drag => m_Wrapper.m_MiniGame2_Drag;
             public InputActionMap Get() { return m_Wrapper.m_MiniGame2; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -164,6 +198,9 @@ namespace GameInputs
                 @MoveRight.started += instance.OnMoveRight;
                 @MoveRight.performed += instance.OnMoveRight;
                 @MoveRight.canceled += instance.OnMoveRight;
+                @Drag.started += instance.OnDrag;
+                @Drag.performed += instance.OnDrag;
+                @Drag.canceled += instance.OnDrag;
             }
 
             private void UnregisterCallbacks(IMiniGame2Actions instance)
@@ -174,6 +211,9 @@ namespace GameInputs
                 @MoveRight.started -= instance.OnMoveRight;
                 @MoveRight.performed -= instance.OnMoveRight;
                 @MoveRight.canceled -= instance.OnMoveRight;
+                @Drag.started -= instance.OnDrag;
+                @Drag.performed -= instance.OnDrag;
+                @Drag.canceled -= instance.OnDrag;
             }
 
             public void RemoveCallbacks(IMiniGame2Actions instance)
@@ -195,6 +235,7 @@ namespace GameInputs
         {
             void OnMoveLeft(InputAction.CallbackContext context);
             void OnMoveRight(InputAction.CallbackContext context);
+            void OnDrag(InputAction.CallbackContext context);
         }
     }
 }

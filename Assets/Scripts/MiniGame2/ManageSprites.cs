@@ -2,7 +2,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-namespace MiniGame2
+namespace Minigame2
 {
     public class ManageSprites : MonoBehaviour
     {

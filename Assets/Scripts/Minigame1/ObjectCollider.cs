@@ -9,16 +9,16 @@ public class ObjectCollider : MonoBehaviour
     [SerializeField]
     private string TargetTag;
     private bool isReplaced = false;
-    private ScoreManager _scoreManager;
-
+    
     [SerializeField]
-    private int scoreValue = 10; // Score value to add when objects are destroyed
+    private int scoreValue = 1000; // Score value to add when objects are destroyed
 
-    [SerializeField] private Objectspawner _objectspawner;
+    private GameStatsManager _gameStatsManager;
+    private Objectspawner _objectspawner;
 
     void Start()
     {
-        _scoreManager = FindObjectOfType<ScoreManager>();
+        _gameStatsManager = FindObjectOfType<GameStatsManager>();
         _objectspawner = FindObjectOfType<Objectspawner>();
     }
 
@@ -37,10 +37,11 @@ public class ObjectCollider : MonoBehaviour
 
                 if (replacementObject.CompareTag("Shovel"))
                 {
+                    _gameStatsManager.IncreaseCompletedProducts();
                     _objectspawner.SpawnObjects();
                 }
-                // Add score when objects are destroyed
-                _scoreManager.AddScore(scoreValue);
+
+                _gameStatsManager.IncreaseScore(scoreValue);
             }
         }
     }
