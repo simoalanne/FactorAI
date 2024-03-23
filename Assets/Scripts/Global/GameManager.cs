@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,11 +6,10 @@ namespace Global
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private float _gameLengthInSeconds = 1800f;
+        [SerializeField] private float _gameLengthInSeconds = 600f;
         [SerializeField] private float _processLengthInSeconds = 180f;
         [SerializeField] private string _activeMiniGameName = "Minigame1";
         [SerializeField] private float _scoreRequiredForAISkip = 50000f;
-        
 
         private float _scoreGatheredForAISkip = 0f;
         private float _gameScore;
@@ -20,8 +20,9 @@ namespace Global
 
         public float GameScore => _gameScore;
         public string GameTimer => _gameTimer;
-        public string ProcessTimer =>  _processTimer;
-        
+        public string ProcessTimer => _processTimer;
+        public float ScoreRequiredForAISkip => _scoreRequiredForAISkip;
+        public float ScoreGatheredForAISkip => _scoreGatheredForAISkip;
 
         public string ActiveMiniGameName
         {
@@ -55,15 +56,11 @@ namespace Global
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            
+
             _originalProcessLength = _processLengthInSeconds;
 
-            _gameScore = PlayerPrefs.GetFloat(gameScoreKey, 0f);
-            _gameLengthInSeconds = PlayerPrefs.GetFloat(gameLengthInSecondsKey, 1800f);
-            _processLengthInSeconds = PlayerPrefs.GetFloat(processLengthInSecondsKey, 180f);
-            _isAISkipReady = PlayerPrefs.GetInt(isAiSkipReadyKey, 0) == 1;
-            _scoreGatheredForAISkip = PlayerPrefs.GetFloat(aiSkipGatheredScoreKey, 0f);
-            _activeMiniGameName = PlayerPrefs.GetString(activeMiniGameNameKey, "Minigame1");
+            LoadSaveData();
+
         }
 
         private void Update()
@@ -119,6 +116,16 @@ namespace Global
 
         private void OnApplicationPause()
         {
+            SaveGameData();
+        }
+
+        private void OnApplicationQuit()
+        {
+            SaveGameData();
+        }
+
+        private void SaveGameData()
+        {
             PlayerPrefs.SetFloat(gameLengthInSecondsKey, _gameLengthInSeconds);
             PlayerPrefs.SetFloat(processLengthInSecondsKey, _processLengthInSeconds);
             PlayerPrefs.SetFloat(gameScoreKey, _gameScore);
@@ -127,14 +134,22 @@ namespace Global
             PlayerPrefs.SetString(activeMiniGameNameKey, _activeMiniGameName);
         }
 
-        private void OnApplicationQuit()
+        private void LoadSaveData()
         {
-            PlayerPrefs.SetFloat(gameLengthInSecondsKey, _gameLengthInSeconds);
-            PlayerPrefs.SetFloat(processLengthInSecondsKey, _processLengthInSeconds);
-            PlayerPrefs.SetFloat(gameScoreKey, _gameScore);
-            PlayerPrefs.SetInt(isAiSkipReadyKey, _isAISkipReady ? 1 : 0);
-            PlayerPrefs.SetFloat(aiSkipGatheredScoreKey, _scoreGatheredForAISkip);
-            PlayerPrefs.SetString(activeMiniGameNameKey, _activeMiniGameName);
+            _gameScore = PlayerPrefs.GetFloat(gameScoreKey, _gameScore);
+            _gameLengthInSeconds = PlayerPrefs.GetFloat(gameLengthInSecondsKey, _gameLengthInSeconds);
+            _processLengthInSeconds = PlayerPrefs.GetFloat(processLengthInSecondsKey, _processLengthInSeconds);
+            _isAISkipReady = PlayerPrefs.GetInt(isAiSkipReadyKey, 0) == 1;
+            _scoreGatheredForAISkip = PlayerPrefs.GetFloat(aiSkipGatheredScoreKey, _scoreGatheredForAISkip);
+            _activeMiniGameName = PlayerPrefs.GetString(activeMiniGameNameKey, "Minigame1");
+        }
+
+        public void ResetSaveData()
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+            Destroy(gameObject);
+            SceneManager.LoadSceneAsync("Title");
         }
     }
 }

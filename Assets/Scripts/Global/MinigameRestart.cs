@@ -18,12 +18,15 @@ namespace Global
 
         private void Awake()
         {
-            foreach (Canvas canvas in _canvasesToDisable)
+            if (_canvasesToDisable != null)
             {
-                canvas.enabled = false;
+                foreach (Canvas canvas in _canvasesToDisable)
+                {
+                    canvas.enabled = false;
+                }
             }
 
-            if (_otherGameObjectsToDisable.Length > 0)
+            if (_otherGameObjectsToDisable != null)
             {
                 foreach (GameObject gameObject in _otherGameObjectsToDisable)
                 {

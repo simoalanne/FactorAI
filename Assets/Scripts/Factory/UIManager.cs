@@ -13,6 +13,9 @@ namespace Factory
         [SerializeField] private TMP_Text _processTimerText;
         [SerializeField] private Button _aiSkipButton;
         [SerializeField] private float _scoreFromAiSkip = 50000f;
+        [SerializeField] private Button _aiSkipInfoButton;
+        [SerializeField] private TMP_Text _aiSkipInfoText;
+        [SerializeField] private GameObject _gameEndMenu;
 
         private void Start()
         {
@@ -20,11 +23,26 @@ namespace Factory
             {
                 _aiSkipButton.interactable = true;
             }
+
+            _processTimerText.enabled = false;
+            _gameEndMenu.SetActive(false);
+            _gameEndMenu.GetComponentInChildren<MonoBehaviour>().enabled = false;
+            _aiSkipInfoText.enabled = false;
         }
 
         private void Update()
         {
             UpdateStats();
+
+            if (GameManager.Instance.GameTimer == "00:00")
+            {
+                OnGameTimerEnd();
+            }
+        }
+
+        private void OnGameTimerEnd()
+        {
+            _gameEndMenu.SetActive(true);
         }
 
         private void UpdateStats()
@@ -46,6 +64,39 @@ namespace Factory
             _aiSkipButton.interactable = false;
             GameManager.Instance.AddToGameScore(_scoreFromAiSkip);
             GameManager.Instance.ChangeActiveMiniGame();
+            if (_aiSkipInfoText.enabled)
+            {
+                _aiSkipInfoText.enabled = false;
+            }
+        }
+
+        public void DisplayAISkipStatus()
+        {
+            if (_aiSkipInfoText.enabled)
+            {
+                _aiSkipInfoText.enabled = false;
+                return;
+            }
+
+            _aiSkipInfoText.enabled = true;
+
+            if (_aiSkipButton.interactable)
+            {
+                _aiSkipInfoText.text = "Status: Ready";
+                _aiSkipInfoText.color = Color.green;
+                return;
+            }
+
+            if (GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip < 0.5f)
+            {
+                _aiSkipInfoText.color = Color.red;
+            }
+            else
+            {
+                _aiSkipInfoText.color = new Color(1f, 0.5f, 0f); // RGB for orange
+            }
+
+            _aiSkipInfoText.text = "Status: \n" + (int)GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip * 100 + " / 100%";
         }
 
         public void DisplayProcessTimer()

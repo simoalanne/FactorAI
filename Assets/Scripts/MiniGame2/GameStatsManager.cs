@@ -9,6 +9,7 @@ namespace Minigame2
         [SerializeField] float _miniGameLengthInSeconds = 60.0f;
         [SerializeField] int _howManyForWin = 20;
         [SerializeField] int _maxFails = 3;
+        [SerializeField] private int _scorePenaltyFromFail = 5000;
 
         private OnMinigameEnd _onMinigameEnd;
         private int _score;
@@ -75,6 +76,7 @@ namespace Minigame2
         private void IncreaseFails()
         {
             _fails++;
+            _score -= _scorePenaltyFromFail;
             // TODO: Add fails to UI and play sound/animation
         }
     }
