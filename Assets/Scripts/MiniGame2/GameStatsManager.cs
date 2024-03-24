@@ -1,6 +1,5 @@
 using Global;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Minigame2
 {
@@ -9,16 +8,17 @@ namespace Minigame2
         [SerializeField] float _miniGameLengthInSeconds = 60.0f;
         [SerializeField] int _howManyForWin = 20;
         [SerializeField] int _maxFails = 3;
-        [SerializeField] private int _scorePenaltyFromFail = 5000;
+        [SerializeField] private float _scorePenaltyFromFail = 5000;
 
         private OnMinigameEnd _onMinigameEnd;
-        private int _score;
+        private float _score;
         private int _collected;
         private int _fails;
         private string _minigameTime;
+        private bool _gameActive = true;
 
         public string MinigameTime => _minigameTime;
-        public int Score => _score;
+        public float Score => _score;
         public int Collected => _collected;
         public int HowManyForWin => _howManyForWin;
         public int Fails => _fails;
@@ -31,6 +31,8 @@ namespace Minigame2
 
         private void Update()
         {
+            if (!_gameActive) return;
+
             _miniGameLengthInSeconds -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(_miniGameLengthInSeconds / 60);
             int seconds = Mathf.FloorToInt(_miniGameLengthInSeconds % 60);
@@ -39,6 +41,7 @@ namespace Minigame2
 
             if (_miniGameLengthInSeconds <= 0.0f)
             {
+                _gameActive = false;
                 _minigameTime = "00:00:00";
                 _onMinigameEnd.OnGameLost();
             }
@@ -46,6 +49,8 @@ namespace Minigame2
 
         public void UpdateStats(bool Scored)
         {
+            if (!_gameActive) return;
+
             if (Scored)
             {
                 IncreaseScore();

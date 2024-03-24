@@ -7,35 +7,13 @@ namespace Global
 {
     public class MinigameRestart : MonoBehaviour
     {
-        [SerializeField] private Canvas[] _canvasesToDisable;
-
-        [SerializeField, Tooltip("Disable all the spawners and other objects that you don't want active during this script")]
-        private GameObject[] _otherGameObjectsToDisable;
-
         [SerializeField] private int _timeToClick = 5;
 
         private TextMeshProUGUI _timerText;
 
         private void Awake()
         {
-            if (_canvasesToDisable != null)
-            {
-                foreach (Canvas canvas in _canvasesToDisable)
-                {
-                    canvas.enabled = false;
-                }
-            }
-
-            if (_otherGameObjectsToDisable != null)
-            {
-                foreach (GameObject gameObject in _otherGameObjectsToDisable)
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-
             _timerText = transform.Find("Timer").GetComponent<TextMeshProUGUI>();
-
             InvokeRepeating(nameof(UpdateTimerText), 0, 1f);
         }
 

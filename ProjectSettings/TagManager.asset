@@ -13,6 +13,7 @@ TagManager:
   - Shovel
   - Handle
   - Metal
+  - Bar
   layers:
   - Default
   - TransparentFX

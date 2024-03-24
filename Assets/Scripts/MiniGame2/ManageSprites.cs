@@ -6,7 +6,7 @@ namespace Minigame2
 {
     public class ManageSprites : MonoBehaviour
     {
-        [SerializeField] private GameObject[] _prefabArray;
+        [SerializeField] private GameObject[] _spawnedObjects;
         [SerializeField] private float _gravityScale = 0.5f;
         [SerializeField] private float _dropIntervalInitial = 3.0f;
         [SerializeField] private float _dropIntervalFastest = 0.75f;
@@ -53,9 +53,9 @@ namespace Minigame2
 
         private GameObject InstantiateRandom()
         {
-            int randomIndex = Mathf.RoundToInt(Random.Range(0, _prefabArray.Length));
+            int randomIndex = Mathf.RoundToInt(Random.Range(0, _spawnedObjects.Length));
 
-            if (_prefabArray[randomIndex].CompareTag("UndesiredProduct"))
+            if (_spawnedObjects[randomIndex].CompareTag("UndesiredProduct"))
             {
                 _countConsecutiveWrongObjects++;
             }
@@ -67,11 +67,11 @@ namespace Minigame2
 
             if (_countConsecutiveWrongObjects <= _maxConsecutiveWrongObjects)
             {
-                return Instantiate(_prefabArray[randomIndex]);
+                return Instantiate(_spawnedObjects[randomIndex]);
             }
 
             _countConsecutiveWrongObjects = 0;
-            return Instantiate(_prefabArray[0]);
+            return Instantiate(_spawnedObjects[0]);
         }
 
         private void SpawnToRandomAndApplyGravity(GameObject prefab)

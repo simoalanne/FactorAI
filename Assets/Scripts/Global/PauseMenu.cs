@@ -15,10 +15,10 @@ namespace Global
         {
             _pauseButton = transform.Find("PauseButton").gameObject;
             _gamePausedMenu = transform.Find("GamePausedMenu").gameObject;
-            _confirmRestartMenu = transform.Find("ConfirmRestartMenu").gameObject;
+            Transform foundTransform = transform.Find("ConfirmRestartMenu");
+            _confirmRestartMenu = foundTransform != null ? foundTransform.gameObject : null;
             _pauseButton.SetActive(true);
             _gamePausedMenu.SetActive(false);
-            _confirmRestartMenu.SetActive(false);
         }
 
         public void PauseGame()

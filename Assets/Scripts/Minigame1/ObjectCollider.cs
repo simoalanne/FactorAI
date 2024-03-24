@@ -11,7 +11,7 @@ public class ObjectCollider : MonoBehaviour
     private bool isReplaced = false;
     
     [SerializeField]
-    private int scoreValue = 1000; // Score value to add when objects are destroyed
+    private float scoreValue = 1000;
 
     private GameStatsManager _gameStatsManager;
     private Objectspawner _objectspawner;

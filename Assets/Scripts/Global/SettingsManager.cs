@@ -6,5 +6,6 @@ public class SettingsManager : MonoBehaviour
     {
         Application.targetFrameRate = 120;
         QualitySettings.vSyncCount = 0;
+        Destroy(gameObject);
     }
 }

@@ -12,7 +12,7 @@ namespace Factory
         [SerializeField] private TMP_Text _scoreText;
         [SerializeField] private TMP_Text _processTimerText;
         [SerializeField] private Button _aiSkipButton;
-        [SerializeField] private float _scoreFromAiSkip = 50000f;
+        [SerializeField] private float _scoreFromAiSkip = 50000;
         [SerializeField] private Button _aiSkipInfoButton;
         [SerializeField] private TMP_Text _aiSkipInfoText;
         [SerializeField] private GameObject _gameEndMenu;
@@ -34,13 +34,13 @@ namespace Factory
         {
             UpdateStats();
 
-            if (GameManager.Instance.GameTimer == "00:00")
+            if (GameManager.Instance.GameLengthInSeconds <= 0f)
             {
-                OnGameTimerEnd();
+                InitGameEnd();
             }
         }
 
-        private void OnGameTimerEnd()
+        private void InitGameEnd()
         {
             _gameEndMenu.SetActive(true);
         }
@@ -87,7 +87,7 @@ namespace Factory
                 return;
             }
 
-            if (GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip < 0.5f)
+            if (GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip < 0.5)
             {
                 _aiSkipInfoText.color = Color.red;
             }
@@ -95,8 +95,10 @@ namespace Factory
             {
                 _aiSkipInfoText.color = new Color(1f, 0.5f, 0f); // RGB for orange
             }
+            Debug.Log("Score gathered for AI Skip: " + GameManager.Instance.ScoreGatheredForAISkip);
+            Debug.Log("Score required for AI Skip: " + GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip);
 
-            _aiSkipInfoText.text = "Status: \n" + (int)GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip * 100 + " / 100%";
+            _aiSkipInfoText.text = "Status: \n" + GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip * 100 + " / 100%";
         }
 
         public void DisplayProcessTimer()
