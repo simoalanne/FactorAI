@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 
 namespace Global
 {
@@ -20,20 +19,17 @@ namespace Global
         public void OnGameLost()
         {
             InitMenu();
-            Debug.Log("Game Lost");
             _minigameRestartMenu.SetActive(true);
         }
 
         public void OnGameWon(float minigameScore)
         {
+            Time.timeScale = 0;
             InitMenu();
             if (GameManager.Instance == null) return;
             GameManager.Instance.AddToGameScore(minigameScore);
             GameManager.Instance.AddAiSkipProgress(minigameScore);
             GameManager.Instance.ChangeActiveMiniGame();
-            Debug.Log(GameManager.Instance.GameScore);
-            Debug.Log(GameManager.Instance.ScoreGatheredForAISkip);
-            Debug.Log(GameManager.Instance.ActiveMiniGameName);
             _minigameWonMenu.SetActive(true);
         }
 

@@ -463,7 +463,10 @@ MonoBehaviour:
   _gameLengthInSeconds: 600
   _processLengthInSeconds: 120
   _activeMiniGameName: Minigame1
-  _scoreRequiredForAISkip: 50000
+  _scoreRequiredForAISkip: 75000
+  _scoreGatheredForAISkip: 0
+  _gameScore: 0
+  _isAISkipReady: 0
 --- !u!1 &465220459
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,12 +10,12 @@ namespace Global
         [SerializeField] private string _activeMiniGameName = "Minigame1";
         [SerializeField] private float _scoreRequiredForAISkip = 50000;
 
-        private float _scoreGatheredForAISkip = 0;
-        private float _gameScore;
+        [SerializeField] private float _scoreGatheredForAISkip = 0;
+        [SerializeField] private float _gameScore;
         private string _gameTimer;
         private string _processTimer;
         private float _originalProcessLength;
-        private bool _isAISkipReady = false;
+        [SerializeField] private bool _isAISkipReady = false;
 
         public float GameLengthInSeconds => _gameLengthInSeconds;
         public float GameScore => _gameScore;
@@ -94,12 +93,18 @@ namespace Global
         public void AddAiSkipProgress(float minigameScore)
         {
             _scoreGatheredForAISkip += minigameScore;
-            if (_scoreGatheredForAISkip >= _scoreRequiredForAISkip)
+
+            if (_scoreGatheredForAISkip >= _scoreRequiredForAISkip && _isAISkipReady == false)
             {
                 _isAISkipReady = true;
                 _scoreGatheredForAISkip = 0;
             }
-            Debug.Log("Score gathered for AI Skip: " + _scoreGatheredForAISkip);
+
+            else if (_isAISkipReady == true) // AISkip has to be used before you can gather score towards it again
+            {
+                _scoreGatheredForAISkip = 0;
+            }
+
         }
 
         public void ChangeActiveMiniGame()
@@ -141,7 +146,7 @@ namespace Global
             _gameScore = PlayerPrefs.GetFloat(gameScoreKey, _gameScore);
             _gameLengthInSeconds = PlayerPrefs.GetFloat(gameLengthInSecondsKey, _gameLengthInSeconds);
             _processLengthInSeconds = PlayerPrefs.GetFloat(processLengthInSecondsKey, _processLengthInSeconds);
-            _isAISkipReady = PlayerPrefs.GetFloat(isAiSkipReadyKey, 0) == 1;
+            _isAISkipReady = PlayerPrefs.GetInt(isAiSkipReadyKey, 0) == 1;
             _scoreGatheredForAISkip = PlayerPrefs.GetFloat(aiSkipGatheredScoreKey, _scoreGatheredForAISkip);
             _activeMiniGameName = PlayerPrefs.GetString(activeMiniGameNameKey, "Minigame1");
         }

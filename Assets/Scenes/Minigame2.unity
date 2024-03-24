@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _miniGameLengthInSeconds: 75
-  _howManyForWin: 30
+  _howManyForWin: 25
   _maxFails: 5
   _scorePenaltyFromFail: 5000
 --- !u!114 &455221425

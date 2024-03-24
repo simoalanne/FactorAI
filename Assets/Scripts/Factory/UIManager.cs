@@ -26,7 +26,6 @@ namespace Factory
 
             _processTimerText.enabled = false;
             _gameEndMenu.SetActive(false);
-            _gameEndMenu.GetComponentInChildren<MonoBehaviour>().enabled = false;
             _aiSkipInfoText.enabled = false;
         }
 
@@ -95,8 +94,6 @@ namespace Factory
             {
                 _aiSkipInfoText.color = new Color(1f, 0.5f, 0f); // RGB for orange
             }
-            Debug.Log("Score gathered for AI Skip: " + GameManager.Instance.ScoreGatheredForAISkip);
-            Debug.Log("Score required for AI Skip: " + GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip);
 
             _aiSkipInfoText.text = "Status: \n" + GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip * 100 + " / 100%";
         }
