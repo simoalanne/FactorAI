@@ -70,6 +70,10 @@ namespace Global
                 int minutes = Mathf.FloorToInt(_gameLengthInSeconds / 60);
                 int seconds = Mathf.FloorToInt(_gameLengthInSeconds % 60);
                 _gameTimer = string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
+
+            if (SceneManager.GetActiveScene().name == "Factory")
+            {
 
                 _processLengthInSeconds -= Time.deltaTime;
                 int processMinutes = Mathf.FloorToInt(_processLengthInSeconds / 60);

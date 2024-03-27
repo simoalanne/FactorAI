@@ -8,10 +8,12 @@ namespace Minigame2
         private Inputs _inputs = null;
         private bool _dragStarted = true;
         private Vector3 _startDragPosition;
-        private Vector3 _dragOffset;
-        private Vector3 _originalPosition;
+        private Vector2 _dragOffset;
+        private Vector2 _originalPosition;
         private Rigidbody2D _rb;
-        private Vector3 _newPosition;
+        private Vector2 _newPosition;
+
+        public Vector2 DragOffset => _dragOffset;
 
         private void Awake()
         {

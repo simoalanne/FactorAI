@@ -5,7 +5,6 @@ namespace Minigame2
 {
     public class GameStatsManager : MonoBehaviour
     {
-        [SerializeField] float _miniGameLengthInSeconds = 60.0f;
         [SerializeField] int _howManyForWin = 20;
         [SerializeField] int _maxFails = 3;
         [SerializeField] private float _scorePenaltyFromFail = 5000;
@@ -29,27 +28,9 @@ namespace Minigame2
             _onMinigameEnd = GetComponent<OnMinigameEnd>();
         }
 
-        private void Update()
-        {
-            if (!_gameActive) return;
-
-            _miniGameLengthInSeconds -= Time.deltaTime;
-            int minutes = Mathf.FloorToInt(_miniGameLengthInSeconds / 60);
-            int seconds = Mathf.FloorToInt(_miniGameLengthInSeconds % 60);
-            float fraction = _miniGameLengthInSeconds * 100 % 100;
-            _minigameTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, Mathf.FloorToInt(fraction));
-
-            if (_miniGameLengthInSeconds <= 0.0f)
-            {
-                _gameActive = false;
-                _minigameTime = "00:00:00";
-                _onMinigameEnd.OnGameLost();
-            }
-        }
-
         public void UpdateStats(bool Scored)
         {
-            if (!_gameActive) return;
+            if (_gameActive == false) return;
 
             if (Scored)
             {
@@ -63,10 +44,12 @@ namespace Minigame2
             if (_collected >= _howManyForWin)
             {
                 _onMinigameEnd.OnGameWon(_score);
+                _gameActive = false;
             }
             else if (_fails >= _maxFails)
             {
                 _onMinigameEnd.OnGameLost();
+                _gameActive = false;
             }
         }
 

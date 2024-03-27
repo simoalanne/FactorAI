@@ -95,7 +95,7 @@ namespace Factory
                 _aiSkipInfoText.color = new Color(1f, 0.5f, 0f); // RGB for orange
             }
 
-            _aiSkipInfoText.text = "Status: \n" + GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip * 100 + " / 100%";
+            _aiSkipInfoText.text = "Status: \n" + Mathf.FloorToInt(GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip * 100) + " / 100%";
         }
 
         public void DisplayProcessTimer()

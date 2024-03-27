@@ -21,7 +21,7 @@ namespace Minigame2
 
         public bool GameActive => _gameActive;
 
-        private void Awake()
+        private void Start()
         {
             _mainCamera = Camera.main;
             _cameraWidth = _mainCamera.orthographicSize * _mainCamera.aspect;
@@ -45,7 +45,7 @@ namespace Minigame2
 
                 if (_dropIntervalInitial > _dropIntervalFastest)
                 {
-                _dropIntervalInitial -= 0.05f;
+                    _dropIntervalInitial -= 0.05f;
                 }
                 yield return new WaitForSeconds(_dropIntervalInitial);
             }

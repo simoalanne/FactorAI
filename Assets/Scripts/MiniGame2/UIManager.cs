@@ -5,25 +5,32 @@ namespace Minigame2
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private TMP_Text timerText;
         [SerializeField] private TMP_Text scoreText;
         [SerializeField] private TMP_Text failsText;
         [SerializeField] private TMP_Text _collectedText;
 
         private GameStatsManager _gameStatsManager;
 
+        private string RepeatedString(string text, int times)
+        {
+            string result = "";
+            for (int i = 0; i < times; i++)
+            {
+                result += text;
+            }
+            return result;
+        }
+
         void Start()
         {
             _gameStatsManager = GetComponent<GameStatsManager>();
         }
-  
+
         void Update()
         {
-            timerText.text = "TIME: \n" + _gameStatsManager.MinigameTime;
             scoreText.text = "SCORE: \n " + _gameStatsManager.Score;
-            failsText.text = "FAILS: \n" + _gameStatsManager.Fails + " / " + _gameStatsManager.MaxFails;
+            failsText.text = RepeatedString("X ", _gameStatsManager.Fails);
             _collectedText.text = "PICKED: \n" + _gameStatsManager.Collected + " / " + _gameStatsManager.HowManyForWin;
-
         }
     }
 }
