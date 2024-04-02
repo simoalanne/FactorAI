@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: String Table_fi
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fi
+  m_SharedData: {fileID: 11400000, guid: ef3ecfde5aad1f343b8cc963887cbd59, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 120515383296
+    m_Localized: Kieli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1123595767808
+    m_Localized: Pisteet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1307780239360
+    m_Localized: "PYS\xC4YTETTY"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2977482330112
+    m_Localized: JATKA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10307561246720
+    m_Localized: "P\xC4\xC4VALIKKO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10500125937664
+    m_Localized: 'ALOITA
+
+      ALUSTA'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -17,6 +17,14 @@ PrefabInstance:
       value: UndesiredProduct
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 5fc93564f8e2333479e80674e26ff2cd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: 5fc93564f8e2333479e80674e26ff2cd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: 5fc93564f8e2333479e80674e26ff2cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}

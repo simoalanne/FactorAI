@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using UnityEngine.SocialPlatforms;
 
 namespace Title
 {
@@ -13,11 +16,11 @@ namespace Title
         [SerializeField] private Sprite _musicOnIcon;
         [SerializeField] private Sprite _musicOffIcon;
         [SerializeField] private Button _changeLanguageButton;
-        [SerializeField] private Sprite _englishFlag;
-        [SerializeField] private Sprite _finnishFlag;
-
+        [SerializeField] private Locale _englishLocale;
+        [SerializeField] private Locale _finnishLocale;
+     
         private bool _musicEnabled = true;
-        private string _currentLanguage = "English";
+    
 
         public void PlayGame()
         {
@@ -53,17 +56,21 @@ namespace Title
             }
         }
 
-        public void ChangeLanguage()
+        public void ChangeToEnglish()
         {
-            if (_currentLanguage == "English")
+            if (_englishLocale != null && LocalizationSettings.SelectedLocale != _englishLocale)
             {
-                _changeLanguageButton.image.sprite = _finnishFlag;
-                _currentLanguage = "Finnish";
+                Debug.Log("Changing to English");
+                LocalizationSettings.SelectedLocale = _englishLocale;
             }
-            else if (_currentLanguage == "Finnish")
+        }
+
+        public void ChangeToFinnish()
+        {
+            if (_finnishLocale != null && LocalizationSettings.SelectedLocale != _finnishLocale)
             {
-                _changeLanguageButton.image.sprite = _englishFlag;
-                _currentLanguage = "English";
+                Debug.Log("Changing to Finnish");
+                LocalizationSettings.SelectedLocale = _finnishLocale;
             }
         }
     }

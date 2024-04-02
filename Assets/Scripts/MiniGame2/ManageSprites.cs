@@ -25,7 +25,7 @@ namespace Minigame2
         {
             _mainCamera = Camera.main;
             _cameraWidth = _mainCamera.orthographicSize * _mainCamera.aspect;
-            _yPosition = _mainCamera.orthographicSize - 1;
+            _yPosition = _mainCamera.orthographicSize + 5f;
             _recentXPositions = new int[_preventSpawnToRecents];
 
             // Now first oject spawn can be at x-coordinate zero.
@@ -80,7 +80,7 @@ namespace Minigame2
 
             do
             {
-                randomX = Mathf.RoundToInt(Random.Range(-_cameraWidth + 1, _cameraWidth));
+                randomX = Mathf.RoundToInt(Random.Range(-_cameraWidth + 2f, _cameraWidth - 2f));
             } while (IsRecentXPosition(randomX));
 
             prefab.transform.position = new Vector2(randomX, _yPosition);
