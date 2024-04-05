@@ -44,6 +44,71 @@ MonoBehaviour:
       GAME'
     m_Metadata:
       m_Items: []
+  - m_Id: 190892179116032
+    m_Localized: FAILED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191123784388608
+    m_Localized: 'RETURNING TO
+
+      FACTORY IN:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191698269818880
+    m_Localized: TRY AGAIN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194001085321216
+    m_Localized: 'PROCESS
+
+      COMPLETE'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194278467227648
+    m_Localized: 'BACK TO
+
+      FACTORY'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195100215267328
+    m_Localized: 'CONGRATS!
+
+      TOTAL SCORE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196383689068544
+    m_Localized: MAIN MENU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 949826020102144
+    m_Localized: Are you sure you wish to restart the game? Doing this will permanently
+      delete the current save.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 950374207246336
+    m_Localized: Yes, I'm sure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 950490519490560
+    m_Localized: No, go back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951310040354816
+    m_Localized: "AI skip status:\n "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108327652577280
+    m_Localized: Quit minigame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1110956281614336
+    m_Localized: "Swipe left or right \nto start"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1121393823895552
+    m_Localized: 'Ready in:'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

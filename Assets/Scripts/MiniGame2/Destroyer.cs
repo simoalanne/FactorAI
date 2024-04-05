@@ -1,11 +1,12 @@
 using UnityEngine;
+using Global;
 
 namespace Minigame2
 {
     public class Destroyer : MonoBehaviour
     {
         private GameStatsManager _gameStatsManager;
-        private bool _isScored;
+        private bool _scored;
 
         private void Awake()
         {
@@ -16,8 +17,7 @@ namespace Minigame2
         {
             if (collision.gameObject.CompareTag("DesiredProduct"))
             {
-                _isScored = false;
-                _gameStatsManager.UpdateStats(_isScored);
+                _gameStatsManager.UpdateStats(_scored, collision.transform.position);
                 Destroy(collision.gameObject);
             }
 

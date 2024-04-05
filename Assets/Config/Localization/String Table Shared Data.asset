@@ -39,6 +39,64 @@ MonoBehaviour:
     m_Key: RestartGameKey
     m_Metadata:
       m_Items: []
+  - m_Id: 190892179116032
+    m_Key: FailedKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191123784388608
+    m_Key: ReturningToFactoryKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191698269818880
+    m_Key: TryAgainKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194001085321216
+    m_Key: ProcessCompleteKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194278467227648
+    m_Key: BackToFactoryKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195100215267328
+    m_Key: CongratsKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196383689068544
+    m_Key: MainMenuOnOneLineKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 949826020102144
+    m_Key: RestartGameWarningText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 950374207246336
+    m_Key: SureKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 950490519490560
+    m_Key: CancelKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951310040354816
+    m_Key: 'AISkipStatusKey
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108327652577280
+    m_Key: QuitMinigameKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1110956281614336
+    m_Key: SwipeKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1121393823895552
+    m_Key: ReadyKey
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

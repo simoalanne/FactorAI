@@ -35,13 +35,76 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10307561246720
-    m_Localized: "P\xC4\xC4VALIKKO"
+    m_Localized: "P\xC4\xC4-\nVALIKKO"
     m_Metadata:
       m_Items: []
   - m_Id: 10500125937664
     m_Localized: 'ALOITA
 
       ALUSTA'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190892179116032
+    m_Localized: MOKASIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191123784388608
+    m_Localized: "SIIRRYT\xC4\xC4N TAKAISIN\nTEHTAALLE:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191698269818880
+    m_Localized: "YRIT\xC4\nUUDELLEEN!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194001085321216
+    m_Localized: 'PROSESSI
+
+      SUORITETTU'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194278467227648
+    m_Localized: 'TAKAISIN
+
+      TEHTAALLE'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195100215267328
+    m_Localized: 'ONNITTELUT!
+
+      YHTEISPISTEESI:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196383689068544
+    m_Localized: "P\xC4\xC4VALIKKO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 949826020102144
+    m_Localized: "Haluatko varmasti aloittaa pelin alusta? T\xE4m\xE4n tekeminen
+      poistaa nykyisen tallenteen pysyv\xE4sti."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 950374207246336
+    m_Localized: "Kyll\xE4, olen varma"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 950490519490560
+    m_Localized: Ei, mene takaisin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951310040354816
+    m_Localized: 'AI skipin tila:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108327652577280
+    m_Localized: Lopeta minipeli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1110956281614336
+    m_Localized: "swaippaa \nvasemmalle tai oikealle \naloittaaksesi "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1121393823895552
+    m_Localized: 'Valmiina:'
     m_Metadata:
       m_Items: []
   references:

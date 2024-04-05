@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Factory;
 
 namespace Global
 {
@@ -9,7 +10,7 @@ namespace Global
         [SerializeField] private float _processLengthInSeconds = 180f;
         [SerializeField] private string _activeMiniGameName = "Minigame1";
         [SerializeField] private float _scoreRequiredForAISkip = 50000;
-
+        [SerializeField] private float _scorefromWaitingOutMinigame = 10000f;
         [SerializeField] private float _scoreGatheredForAISkip = 0;
         [SerializeField] private float _gameScore;
         private string _gameTimer;
@@ -79,13 +80,16 @@ namespace Global
                 int processMinutes = Mathf.FloorToInt(_processLengthInSeconds / 60);
                 int processSeconds = Mathf.FloorToInt(_processLengthInSeconds % 60);
                 _processTimer = string.Format("{0:00}:{1:00}", processMinutes, processSeconds);
-               
+
+
             }
 
             if (_processLengthInSeconds <= 0f && SceneManager.GetActiveScene().name == "Factory")
             {
+                AddToGameScore(_scorefromWaitingOutMinigame);
                 ChangeActiveMiniGame();
                 _processLengthInSeconds = _originalProcessLength;
+                FindObjectOfType<UIManager>().EnablePlayButton();
             }
         }
 

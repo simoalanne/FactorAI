@@ -6,7 +6,8 @@ public class ButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 {
     private Button _button;
 
-    private readonly float pulseSpeed = 0.25f;
+    [SerializeField] private float _pulseSpeed = 0.25f;
+    [SerializeField] private float _pulseScale = 0.1f;
 
     private Vector3 originalScale;
     private bool isButtonPressed = false;
@@ -22,11 +23,11 @@ public class ButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         float scaleFactor;
         if (isButtonPressed)
         {
-            scaleFactor = Mathf.PingPong(Time.time * pulseSpeed, 0.1f) + 0.9f;
+            scaleFactor = Mathf.PingPong(Time.time * _pulseSpeed, _pulseScale) + 0.9f;
         }
         else
         {
-            scaleFactor = Mathf.PingPong(Time.time * pulseSpeed, 0.1f) + 1f;
+            scaleFactor = Mathf.PingPong(Time.time * _pulseSpeed, _pulseScale) + 1f;
         }
         _button.transform.localScale = originalScale * scaleFactor;
     }

@@ -5,7 +5,7 @@ namespace Minigame2
     public class Catcher : MonoBehaviour
     {
         private GameStatsManager _gameStatsManager;
-        private bool _isScored;
+        private bool _scored;
 
         private void Awake()
         {
@@ -16,15 +16,15 @@ namespace Minigame2
         {
             if (collision.gameObject.CompareTag("DesiredProduct"))
             {
-                _isScored = true;
-                _gameStatsManager.UpdateStats(_isScored);
+                _scored = true;
+                _gameStatsManager.UpdateStats(_scored, collision.transform.position);
                 Destroy(collision.gameObject);
             }
 
             else if (collision.gameObject.CompareTag("UndesiredProduct"))
             {
-                _isScored = false;
-                _gameStatsManager.UpdateStats(_isScored);
+                _scored = false;
+                _gameStatsManager.UpdateStats(_scored, collision.transform.position);
                 Destroy(collision.gameObject);
             }
         }

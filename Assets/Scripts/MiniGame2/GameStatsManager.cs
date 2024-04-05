@@ -7,8 +7,10 @@ namespace Minigame2
     {
         [SerializeField] int _howManyForWin = 20;
         [SerializeField] int _maxFails = 3;
-        [SerializeField] private float _scorePenaltyFromFail = 5000;
-
+        [SerializeField] private float _scoreFromCatch = 2000f;
+        [SerializeField] private float _scorePenaltyFromFail = -5000f;
+        
+        private ScorePopUp _scorePopUp;
         private OnMinigameEnd _onMinigameEnd;
         private float _score;
         private int _collected;
@@ -25,19 +27,23 @@ namespace Minigame2
 
         private void Start()
         {
+            _scorePopUp = GetComponent<ScorePopUp>();
             _onMinigameEnd = GetComponent<OnMinigameEnd>();
         }
 
-        public void UpdateStats(bool Scored)
+        public void UpdateStats(bool scored, Vector2 collisionPosition)
         {
             if (_gameActive == false) return;
 
-            if (Scored)
+
+            if (scored)
             {
+                _scorePopUp.ShowPopUp(collisionPosition, _scoreFromCatch);
                 IncreaseScore();
             }
             else
             {
+                _scorePopUp.ShowPopUp(collisionPosition, _scorePenaltyFromFail);
                 IncreaseFails();
             }
 
@@ -56,15 +62,14 @@ namespace Minigame2
         private void IncreaseScore()
         {
             _collected++;
-            _score += 2000;
+            _score += _scoreFromCatch;
 
-            // TODO: Add score to UI and play sound/animation
         }
 
         private void IncreaseFails()
         {
             _fails++;
-            _score -= _scorePenaltyFromFail;
+            _score += _scorePenaltyFromFail;
             // TODO: Add fails to UI and play sound/animation
         }
     }
