@@ -1,14 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Global
 {
     public class PauseMenu : MonoBehaviour
     {
         [SerializeField] private string _sceneToLoadFromQuit = "Factory";
+        [SerializeField] private Canvas[] _canvasesToDisableRaycasting;
         private GameObject _pauseButton;
         private GameObject _gamePausedMenu;
         private GameObject _confirmRestartMenu;
+        private bool _gamePaused = false;
+        public bool GamePaused => _gamePaused;
 
 
         void Awake()
@@ -19,26 +23,33 @@ namespace Global
             _confirmRestartMenu = foundTransform != null ? foundTransform.gameObject : null;
             _pauseButton.SetActive(true);
             _gamePausedMenu.SetActive(false);
+
         }
 
         public void PauseGame()
         {
-            if (Time.timeScale != 0)
+            if (!_gamePaused)
             {
                 Time.timeScale = 0;
+                _gamePaused = true;
+                DisableOrEnableRaycastingForOtherCanvases();
                 _gamePausedMenu.SetActive(true);
             }
             else
             {
                 Time.timeScale = 1;
+                DisableOrEnableRaycastingForOtherCanvases();
                 _gamePausedMenu.SetActive(false);
+                _gamePaused = false;
             }
         }
 
         public void ResumeGame()
         {
             Time.timeScale = 1;
+            DisableOrEnableRaycastingForOtherCanvases();
             _gamePausedMenu.SetActive(false);
+            _gamePaused = false;
         }
 
         public void Quit()
@@ -66,8 +77,27 @@ namespace Global
             _confirmRestartMenu.SetActive(false);
             Time.timeScale = 1;
             GameManager.Instance.ResetSaveData();
+            SceneManager.LoadSceneAsync("Title");
         }
 
+        private void DisableOrEnableRaycastingForOtherCanvases()
+        {
+            if (_canvasesToDisableRaycasting.Length < 0) return;
+
+            foreach (Canvas canvas in _canvasesToDisableRaycasting)
+            {
+                if (canvas.GetComponent<GraphicRaycaster>().enabled == true)
+                {
+                    canvas.GetComponent<GraphicRaycaster>().enabled = false;
+                }
+                else if (canvas.GetComponent<GraphicRaycaster>().enabled == false)
+                {
+                    canvas.GetComponent<GraphicRaycaster>().enabled = true;
+                }
+
+                Debug.Log("Raycasting enabled:" + canvas.GetComponent<GraphicRaycaster>().enabled);
+            }
+        }
     }
 }
 

@@ -601,6 +601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneToLoadFromQuit: Factory
+  _canvasesToDisable: []
 --- !u!1 &6096771901436522411
 GameObject:
   m_ObjectHideFlags: 0

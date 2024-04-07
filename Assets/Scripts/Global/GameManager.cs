@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Factory;
+using System.Collections;
+
 
 namespace Global
 {
@@ -57,10 +59,10 @@ namespace Global
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
             _originalProcessLength = _processLengthInSeconds;
 
             LoadSaveData();
+
         }
 
         private void Update()
@@ -70,7 +72,7 @@ namespace Global
                 _gameLengthInSeconds -= Time.deltaTime;
                 int minutes = Mathf.FloorToInt(_gameLengthInSeconds / 60);
                 int seconds = Mathf.FloorToInt(_gameLengthInSeconds % 60);
-                _gameTimer = string.Format("{0:00}:{1:00}", minutes, seconds);
+                _gameTimer = string.Format("{0}:{1:00}", minutes, seconds);
             }
 
             if (SceneManager.GetActiveScene().name == "Factory")
@@ -79,7 +81,7 @@ namespace Global
                 _processLengthInSeconds -= Time.deltaTime;
                 int processMinutes = Mathf.FloorToInt(_processLengthInSeconds / 60);
                 int processSeconds = Mathf.FloorToInt(_processLengthInSeconds % 60);
-                _processTimer = string.Format("{0:00}:{1:00}", processMinutes, processSeconds);
+                _processTimer = string.Format("{0}:{1:00}", processMinutes, processSeconds);
 
 
             }
@@ -87,6 +89,7 @@ namespace Global
             if (_processLengthInSeconds <= 0f && SceneManager.GetActiveScene().name == "Factory")
             {
                 AddToGameScore(_scorefromWaitingOutMinigame);
+                AddAiSkipProgress(_scorefromWaitingOutMinigame);
                 ChangeActiveMiniGame();
                 _processLengthInSeconds = _originalProcessLength;
                 FindObjectOfType<UIManager>().EnablePlayButton();
@@ -147,6 +150,7 @@ namespace Global
             PlayerPrefs.SetInt(isAiSkipReadyKey, _isAISkipReady ? 1 : 0);
             PlayerPrefs.SetFloat(aiSkipGatheredScoreKey, _scoreGatheredForAISkip);
             PlayerPrefs.SetString(activeMiniGameNameKey, _activeMiniGameName);
+
         }
 
         private void LoadSaveData()
@@ -164,7 +168,6 @@ namespace Global
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
             Destroy(gameObject);
-            SceneManager.LoadSceneAsync("Title");
         }
     }
 }

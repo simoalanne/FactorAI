@@ -18,12 +18,12 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 120515383296
-    m_Localized: Kieli
+  - m_Id: 1961375731994624
+    m_Localized: Asetukset
     m_Metadata:
       m_Items: []
   - m_Id: 1123595767808
-    m_Localized: Pisteet
+    m_Localized: 'Pisteet:'
     m_Metadata:
       m_Items: []
   - m_Id: 1307780239360
@@ -69,9 +69,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 195100215267328
-    m_Localized: 'ONNITTELUT!
-
-      YHTEISPISTEESI:'
+    m_Localized: 'YHTEISPISTEESI:'
     m_Metadata:
       m_Items: []
   - m_Id: 196383689068544
@@ -88,11 +86,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 950490519490560
-    m_Localized: Ei, mene takaisin
+    m_Localized: En, peruuta
     m_Metadata:
       m_Items: []
   - m_Id: 951310040354816
-    m_Localized: 'AI skipin tila:'
+    m_Localized: 'Tila:'
     m_Metadata:
       m_Items: []
   - m_Id: 1108327652577280
@@ -104,7 +102,33 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1121393823895552
-    m_Localized: 'Valmiina:'
+    m_Localized: 'Valmistaudu:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1221950492299264
+    m_Localized: "UUSI ENN\xC4TYS!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1896480365793280
+    m_Localized: Kieli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960342217740288
+    m_Localized: Ohjeet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960406315094016
+    m_Localized: Musiikki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960564767510528
+    m_Localized: "\xC4\xE4net"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1973911181250560
+    m_Localized: 'Parhaat
+
+      tulokset'
     m_Metadata:
       m_Items: []
   references:

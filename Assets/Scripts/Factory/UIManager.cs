@@ -4,10 +4,6 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Localization.Settings;
 using Global;
-using UnityEngine.Localization;
-using System;
-using UnityEngine.Localization.Tables;
-
 
 namespace Factory
 {
@@ -23,21 +19,36 @@ namespace Factory
         [SerializeField] private TMP_Text _aiSkipInfoText;
         [SerializeField] private float _scoreFromAiSkip = 50000f;
         [SerializeField] private GameObject _gameEndMenu;
+        [SerializeField] private GameObject _processTimerAndInfo;
+        [SerializeField] private GameObject _processLine1;
+        [SerializeField] private GameObject _processLine2;
+        [SerializeField] private Sprite _playButtonIconEnglish;
+        [SerializeField] private Sprite _playButtonIconFinnish;
+
+
 
         private void Start()
         {
             if (GameManager.Instance == null) return;
 
-            EnablePlayButton();
+            Debug.Log(LocalizationSettings.SelectedLocale);
 
-            if (GameManager.Instance.IsAiSkipReady)
+            if (LocalizationSettings.SelectedLocale.Identifier == LocalizationSettings.AvailableLocales.GetLocale("en").Identifier)
             {
-                _aiSkipButton.interactable = true;
-                _aiSkipButton.GetComponent<ButtonAnimation>().enabled = true;
+                _playButton1.GetComponent<Image>().sprite = _playButtonIconEnglish;
+                _playButton2.GetComponent<Image>().sprite = _playButtonIconEnglish;
             }
+            else if (LocalizationSettings.SelectedLocale.Identifier == LocalizationSettings.AvailableLocales.GetLocale("fi").Identifier)
+            {
+                _playButton1.GetComponent<Image>().sprite = _playButtonIconFinnish;
+                _playButton2.GetComponent<Image>().sprite = _playButtonIconFinnish;
+            }
+
+            EnablePlayButton();
 
             _processTimerText.enabled = false;
             _gameEndMenu.SetActive(false);
+            _aiSkipInfoText.enabled = false;
             _aiSkipInfoText.enabled = false;
         }
 
@@ -49,9 +60,6 @@ namespace Factory
             {
                 InitGameEnd();
             }
-            Debug.Log(LocalizationSettings.SelectedLocale.name);
-            Debug.Log(LocalizationSettings.SelectedLocale.LocaleName);
-
         }
 
         private void InitGameEnd()
@@ -62,9 +70,23 @@ namespace Factory
         private void UpdateStats()
         {
             if (_scoreText == null || _timerText == null || GameManager.Instance == null) return;
-            _scoreText.text = "Score: \n" + GameManager.Instance.GameScore;
-            _timerText.text = "Time: \n" + GameManager.Instance.GameTimer;
-            _processTimerText.text = GameManager.Instance.ActiveMiniGameName + " Process Time: \n" + GameManager.Instance.ProcessTimer;
+            _scoreText.text = GameManager.Instance.GameScore.ToString();
+            _timerText.text = GameManager.Instance.GameTimer;
+            _processTimerText.text = GameManager.Instance.ProcessTimer;
+
+            if (GameManager.Instance.GameLengthInSeconds <= 60f)
+            {
+                _timerText.color = Color.red;
+            }
+            else
+            {
+                _timerText.color = Color.white;
+            }
+
+            if (GameManager.Instance.GameLengthInSeconds <= 0f)
+            {
+                _timerText.text = "00:00";
+            }
         }
 
         public void LoadNextMinigame()
@@ -79,6 +101,7 @@ namespace Factory
             _aiSkipButton.GetComponent<ButtonAnimation>().enabled = false;
             GameManager.Instance.AddToGameScore(_scoreFromAiSkip);
             GameManager.Instance.ChangeActiveMiniGame();
+            EnablePlayButton();
             if (_aiSkipInfoText.enabled)
             {
                 _aiSkipInfoText.enabled = false;
@@ -94,6 +117,8 @@ namespace Factory
 
                 _playButton1.GetComponent<ButtonAnimation>().enabled = true;
                 _playButton2.GetComponent<ButtonAnimation>().enabled = false;
+                _processTimerAndInfo.transform.SetParent(_processLine1.transform);
+                _processTimerAndInfo.GetComponent<RectTransform>().anchoredPosition = new Vector2(200, 150);
             }
 
             else if (GameManager.Instance.ActiveMiniGameName == "Minigame2")
@@ -103,12 +128,36 @@ namespace Factory
 
                 _playButton1.GetComponent<ButtonAnimation>().enabled = false;
                 _playButton2.GetComponent<ButtonAnimation>().enabled = true;
+                _processTimerAndInfo.transform.SetParent(_processLine2.transform);
+                _processTimerAndInfo.GetComponent<RectTransform>().anchoredPosition = new Vector2(200, 150); // :D
+            }
+
+            CheckAISkipStatus();
+        }
+
+        public void CheckAISkipStatus()
+        {
+            if (GameManager.Instance.IsAiSkipReady)
+            {
+                _aiSkipButton.interactable = true;
+                _aiSkipButton.GetComponent<ButtonAnimation>().enabled = true;
+
+                if (_aiSkipInfoText.enabled)
+                {
+                    _aiSkipInfoText.enabled = false;
+                    _aiSkipInfoText.enabled = false;
+
+                }
+            }
+            else
+            {
+                _aiSkipButton.interactable = false;
+                _aiSkipButton.GetComponent<ButtonAnimation>().enabled = false;
             }
         }
 
         public void DisplayAISkipStatus()
         {
-
             if (_aiSkipInfoText.enabled)
             {
                 _aiSkipInfoText.enabled = false;
@@ -119,13 +168,13 @@ namespace Factory
 
             if (_aiSkipButton.interactable)
             {
-                if (LocalizationSettings.SelectedLocale == LocalizationSettings.AvailableLocales.GetLocale("en"))
+                if (LocalizationSettings.SelectedLocale.Identifier == LocalizationSettings.AvailableLocales.GetLocale("en").Identifier)
                 {
-                    _aiSkipInfoText.text += "\n Ready!";
+                    _aiSkipInfoText.text = "Ready!";
                 }
-                else
+                else if (LocalizationSettings.SelectedLocale.Identifier == LocalizationSettings.AvailableLocales.GetLocale("fi").Identifier)
                 {
-                    _aiSkipInfoText.text += "\n Valmis!";
+                    _aiSkipInfoText.text = "Valmis!";
                 }
 
                 _aiSkipInfoText.color = Color.green;
@@ -141,7 +190,7 @@ namespace Factory
                 _aiSkipInfoText.color = new Color(1f, 0.5f, 0f); // RGB for orange
             }
 
-            _aiSkipInfoText.text += "\n" + Mathf.FloorToInt(GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip * 100) + " / 100%";
+            _aiSkipInfoText.text = Mathf.FloorToInt(GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip * 100) + "/100%";
         }
 
         public void DisplayProcessTimer()

@@ -18,12 +18,12 @@ MonoBehaviour:
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 120515383296
-    m_Localized: Language
+  - m_Id: 1961375731994624
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
   - m_Id: 1123595767808
-    m_Localized: Score
+    m_Localized: 'Score:'
     m_Metadata:
       m_Items: []
   - m_Id: 1307780239360
@@ -71,9 +71,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 195100215267328
-    m_Localized: 'CONGRATS!
-
-      TOTAL SCORE:'
+    m_Localized: 'TOTAL SCORE:'
     m_Metadata:
       m_Items: []
   - m_Id: 196383689068544
@@ -90,11 +88,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 950490519490560
-    m_Localized: No, go back
+    m_Localized: No, cancel
     m_Metadata:
       m_Items: []
   - m_Id: 951310040354816
-    m_Localized: "AI skip status:\n "
+    m_Localized: 'Status:'
     m_Metadata:
       m_Items: []
   - m_Id: 1108327652577280
@@ -106,7 +104,31 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1121393823895552
-    m_Localized: 'Ready in:'
+    m_Localized: 'Get ready in:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1221950492299264
+    m_Localized: NEW HIGHSCORE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1896480365793280
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960342217740288
+    m_Localized: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960406315094016
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960564767510528
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1973911181250560
+    m_Localized: Highscores
     m_Metadata:
       m_Items: []
   references:

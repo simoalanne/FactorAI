@@ -16,6 +16,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: UndesiredProduct
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 81e742aa7d5a3ed40962786cb723b999, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 81e742aa7d5a3ed40962786cb723b999, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 81e742aa7d5a3ed40962786cb723b999, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

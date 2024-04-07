@@ -7,7 +7,6 @@ namespace Global
     {
         public void BackToFactory()
         {
-            Time.timeScale = 1;
             SceneManager.LoadSceneAsync("Factory");
         }
     }

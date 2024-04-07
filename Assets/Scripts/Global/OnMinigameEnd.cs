@@ -24,7 +24,6 @@ namespace Global
 
         public void OnGameWon(float minigameScore)
         {
-            Time.timeScale = 0;
             InitMenu();
             if (GameManager.Instance == null) return;
             GameManager.Instance.AddToGameScore(minigameScore);

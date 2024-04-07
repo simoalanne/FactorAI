@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 namespace Minigame2
 {
@@ -8,30 +9,30 @@ namespace Minigame2
         [SerializeField] private TMP_Text scoreText;
         [SerializeField] private TMP_Text failsText;
         [SerializeField] private TMP_Text _collectedText;
-        
 
         private GameStatsManager _gameStatsManager;
 
         void Start()
         {
             _gameStatsManager = GetComponent<GameStatsManager>();
+            failsText.text = GenerateFailText(_gameStatsManager.MaxFails, 0);
         }
 
         void Update()
         {
-            scoreText.text = "SCORE: \n " + _gameStatsManager.Score;
-            failsText.text = RepeatedString("X ", _gameStatsManager.Fails);
-            _collectedText.text = "X " + _gameStatsManager.Collected.ToString();
+            scoreText.text = _gameStatsManager.Score.ToString();
+            failsText.text = GenerateFailText(_gameStatsManager.MaxFails, _gameStatsManager.Fails);
+            _collectedText.text = _gameStatsManager.Collected + "/" + _gameStatsManager.HowManyForWin;
         }
 
-        private string RepeatedString(string text, int times)
+        private string GenerateFailText(int maxFails, int fails)
         {
-            string result = "";
-            for (int i = 0; i < times; i++)
-            {
-                result += text;
-            }
-            return result;
+            string gray = "<color=#80808050>"; // rgba(128, 128, 128, 0.5)
+            string red = "<color=#FF0000FF>"; // rgba(255, 0, 0, 1)
+            string endColor = "</color>";
+            string redXs = string.Concat(Enumerable.Repeat(red + "X" + endColor + " ", fails));
+            string grayXs = string.Concat(Enumerable.Repeat(gray + "X" + endColor + " ", maxFails - fails)); 
+            return redXs + grayXs; 
         }
     }
 }

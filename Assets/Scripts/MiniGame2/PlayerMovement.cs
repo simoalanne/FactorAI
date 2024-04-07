@@ -1,5 +1,6 @@
 using UnityEngine;
 using GameInputs;
+using Global;
 
 namespace Minigame2
 {
@@ -17,6 +18,7 @@ namespace Minigame2
         private void Awake()
         {
             _inputs = new Inputs();
+
         }
 
         private void OnEnable()
@@ -61,9 +63,6 @@ namespace Minigame2
 
         private void StartDragging()
         {
-            Debug.Log("offset" + _dragOffset);
-            Debug.Log("og pos" +_originalPosition);
-            Debug.Log("newpos:" +_newPosition);
             // On first method call, set the start position and the original position
             if (_dragStarted)
             {
@@ -76,7 +75,10 @@ namespace Minigame2
             _dragOffset = Camera.main.ScreenToWorldPoint(_inputs.MiniGame2.Drag.ReadValue<Vector2>()) - _startDragPosition;
             // Only add the x-component of the drag offset to the x-component of the original position
             _newPosition = new Vector2(_originalPosition.x + _dragOffset.x, _originalPosition.y);
+            if (FindObjectOfType<InitGame>().GameStarted && FindObjectOfType<PauseMenu>().GamePaused == false)
+            {
             transform.position = new Vector2(_newPosition.x, transform.position.y);
+            }
         }
     }
 }
