@@ -1,51 +1,59 @@
+using System.Collections.Generic;
+using Global;
 using UnityEngine;
 
-[System.Serializable]
-public class ObjectToSpawn
+namespace Minigame1
 {
-    public GameObject prefab;
-    public int amountToSpawn;
-}
-
-public class Objectspawner : MonoBehaviour
-{
-    public ObjectToSpawn[] objectsToSpawn; // Array of objects to spawn
-    public Transform[] spawnPoints; // Array of spawn points
-
-    void Start()
+    [System.Serializable]
+    public class SpawnableObject
     {
-        SpawnObjects();
+        public GameObject ObjectToSpawn;
+        public int AmountToSpawn;
+        public float _percentageOfTileSize = 0.75f;
     }
 
-    public void SpawnObjects()
+    public class ObjectSpawner : MonoBehaviour
     {
-        foreach (ObjectToSpawn objToSpawn in objectsToSpawn)
-        {
-            for (int i = 0; i < objToSpawn.amountToSpawn; i++)
-            {
-                // Randomly select a spawn point
-                int spawnIndex = Random.Range(0, spawnPoints.Length);
-                Transform spawnPoint = spawnPoints[spawnIndex];
+        [SerializeField] private SpawnableObject[] _product1Objects;
+        [SerializeField] private SpawnableObject[] _product2Objects;
+        private readonly List<Transform> _spawnPositions = new();
+        private readonly List<Transform> _usedPositions = new();
 
-                // Check if the spawn point is available
-                if (!IsSpawnPointOccupied(spawnPoint.position))
+        public List<Transform> SpawnPositions => _spawnPositions;
+        public List<Transform> UsedPositions => _usedPositions;
+
+        private CreateGrid _createGrid;
+
+        void Awake()
+        {
+            _createGrid = FindObjectOfType<CreateGrid>();
+        }
+
+        public void SpawnObjects()
+        {
+            foreach (SpawnableObject spawnableObject in _product1Objects)
+            {
+                for (int i = 0; i < spawnableObject.AmountToSpawn; i++)
                 {
-                    // Spawn the object at the chosen spawn point
-                    Instantiate(objToSpawn.prefab, spawnPoint.position, Quaternion.identity);
-                }
-                else
-                {
-                    // If the spawn point is occupied, try again
-                    i--;
+                    Transform randomPosition = _spawnPositions[Random.Range(0, _spawnPositions.Count)];
+                    if (!_usedPositions.Contains(randomPosition))
+                    {
+                        // Instantiate the object first
+                        GameObject instance = Instantiate(spawnableObject.ObjectToSpawn, randomPosition.position, Quaternion.identity);
+
+                        // Then modify the properties of the instance
+                        instance.transform.localScale = _createGrid.GridTileScale * spawnableObject._percentageOfTileSize;
+                        instance.GetComponent<SpriteRenderer>().flipX = Random.Range(0, 2) == 0;
+
+                        randomPosition.tag = instance.tag;
+                        _usedPositions.Add(randomPosition);
+                    }
+                    else
+                    {
+                        i--;
+                    }
                 }
             }
         }
-    }
-
-    bool IsSpawnPointOccupied(Vector3 position)
-    {
-        // Check if any object is already spawned at the given position
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(position, 0.1f); // Adjust the radius as needed
-        return colliders.Length > 0;
     }
 }

@@ -86,7 +86,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1110956281614336
-    m_Key: SwipeKey
+    m_Key: TapKey
     m_Metadata:
       m_Items: []
   - m_Id: 1121393823895552

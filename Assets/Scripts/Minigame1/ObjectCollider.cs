@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace Minigame1
+{
 public class ObjectCollider : MonoBehaviour
 {
     [SerializeField]
@@ -12,12 +14,12 @@ public class ObjectCollider : MonoBehaviour
     private float scoreValue = 1000;
 
     private GameStatsManager _gameStatsManager;
-    private Objectspawner _objectspawner;
+    private ObjectSpawner _objectspawner;
 
     void Start()
     {
         _gameStatsManager = FindObjectOfType<GameStatsManager>();
-        _objectspawner = FindObjectOfType<Objectspawner>();
+        _objectspawner = FindObjectOfType<ObjectSpawner>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -53,4 +55,5 @@ public class ObjectCollider : MonoBehaviour
     {
         isReplaced = replaced;
     }
+}
 }

@@ -7,8 +7,6 @@ namespace Minigame2
 {
     public class InitGame : MonoBehaviour
     {
-        [SerializeField, Tooltip("Amount player has to swipe before the game can start")]
-        private float _swipeThreshold = 1f;
 
         [SerializeField] private float _gameStartDelay = 3f;
         [SerializeField] private TMP_Text _swipeText;
@@ -20,7 +18,7 @@ namespace Minigame2
 
         private float _gameStartCountdown;
         private PlayerMovement _playerMovement;
-        private bool _swiped;
+        private bool _tapped;
 
         private ManageSprites _manageSprites;
 
@@ -30,6 +28,7 @@ namespace Minigame2
             _getReadyText.enabled = false;
             _countdownText.enabled = false;
             _playerMovement = GetComponentInParent<PlayerMovement>();
+            _playerMovement.enabled = false;
             _manageSprites = FindObjectOfType<ManageSprites>();
             _manageSprites.enabled = false;
             FindObjectOfType<PauseMenu>().GetComponentInChildren<Button>().interactable = false;
@@ -37,10 +36,11 @@ namespace Minigame2
 
         void Update()
         {
-            if (_playerMovement.DragOffset.x >= _swipeThreshold && !_swiped)
+
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && !_tapped)
             {
-                _swiped = true;
-                InvokeRepeating(nameof(StartGameCountdown), 1, 1f);
+                _tapped = true;
+                InvokeRepeating(nameof(StartGameCountdown), 0f, 1f);
             }
         }
 
@@ -59,6 +59,7 @@ namespace Minigame2
                 _countdownText.enabled = false;
                 _manageSprites.enabled = true;
                 _gameStarted = true;
+                _playerMovement.enabled = true;
                 FindObjectOfType<PauseMenu>().GetComponentInChildren<Button>().interactable = true;
             }
         }

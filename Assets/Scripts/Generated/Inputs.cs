@@ -26,27 +26,9 @@ namespace GameInputs
     ""name"": ""Inputs"",
     ""maps"": [
         {
-            ""name"": ""MiniGame2"",
+            ""name"": ""Minigames"",
             ""id"": ""c1dd424c-38cb-4234-953f-ebeafd317663"",
             ""actions"": [
-                {
-                    ""name"": ""MoveLeft"",
-                    ""type"": ""Button"",
-                    ""id"": ""88a621c9-a11e-4f5a-800a-60911f14e3c1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""MoveRight"",
-                    ""type"": ""Button"",
-                    ""id"": ""1a604c4b-bbb8-4e75-87a7-edaf7e70c5a0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
                 {
                     ""name"": ""Drag"",
                     ""type"": ""PassThrough"",
@@ -60,41 +42,8 @@ namespace GameInputs
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""1a7a491f-77cb-4f3d-9d40-928902f37166"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveLeft"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""854995c3-b868-43ed-b7aa-091f13f931da"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MoveRight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a65086ca-26e0-4a34-8e18-8c24ce9fbbf2"",
                     ""path"": ""<Touchscreen>/primaryTouch/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Drag"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""58974446-4de6-4868-b36b-214806a7fab6"",
-                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -107,11 +56,9 @@ namespace GameInputs
     ],
     ""controlSchemes"": []
 }");
-            // MiniGame2
-            m_MiniGame2 = asset.FindActionMap("MiniGame2", throwIfNotFound: true);
-            m_MiniGame2_MoveLeft = m_MiniGame2.FindAction("MoveLeft", throwIfNotFound: true);
-            m_MiniGame2_MoveRight = m_MiniGame2.FindAction("MoveRight", throwIfNotFound: true);
-            m_MiniGame2_Drag = m_MiniGame2.FindAction("Drag", throwIfNotFound: true);
+            // Minigames
+            m_Minigames = asset.FindActionMap("Minigames", throwIfNotFound: true);
+            m_Minigames_Drag = m_Minigames.FindAction("Drag", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -170,71 +117,53 @@ namespace GameInputs
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // MiniGame2
-        private readonly InputActionMap m_MiniGame2;
-        private List<IMiniGame2Actions> m_MiniGame2ActionsCallbackInterfaces = new List<IMiniGame2Actions>();
-        private readonly InputAction m_MiniGame2_MoveLeft;
-        private readonly InputAction m_MiniGame2_MoveRight;
-        private readonly InputAction m_MiniGame2_Drag;
-        public struct MiniGame2Actions
+        // Minigames
+        private readonly InputActionMap m_Minigames;
+        private List<IMinigamesActions> m_MinigamesActionsCallbackInterfaces = new List<IMinigamesActions>();
+        private readonly InputAction m_Minigames_Drag;
+        public struct MinigamesActions
         {
             private @Inputs m_Wrapper;
-            public MiniGame2Actions(@Inputs wrapper) { m_Wrapper = wrapper; }
-            public InputAction @MoveLeft => m_Wrapper.m_MiniGame2_MoveLeft;
-            public InputAction @MoveRight => m_Wrapper.m_MiniGame2_MoveRight;
-            public InputAction @Drag => m_Wrapper.m_MiniGame2_Drag;
-            public InputActionMap Get() { return m_Wrapper.m_MiniGame2; }
+            public MinigamesActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Drag => m_Wrapper.m_Minigames_Drag;
+            public InputActionMap Get() { return m_Wrapper.m_Minigames; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(MiniGame2Actions set) { return set.Get(); }
-            public void AddCallbacks(IMiniGame2Actions instance)
+            public static implicit operator InputActionMap(MinigamesActions set) { return set.Get(); }
+            public void AddCallbacks(IMinigamesActions instance)
             {
-                if (instance == null || m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Add(instance);
-                @MoveLeft.started += instance.OnMoveLeft;
-                @MoveLeft.performed += instance.OnMoveLeft;
-                @MoveLeft.canceled += instance.OnMoveLeft;
-                @MoveRight.started += instance.OnMoveRight;
-                @MoveRight.performed += instance.OnMoveRight;
-                @MoveRight.canceled += instance.OnMoveRight;
+                if (instance == null || m_Wrapper.m_MinigamesActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_MinigamesActionsCallbackInterfaces.Add(instance);
                 @Drag.started += instance.OnDrag;
                 @Drag.performed += instance.OnDrag;
                 @Drag.canceled += instance.OnDrag;
             }
 
-            private void UnregisterCallbacks(IMiniGame2Actions instance)
+            private void UnregisterCallbacks(IMinigamesActions instance)
             {
-                @MoveLeft.started -= instance.OnMoveLeft;
-                @MoveLeft.performed -= instance.OnMoveLeft;
-                @MoveLeft.canceled -= instance.OnMoveLeft;
-                @MoveRight.started -= instance.OnMoveRight;
-                @MoveRight.performed -= instance.OnMoveRight;
-                @MoveRight.canceled -= instance.OnMoveRight;
                 @Drag.started -= instance.OnDrag;
                 @Drag.performed -= instance.OnDrag;
                 @Drag.canceled -= instance.OnDrag;
             }
 
-            public void RemoveCallbacks(IMiniGame2Actions instance)
+            public void RemoveCallbacks(IMinigamesActions instance)
             {
-                if (m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_MinigamesActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(IMiniGame2Actions instance)
+            public void SetCallbacks(IMinigamesActions instance)
             {
-                foreach (var item in m_Wrapper.m_MiniGame2ActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_MinigamesActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_MiniGame2ActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_MinigamesActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public MiniGame2Actions @MiniGame2 => new MiniGame2Actions(this);
-        public interface IMiniGame2Actions
+        public MinigamesActions @Minigames => new MinigamesActions(this);
+        public interface IMinigamesActions
         {
-            void OnMoveLeft(InputAction.CallbackContext context);
-            void OnMoveRight(InputAction.CallbackContext context);
             void OnDrag(InputAction.CallbackContext context);
         }
     }

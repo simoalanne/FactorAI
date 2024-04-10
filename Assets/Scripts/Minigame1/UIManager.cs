@@ -19,7 +19,7 @@ namespace Minigame1
 
         void Update()
         {
-            _timerText.text = "TIME: \n" + _gameStatsManager.MinigameTime;
+            _timerText.text = _gameStatsManager.MinigameTime;
             _scoreText.text = "SCORE: \n " + _gameStatsManager.Score;
             _completedProdcutsText.text = "COMPLETED: \n" + _gameStatsManager.CompletedProducts + " / " + _gameStatsManager.MinCompletedProducts;
         }

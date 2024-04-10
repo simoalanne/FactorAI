@@ -2,27 +2,9 @@
     "name": "Inputs",
     "maps": [
         {
-            "name": "MiniGame2",
+            "name": "Minigames",
             "id": "c1dd424c-38cb-4234-953f-ebeafd317663",
             "actions": [
-                {
-                    "name": "MoveLeft",
-                    "type": "Button",
-                    "id": "88a621c9-a11e-4f5a-800a-60911f14e3c1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MoveRight",
-                    "type": "Button",
-                    "id": "1a604c4b-bbb8-4e75-87a7-edaf7e70c5a0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
                 {
                     "name": "Drag",
                     "type": "PassThrough",
@@ -36,41 +18,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "1a7a491f-77cb-4f3d-9d40-928902f37166",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "854995c3-b868-43ed-b7aa-091f13f931da",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a65086ca-26e0-4a34-8e18-8c24ce9fbbf2",
                     "path": "<Touchscreen>/primaryTouch/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Drag",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "58974446-4de6-4868-b36b-214806a7fab6",
-                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
