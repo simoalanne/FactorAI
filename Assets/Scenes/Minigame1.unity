@@ -385,10 +385,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c3e6de28e11214582b3057edbdb561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectsToSpawn:
+  _product1Objects:
   - ObjectToSpawn: {fileID: 625316288986621562, guid: e63e31e85ba53b646955e48462c3e74b, type: 3}
-    AmountToSpawn: 40
-    _percentageOfTileSize: 0.75
+    AmountToSpawn: 5
+    _percentageOfTileSize: 75
+  _product2Objects: []
 --- !u!1001 &539743632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -734,8 +735,8 @@ MonoBehaviour:
   _gridBorderSizeY: 75
   _gridBorderOffsetX: 0
   _gridBorderOffsetY: 5
-  _gridSizeX: 7
-  _gridSizeY: 7
+  _gridSizeX: 5
+  _gridSizeY: 5
 --- !u!4 &945506461
 Transform:
   m_ObjectHideFlags: 0

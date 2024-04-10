@@ -9,17 +9,17 @@ public class ObjectCollider : MonoBehaviour
     [SerializeField]
     private string TargetTag;
     private bool isReplaced = false;
-    
+
     [SerializeField]
     private float scoreValue = 1000;
 
     private GameStatsManager _gameStatsManager;
-    private ObjectSpawner _objectspawner;
+    private ObjectSpawner _objectSpawner;
 
     void Start()
     {
         _gameStatsManager = FindObjectOfType<GameStatsManager>();
-        _objectspawner = FindObjectOfType<ObjectSpawner>();
+        _objectSpawner = FindObjectOfType<ObjectSpawner>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -38,7 +38,7 @@ public class ObjectCollider : MonoBehaviour
                 if (replacementObject.CompareTag("Shovel"))
                 {
                     _gameStatsManager.IncreaseCompletedProducts();
-                    _objectspawner.SpawnObjects();
+                    _objectSpawner.SpawnObjects();
                 }
 
                 _gameStatsManager.IncreaseScore(scoreValue);

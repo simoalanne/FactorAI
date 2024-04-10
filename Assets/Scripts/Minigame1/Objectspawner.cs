@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Global;
 using UnityEngine;
 
 namespace Minigame1
@@ -9,18 +8,18 @@ namespace Minigame1
     {
         public GameObject ObjectToSpawn;
         public int AmountToSpawn;
-        public float _percentageOfTileSize = 0.75f;
+        public float _percentageOfTileSize = 75f;
     }
 
     public class ObjectSpawner : MonoBehaviour
     {
         [SerializeField] private SpawnableObject[] _product1Objects;
         [SerializeField] private SpawnableObject[] _product2Objects;
-        private readonly List<Transform> _spawnPositions = new();
-        private readonly List<Transform> _usedPositions = new();
+        private readonly List<Transform> _availablePositions = new();
+        private readonly Dictionary<Transform, GameObject> _occupiedPositions = new();
 
-        public List<Transform> SpawnPositions => _spawnPositions;
-        public List<Transform> UsedPositions => _usedPositions;
+        public List<Transform> AvailablePositions => _availablePositions;
+        public Dictionary<Transform, GameObject> OccupiedPositions => _occupiedPositions;
 
         private CreateGrid _createGrid;
 
@@ -35,18 +34,18 @@ namespace Minigame1
             {
                 for (int i = 0; i < spawnableObject.AmountToSpawn; i++)
                 {
-                    Transform randomPosition = _spawnPositions[Random.Range(0, _spawnPositions.Count)];
-                    if (!_usedPositions.Contains(randomPosition))
+                    Transform randomPosition = _availablePositions[Random.Range(0, _availablePositions.Count)];
+                    if (!_occupiedPositions.ContainsKey(randomPosition))
                     {
                         // Instantiate the object first
                         GameObject instance = Instantiate(spawnableObject.ObjectToSpawn, randomPosition.position, Quaternion.identity);
 
                         // Then modify the properties of the instance
-                        instance.transform.localScale = _createGrid.GridTileScale * spawnableObject._percentageOfTileSize;
+                        instance.transform.localScale = _createGrid.GridTileScale * (spawnableObject._percentageOfTileSize / 100f);
                         instance.GetComponent<SpriteRenderer>().flipX = Random.Range(0, 2) == 0;
 
-                        randomPosition.tag = instance.tag;
-                        _usedPositions.Add(randomPosition);
+                        // Add the instance to the dictionary with the randomPosition as the key
+                        _occupiedPositions.Add(randomPosition, instance);
                     }
                     else
                     {

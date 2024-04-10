@@ -20,14 +20,10 @@ public class DragAndDrop : MonoBehaviour
         transform.GetComponent<SpriteRenderer>().sortingOrder += 1;
         isDragging = true;
         offset = transform.position - GetMouseWorldPos();
-        foreach (Transform spawnPosition in _objectSpawner.UsedPositions)
+        Transform currentTransform = transform;
+        if (_objectSpawner.OccupiedPositions.ContainsKey(currentTransform))
         {
-            if (spawnPosition.position == transform.position)
-            {
-                _objectSpawner.UsedPositions.Remove(spawnPosition);
-                spawnPosition.tag = "Untagged";
-                break;
-            }
+            _objectSpawner.OccupiedPositions.Remove(currentTransform);
         }
     }
 
@@ -36,10 +32,7 @@ public class DragAndDrop : MonoBehaviour
         isDragging = false;
         SnapToNearestPosition();
         transform.GetComponent<SpriteRenderer>().sortingOrder -= 1;
-
     }
-
-
 
     private Vector3 GetMouseWorldPos()
     {
@@ -62,27 +55,34 @@ public class DragAndDrop : MonoBehaviour
         Transform closestPosition = null;
         float closestDistance = Mathf.Infinity; // Start with a very large distance
 
-        foreach (Transform spawnPosition in _objectSpawner.SpawnPositions)
+        foreach (Transform gridPosition in _objectSpawner.AvailablePositions)
         {
-            float distance = (spawnPosition.position - transform.position).sqrMagnitude;
+            float distance = Vector2.Distance(gridPosition.position, transform.position);
             if (distance < closestDistance)
             {
-                // Check if the spawn point is used
-                bool isUsed = _objectSpawner.UsedPositions.Contains(spawnPosition);
+                // Check if the grid point is occupied
+                bool isOccupied = _objectSpawner.OccupiedPositions.ContainsKey(gridPosition);
 
-                // If the spawn point is not used or is used but has the correct tag, then consider it as a potential closest position
-                if (!isUsed || (isUsed && spawnPosition.CompareTag(targetTag)))
+                // If the grid point is not occupied or is occupied but contains gameobject with correct tag, then consider it as a potential closest position
+                if (!isOccupied || (isOccupied && _objectSpawner.OccupiedPositions[gridPosition].CompareTag(targetTag)))
                 {
                     closestDistance = distance;
-                    closestPosition = spawnPosition;
+                    closestPosition = gridPosition;
                 }
             }
         }
 
         transform.position = closestPosition.position;
-        if (!_objectSpawner.UsedPositions.Contains(closestPosition))
+        if (!_objectSpawner.OccupiedPositions.ContainsKey(closestPosition))
         {
-            _objectSpawner.UsedPositions.Add(closestPosition);
+            _objectSpawner.OccupiedPositions.Add(closestPosition, gameObject);
+        }
+        else
+        {
+            GameObject existingObject = _objectSpawner.OccupiedPositions[closestPosition];
+            _objectSpawner.OccupiedPositions.Remove(closestPosition);
+            Destroy(gameObject);
+            Destroy(existingObject);
         }
     }
 }
