@@ -482,7 +482,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TAP TO START
+  m_text: TAP ANYWHERE TO START
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -509,13 +509,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 85
+  m_fontSizeBase: 85
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e5eebf8a0d42945935dba4d14f10e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pulseSpeed: 0.25
+  _pulseSpeed: 0.2
   _pulseScale: 0.1
 --- !u!114 &245834626 stripped
 MonoBehaviour:
@@ -993,7 +993,7 @@ MonoBehaviour:
   _scorePopUpDuration: 0.5
   _scorePositionOffset: {x: 0, y: 1.5}
   _randomRotationRange: 30
-  _textFontSize: 20
+  _textFontSize: 15
   _positiveScoreColor: {r: 0, g: 1, b: 0, a: 1}
   _negativeScoreColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &478683659
@@ -1112,7 +1112,7 @@ GameObject:
   - component: {fileID: 522321291}
   - component: {fileID: 522321295}
   m_Layer: 5
-  m_Name: TutorialUI
+  m_Name: TutorialMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3550,6 +3550,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2415316633062976236, guid: 85806046708e4154382a01bda4eb4da8, type: 3}
+      propertyPath: _canvasesToDisableRaycasting.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2415316633062976236, guid: 85806046708e4154382a01bda4eb4da8, type: 3}
+      propertyPath: _canvasesToDisableRaycasting.Array.data[0]
+      value: 
+      objectReference: {fileID: 522321293}
     - target: {fileID: 3206656829692267046, guid: 85806046708e4154382a01bda4eb4da8, type: 3}
       propertyPath: m_Interactable
       value: 0

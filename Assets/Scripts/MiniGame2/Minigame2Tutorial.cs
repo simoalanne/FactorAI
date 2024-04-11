@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -33,6 +34,12 @@ namespace Minigame2
         {
             _tutorialCanvas.gameObject.SetActive(false);
             _openTutorialButton.gameObject.SetActive(true);
+            StartCoroutine(ResumeGame());
+        }
+
+        private IEnumerator ResumeGame()
+        {
+            yield return new WaitForSecondsRealtime(0.5f);
             Time.timeScale = 1;
         }
     }

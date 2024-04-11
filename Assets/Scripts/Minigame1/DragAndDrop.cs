@@ -56,6 +56,8 @@ public class DragAndDrop : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0) return;
+        
         if (isDragging)
         {
             Vector3 targetPos = GetMouseWorldPos() + offset;
