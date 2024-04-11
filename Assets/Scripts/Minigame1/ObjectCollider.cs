@@ -21,7 +21,7 @@ public class ObjectCollider : MonoBehaviour
         _gameStatsManager = FindObjectOfType<GameStatsManager>();
         _objectSpawner = FindObjectOfType<ObjectSpawner>();
     }
-
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isReplaced && collision.gameObject.CompareTag(TargetTag))
@@ -54,6 +54,6 @@ public class ObjectCollider : MonoBehaviour
     public void SetReplaced(bool replaced)
     {
         isReplaced = replaced;
-    }
+    }*/
 }
 }

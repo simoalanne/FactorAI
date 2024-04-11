@@ -12,6 +12,7 @@ public class GameStatsManager : MonoBehaviour
     private float _score;
     private int _completedProducts;
     private bool _gameActive = true;
+    private ScorePopUp _scorePopUp;
 
     public string MinigameTime => _minigameTime;
     public float Score => _score;
@@ -21,6 +22,7 @@ public class GameStatsManager : MonoBehaviour
     void Start()
     {
         _onMinigameEnd = GetComponent<OnMinigameEnd>();
+        _scorePopUp = GetComponent<ScorePopUp>();
 
     }
 
@@ -52,9 +54,10 @@ public class GameStatsManager : MonoBehaviour
         }
     }
 
-    public void IncreaseScore(float score)
+    public void IncreaseScore(float score, Transform transform)
     {
         _score += score;
+        _scorePopUp.ShowPopUp(transform.position, score);
     }
 
     public void IncreaseCompletedProducts()

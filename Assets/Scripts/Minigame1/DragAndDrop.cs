@@ -6,13 +6,15 @@ public class DragAndDrop : MonoBehaviour
     private bool isDragging = false;
     private Vector3 offset;
     private ObjectSpawner _objectSpawner;
-    private ObjectCollider _objectCollider;
+    private GameStatsManager _gameStatsManager;
 
-    [SerializeField] private string targetTag;
+    [SerializeField] private string _targetTag;
+    [SerializeField] private string _replacementTag;
 
     void Start()
     {
         _objectSpawner = FindObjectOfType<ObjectSpawner>();
+        _gameStatsManager = FindObjectOfType<GameStatsManager>();
     }
 
     void OnMouseDown()
@@ -20,8 +22,18 @@ public class DragAndDrop : MonoBehaviour
         transform.GetComponent<SpriteRenderer>().sortingOrder += 1;
         isDragging = true;
         offset = transform.position - GetMouseWorldPos();
-        Transform currentTransform = transform;
-        if (_objectSpawner.OccupiedPositions.ContainsKey(currentTransform))
+        transform.localScale *= new Vector2(1.25f, 1.25f);
+
+        Transform currentTransform = null;
+        foreach (var pair in _objectSpawner.OccupiedPositions)
+        {
+            if (pair.Value == gameObject)
+            {
+                currentTransform = pair.Key;
+                break;
+            }
+        }
+        if (currentTransform != null)
         {
             _objectSpawner.OccupiedPositions.Remove(currentTransform);
         }
@@ -29,6 +41,7 @@ public class DragAndDrop : MonoBehaviour
 
     void OnMouseUp()
     {
+        transform.localScale /= new Vector2(1.25f, 1.25f);
         isDragging = false;
         SnapToNearestPosition();
         transform.GetComponent<SpriteRenderer>().sortingOrder -= 1;
@@ -64,7 +77,7 @@ public class DragAndDrop : MonoBehaviour
                 bool isOccupied = _objectSpawner.OccupiedPositions.ContainsKey(gridPosition);
 
                 // If the grid point is not occupied or is occupied but contains gameobject with correct tag, then consider it as a potential closest position
-                if (!isOccupied || (isOccupied && _objectSpawner.OccupiedPositions[gridPosition].CompareTag(targetTag)))
+                if (!isOccupied || (isOccupied && _objectSpawner.OccupiedPositions[gridPosition].CompareTag(_targetTag)))
                 {
                     closestDistance = distance;
                     closestPosition = gridPosition;
@@ -79,10 +92,20 @@ public class DragAndDrop : MonoBehaviour
         }
         else
         {
+            float scoreValue = 1000;
+            if (_replacementTag == "Shovel")
+            {
+                _gameStatsManager.IncreaseCompletedProducts();
+                scoreValue *= 2;
+            }
+
+            _gameStatsManager.IncreaseScore(scoreValue, closestPosition);
             GameObject existingObject = _objectSpawner.OccupiedPositions[closestPosition];
             _objectSpawner.OccupiedPositions.Remove(closestPosition);
             Destroy(gameObject);
             Destroy(existingObject);
+
+            _objectSpawner.SpawnReplacementObject(closestPosition, _replacementTag);
         }
     }
 }

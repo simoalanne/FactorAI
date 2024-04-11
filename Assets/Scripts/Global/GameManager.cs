@@ -165,7 +165,12 @@ namespace Global
 
         public void ResetSaveData()
         {
-            PlayerPrefs.DeleteAll();
+            PlayerPrefs.DeleteKey(gameLengthInSecondsKey);
+            PlayerPrefs.DeleteKey(processLengthInSecondsKey);
+            PlayerPrefs.DeleteKey(gameScoreKey);
+            PlayerPrefs.DeleteKey(isAiSkipReadyKey);
+            PlayerPrefs.DeleteKey(aiSkipGatheredScoreKey);
+            PlayerPrefs.DeleteKey(activeMiniGameNameKey);
             PlayerPrefs.Save();
             Destroy(gameObject);
         }

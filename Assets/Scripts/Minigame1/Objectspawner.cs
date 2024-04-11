@@ -21,6 +21,7 @@ namespace Minigame1
         public List<Transform> AvailablePositions => _availablePositions;
         public Dictionary<Transform, GameObject> OccupiedPositions => _occupiedPositions;
 
+
         private CreateGrid _createGrid;
 
         void Awake()
@@ -42,7 +43,6 @@ namespace Minigame1
 
                         // Then modify the properties of the instance
                         instance.transform.localScale = _createGrid.GridTileScale * (spawnableObject._percentageOfTileSize / 100f);
-                        instance.GetComponent<SpriteRenderer>().flipX = Random.Range(0, 2) == 0;
 
                         // Add the instance to the dictionary with the randomPosition as the key
                         _occupiedPositions.Add(randomPosition, instance);
@@ -51,6 +51,25 @@ namespace Minigame1
                     {
                         i--;
                     }
+                }
+            }
+        }
+
+        public void SpawnReplacementObject(Transform pos, string replacementTag)
+        {
+            foreach (SpawnableObject spawnableObject in _product1Objects)
+            {
+                if (spawnableObject.ObjectToSpawn.CompareTag(replacementTag))
+                {
+                    GameObject instance = Instantiate(spawnableObject.ObjectToSpawn, pos.position, Quaternion.identity);
+                    instance.transform.localScale = _createGrid.GridTileScale * (spawnableObject._percentageOfTileSize / 100f);
+                    _occupiedPositions.Add(pos, instance);
+                    if (replacementTag == "Shovel")
+                    {
+                        SpawnObjects();
+                        _occupiedPositions.Remove(pos);
+                    }
+                    break; // This will exit the loop after the first matching object is spawned
                 }
             }
         }

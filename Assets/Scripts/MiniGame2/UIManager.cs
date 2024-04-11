@@ -25,14 +25,15 @@ namespace Minigame2
             _collectedText.text = _gameStatsManager.Collected + "/" + _gameStatsManager.HowManyForWin;
         }
 
+
         private string GenerateFailText(int maxFails, int fails)
         {
             string gray = "<color=#80808050>"; // rgba(128, 128, 128, 0.5)
             string red = "<color=#FF0000FF>"; // rgba(255, 0, 0, 1)
             string endColor = "</color>";
             string redXs = string.Concat(Enumerable.Repeat(red + "X" + endColor + " ", fails));
-            string grayXs = string.Concat(Enumerable.Repeat(gray + "X" + endColor + " ", maxFails - fails)); 
-            return redXs + grayXs; 
+            string grayXs = string.Concat(Enumerable.Repeat(gray + "X" + endColor + " ", maxFails - fails));
+            return redXs + grayXs;
         }
     }
 }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8232163343927653894}
   - component: {fileID: 7137031562337738121}
   - component: {fileID: -1882118823038870381}
-  - component: {fileID: 5609298423565560538}
   - component: {fileID: 9209511841147628056}
   m_Layer: 0
   m_Name: chick32x32
@@ -100,21 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Chick
---- !u!114 &5609298423565560538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 625316288986621562}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3be548972e39ea468c573c058c77ef2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  replacementObject: {fileID: 0}
-  TargetTag: 
-  scoreValue: 1000
 --- !u!61 &9209511841147628056
 BoxCollider2D:
   m_ObjectHideFlags: 0

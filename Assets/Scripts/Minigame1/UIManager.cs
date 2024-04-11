@@ -11,7 +11,7 @@ namespace Minigame1
         [SerializeField] private TMP_Text _completedProdcutsText;
 
         private GameStatsManager _gameStatsManager;
-  
+
         void Start()
         {
             _gameStatsManager = GetComponent<GameStatsManager>();
@@ -20,8 +20,8 @@ namespace Minigame1
         void Update()
         {
             _timerText.text = _gameStatsManager.MinigameTime;
-            _scoreText.text = "SCORE: \n " + _gameStatsManager.Score;
-            _completedProdcutsText.text = "COMPLETED: \n" + _gameStatsManager.CompletedProducts + " / " + _gameStatsManager.MinCompletedProducts;
+            _scoreText.text = _gameStatsManager.Score.ToString();
+            _completedProdcutsText.text = _gameStatsManager.CompletedProducts + "/" + _gameStatsManager.MinCompletedProducts;
         }
     }
 }
