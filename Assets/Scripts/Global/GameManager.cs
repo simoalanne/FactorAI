@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Factory;
-using System.Collections;
-
 
 namespace Global
 {

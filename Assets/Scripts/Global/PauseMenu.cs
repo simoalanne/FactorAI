@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -34,6 +35,7 @@ namespace Global
                 _gamePaused = true;
                 DisableOrEnableRaycastingForOtherCanvases();
                 _gamePausedMenu.SetActive(true);
+                MusicPlayer.Instance.PauseMusic();
             }
             else
             {
@@ -41,6 +43,7 @@ namespace Global
                 DisableOrEnableRaycastingForOtherCanvases();
                 _gamePausedMenu.SetActive(false);
                 _gamePaused = false;
+                MusicPlayer.Instance.UnpauseMusic();
             }
         }
 

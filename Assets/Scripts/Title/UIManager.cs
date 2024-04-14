@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using TMPro;
+using Audio;
 
 
 namespace Title
@@ -262,6 +263,7 @@ namespace Title
             }
             PlayerPrefs.SetInt(_musicEnabledKey, _musicEnabled ? 1 : 0);
             PlayerPrefs.Save();
+            MusicPlayer.Instance.ToggleMusic();
         }
 
         public void ToggleAudio()
@@ -280,8 +282,8 @@ namespace Title
             }
             PlayerPrefs.SetInt(_audioEnabledKey, _audioEnabled ? 1 : 0);
             PlayerPrefs.Save();
-        }
 
+        }
 
         public void OpenHighScorePanel()
         {
