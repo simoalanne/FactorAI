@@ -13,6 +13,8 @@ namespace Minigame2
         [SerializeField] private int _maxConsecutiveWrongObjects = 3;
         [SerializeField] private int _preventSpawnToRecents = 5;
 
+        public GameObject[] SpawnedObjects => _spawnedObjects;
+
         private Camera _mainCamera;
         private float _cameraWidth, _yPosition;
         private bool _gameActive = true;

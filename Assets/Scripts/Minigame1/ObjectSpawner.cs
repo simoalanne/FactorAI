@@ -18,6 +18,8 @@ namespace Minigame1
         private readonly List<Transform> _availablePositions = new();
         private readonly Dictionary<Transform, GameObject> _occupiedPositions = new();
 
+        public SpawnableObject[] Product1Objects => _product1Objects;
+        public SpawnableObject[] Product2Objects => _product2Objects;
         public List<Transform> AvailablePositions => _availablePositions;
         public Dictionary<Transform, GameObject> OccupiedPositions => _occupiedPositions;
 
