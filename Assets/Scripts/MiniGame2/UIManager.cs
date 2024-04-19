@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using Global;
+using UnityEngine.UI;
 
 namespace Minigame2
 {
@@ -9,13 +11,23 @@ namespace Minigame2
         [SerializeField] private TMP_Text scoreText;
         [SerializeField] private TMP_Text failsText;
         [SerializeField] private TMP_Text _collectedText;
-
+        
         private GameStatsManager _gameStatsManager;
 
-        void Start()
+        void Awake()
         {
             _gameStatsManager = GetComponent<GameStatsManager>();
+
             failsText.text = GenerateFailText(_gameStatsManager.MaxFails, 0);
+
+            if (GameManager.Instance.CurrentProduct == "Product1" || GameManager.Instance == null)
+            {
+                GameObject.Find("ProductImage").GetComponent<Image>().sprite = FindObjectOfType<ManageSprites>().SpawnedObjects[0].GetComponent<SpriteRenderer>().sprite;
+            }
+            else if (GameManager.Instance.CurrentProduct == "Product2")
+            {
+                GameObject.Find("ProductImage").GetComponent<Image>().sprite = FindObjectOfType<ManageSprites>().SpawnedObjects2[0].GetComponent<SpriteRenderer>().sprite;
+            }
         }
 
         void Update()

@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1123595767808
-    m_Localized: 'Pisteet:'
+    m_Localized: Pisteet
     m_Metadata:
       m_Items: []
   - m_Id: 1307780239360
@@ -39,9 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10500125937664
-    m_Localized: 'ALOITA
-
-      ALUSTA'
+    m_Localized: resetoi peli
     m_Metadata:
       m_Items: []
   - m_Id: 190892179116032
@@ -81,12 +79,10 @@ MonoBehaviour:
       poistaa nykyisen tallenteen pysyv\xE4sti."
     m_Metadata:
       m_Items: []
-  - m_Id: 950374207246336
-    m_Localized: "Kyll\xE4, olen varma"
-    m_Metadata:
-      m_Items: []
-  - m_Id: 950490519490560
-    m_Localized: En, peruuta
+  - m_Id: 5999785249525760
+    m_Localized: "Ennen kun voit aloittaa minipelien pelaamisen, tulee sinun valita
+      valmistettava tuote. Valitse viisasti, koska et voi vaihtaa tuotetta ennen
+      kun molemmat minipelit on suoritettu hyv\xE4ksystysti."
     m_Metadata:
       m_Items: []
   - m_Id: 951310040354816
@@ -129,6 +125,84 @@ MonoBehaviour:
     m_Localized: 'Parhaat
 
       tulokset'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209652342476800
+    m_Localized: Valitse tuote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209757007138816
+    m_Localized: Helppo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209926176002048
+    m_Localized: Vaikea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5210119717965824
+    m_Localized: Tuplapisteet!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317214375170048
+    m_Localized: "Tervetuloa tehtaalle! N\xE4ytt\xE4\xE4 silt\xE4, ett\xE4 olet t\xE4\xE4ll\xE4
+      ensimm\xE4ist\xE4 kertaa, joten k\xE4yd\xE4\xE4np\xE4 nopeasti ohjeet l\xE4pi,
+      jotta p\xE4\xE4set alkuun."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317676767825920
+    m_Localized: " Jos koskaan kaipaat muistinvirkistyst\xE4 ohjeisiin, saat ne helposti
+      uudestaan auki taukovalikosta, jonka l\xF6yd\xE4t oikeasta yl\xE4kulmasta."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318150132781056
+    m_Localized: "Teht\xE4v\xE4n\xE4si on ker\xE4t\xE4 niin paljon pisteit\xE4 kuin
+      pystyt kymmenen minuutin aikana. Saat pisteit\xE4 l\xE4p\xE4isem\xE4ll\xE4
+      minipelej\xE4, ja mit\xE4 paremmin niiss\xE4 suoriudut sit\xE4 enemm\xE4n pisteit\xE4
+      saat."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318761943322624
+    m_Localized: "\xC4l\xE4 huoli, jos et ehdi pelata peli\xE4 loppuun yhdell\xE4
+      kertaa. Edistymisesi tallennetaan automaattisesti ja voit helposti jatkaa juuri
+      siit\xE4 kohtaa mihin edellisell\xE4 kertaa j\xE4it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5319325309652992
+    m_Localized: "Muista pit\xE4\xE4 silm\xE4ll\xE4 vasenta alakulmaa, josta saat
+      n\xE4kyviin edistymisesi AI-Skipin avausta kohti. Joka kerta ker\xE4tty\xE4si
+      tarpeeksi pisteit\xE4 minipeleist\xE4 saat siihen yhden k\xE4ytt\xF6kerran."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5465071363215360
+    m_Localized: "AI-Skip on k\xE4tev\xE4 toiminto, joka suorittaa minipelin puolestasi
+      automaattisesti ja antaa j\xE4ttim\xE4\xE4r\xE4n pisteit\xE4 palkkioksi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6006853670981632
+    m_Localized: "Vinkki! Jos minipeli tuntuu tosi haastavalta, voit my\xF6s tyyty\xE4
+      odottamaan sen ajastimen loppuun. Pid\xE4 vain mieless\xE4, ett\xE4 silloin
+      saat paljon v\xE4hemm\xE4n pisteit\xE4 verrattuna siihen, ett\xE4 l\xE4p\xE4isisit
+      minipelin itse."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010838599520256
+    m_Localized: "Voit tarkistaa j\xE4ljell\xE4 olevan minipelin ajan klikkaamalla
+      pient\xE4 kellon kuvaa, joka l\xF6ytyy sill\xE4 hetkell\xE4 aktiviisena olevan
+      tuotantolinjan p\xE4\xE4lt\xE4. Huomiothan, ett\xE4 aika ei v\xE4hene sillon
+      kun olet pelaamassa minipeli\xE4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014155232825344
+    m_Localized: vahvista
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014205195374592
+    m_Localized: peruuta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6012544414568448
+    m_Localized: "Siin\xE4 kaikki mit\xE4 sinun tarvitsee tiet\xE4\xE4. Onnea matkaan
+      ja pid\xE4 hauskaa!"
     m_Metadata:
       m_Items: []
   references:

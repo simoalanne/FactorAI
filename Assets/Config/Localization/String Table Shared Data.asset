@@ -67,14 +67,6 @@ MonoBehaviour:
     m_Key: RestartGameWarningText
     m_Metadata:
       m_Items: []
-  - m_Id: 950374207246336
-    m_Key: SureKey
-    m_Metadata:
-      m_Items: []
-  - m_Id: 950490519490560
-    m_Key: CancelKey
-    m_Metadata:
-      m_Items: []
   - m_Id: 951310040354816
     m_Key: 'AISkipStatusKey
 
@@ -119,6 +111,72 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1973911181250560
     m_Key: HighScoresKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209652342476800
+    m_Key: ChooseProdcutKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209757007138816
+    m_Key: EasyKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209926176002048
+    m_Key: HardKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5210119717965824
+    m_Key: DoublePointsKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317214375170048
+    m_Key: Part1Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317676767825920
+    m_Key: 'Part2Key
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318150132781056
+    m_Key: Part3Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318761943322624
+    m_Key: Part4Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5319325309652992
+    m_Key: Part5Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5465071363215360
+    m_Key: Part6Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5999785249525760
+    m_Key: Part7Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6006853670981632
+    m_Key: Part8Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010838599520256
+    m_Key: Part9Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6012544414568448
+    m_Key: Part10Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014155232825344
+    m_Key: ConfirmKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014205195374592
+    m_Key: CancelKey
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -19,7 +19,6 @@ namespace Title
         [Header("Buttons")]
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _changeLanguageButton;
-        [SerializeField] private Button _toggleTutorialButton;
         [SerializeField] private Button _toggleMusicButton;
         [SerializeField] private Button _toggleAudioButton;
 
@@ -31,9 +30,6 @@ namespace Title
 
         [SerializeField] private Sprite _englishIcon;
         [SerializeField] private Sprite _finnishIcon;
-
-        [SerializeField] private Sprite _tutorialOnIcon;
-        [SerializeField] private Sprite _tutorialOffIcon;
 
         [SerializeField] private Sprite _musicOnIcon;
         [SerializeField] private Sprite _musicOffIcon;
@@ -57,22 +53,18 @@ namespace Title
         [SerializeField] private string _sceneToLoad;
 
         private Image _languageIcon;
-        private Image _tutorialIcon;
         private Image _musicIcon;
         private Image _audioIcon;
 
         private string _currentLanguage = "english";
-        private bool _tutorialEnabled = true;
         private bool _musicEnabled = true;
         private bool _audioEnabled = true;
 
         private string _originalCurrentLanguage;
-        private bool _originalTutorialEnabled;
         private bool _originalMusicEnabled;
         private bool _originalAudioEnabled;
 
         private readonly string _currentLanguageKey = "CurrentLanguage";
-        private readonly string _tutorialEnabledKey = "TutorialEnabled";
         private readonly string _musicEnabledKey = "MusicEnabled";
         private readonly string _audioEnabledKey = "AudioEnabled";
 
@@ -83,14 +75,10 @@ namespace Title
             _highScorePanel.SetActive(false);
 
             _languageIcon = _changeLanguageButton.transform.Find("LanguageIcon").GetComponent<Image>();
-            _tutorialIcon = _toggleTutorialButton.transform.Find("TutorialIcon").GetComponent<Image>();
             _musicIcon = _toggleMusicButton.transform.Find("MusicIcon").GetComponent<Image>();
             _audioIcon = _toggleAudioButton.transform.Find("AudioIcon").GetComponent<Image>();
 
-            _tutorialOffIcon = null; // Missing icon
-
             LoadSettingPreferences();
-            Debug.Log("tutorial: " + _tutorialEnabled);
             Debug.Log("music: " + _musicEnabled);
             Debug.Log("audio: " + _audioEnabled);
             Debug.Log("language: " + _currentLanguage);
@@ -105,17 +93,6 @@ namespace Title
             }
 
             ChangePlayButtonIcon();
-
-            if (_tutorialEnabled)
-            {
-                _tutorialIcon.sprite = _tutorialOnIcon;
-                _tutorialIcon.color = new Color(1f, 1f, 1f, 1f);
-            }
-            else
-            {
-                _tutorialIcon.sprite = _tutorialOffIcon;
-                _tutorialIcon.color = new Color(1f, 1f, 1f, 0f);
-            }
 
             if (_musicEnabled)
             {
@@ -161,7 +138,6 @@ namespace Title
         private void LoadSettingPreferences()
         {
             _currentLanguage = PlayerPrefs.GetString(_currentLanguageKey, "finnish");
-            _tutorialEnabled = PlayerPrefs.GetInt(_tutorialEnabledKey, 1) == 1;
             _musicEnabled = PlayerPrefs.GetInt(_musicEnabledKey, 1) == 1;
             _audioEnabled = PlayerPrefs.GetInt(_audioEnabledKey, 1) == 1;
 
@@ -224,26 +200,6 @@ namespace Title
             }
             ChangePlayButtonIcon();
             PlayerPrefs.SetString(_currentLanguageKey, _currentLanguage);
-            PlayerPrefs.Save();
-        }
-
-        public void ToggleTutorial()
-        {
-            if (_tutorialEnabled)
-            {
-                _tutorialIcon.sprite = _tutorialOffIcon;
-                _tutorialIcon.color = new Color(1f, 1f, 1f, 0f);
-                _tutorialEnabled = false;
-                // TODO: Turn off tutorial
-            }
-            else
-            {
-                _tutorialIcon.sprite = _tutorialOnIcon;
-                _tutorialIcon.color = new Color(1f, 1f, 1f, 1f);
-                _tutorialEnabled = true;
-                // TODO: Implement tutorial and turn it on
-            }
-            PlayerPrefs.SetInt(_tutorialEnabledKey, _tutorialEnabled ? 1 : 0);
             PlayerPrefs.Save();
         }
 

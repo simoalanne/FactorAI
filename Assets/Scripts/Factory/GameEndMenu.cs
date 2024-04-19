@@ -35,7 +35,7 @@ namespace Factory
 
         private void UpdateScore()
         {
-            if (_scoreCountDown <= GameManager.Instance.GameScore)
+            if (_scoreCountDown < GameManager.Instance.GameScore)
             {
                 _scoreCountDown += _scorePerInvoke;
                 _scoreText.text = _scoreCountDown.ToString();

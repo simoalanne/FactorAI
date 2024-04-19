@@ -4,34 +4,53 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Localization.Settings;
 using Global;
+using Audio;
 
 namespace Factory
 {
     public class UIManager : MonoBehaviour
     {
+        [Header("Buttons")]
         [SerializeField] private Button _playButton1;
         [SerializeField] private Button _playButton2;
         [SerializeField] private Button _aiSkipButton;
         [SerializeField] private Button _aiSkipInfoButton;
+        [SerializeField] private Button _confirmProductChoiceButton;
+
+        [Header("Texts")]
         [SerializeField] private TMP_Text _timerText;
         [SerializeField] private TMP_Text _scoreText;
         [SerializeField] private TMP_Text _processTimerText;
         [SerializeField] private TMP_Text _aiSkipInfoText;
-        [SerializeField] private float _scoreFromAiSkip = 50000f;
-        [SerializeField] private GameObject _gameEndMenu;
-        [SerializeField] private GameObject _processTimerAndInfo;
-        [SerializeField] private GameObject _processLine1;
-        [SerializeField] private GameObject _processLine2;
+
+        [Header("Sprites")]
         [SerializeField] private Sprite _playButtonIconEnglish;
         [SerializeField] private Sprite _playButtonIconFinnish;
 
+        [Header("Canvases and Panels")]
+        [SerializeField] private GameObject _gameEndMenu;
+        [SerializeField] private GameObject _productSelectionMenu;
+        [SerializeField] private GameObject _tutorialUI;
+        [SerializeField] private GameObject _processTimerAndInfo;
+
+        [Header("Animated Product Lines")]
+        [SerializeField] private GameObject _processLine1;
+        [SerializeField] private GameObject _processLine2;
+
+        [Header("Misc")]
+        [SerializeField] private float _scoreFromAiSkip = 100000f;
+
+        private SoundEffectPlayer _soundEffectPlayer;
+        private bool _soundPlaying = false;
+        private string _currentlySelectedProduct = "None";
 
 
-        private void Start()
+
+        private void Awake()
         {
             if (GameManager.Instance == null) return;
 
-            Debug.Log(LocalizationSettings.SelectedLocale);
+            _soundEffectPlayer = GetComponent<SoundEffectPlayer>();
 
             if (LocalizationSettings.SelectedLocale.Identifier == LocalizationSettings.AvailableLocales.GetLocale("en").Identifier)
             {
@@ -44,12 +63,20 @@ namespace Factory
                 _playButton2.GetComponent<Image>().sprite = _playButtonIconFinnish;
             }
 
-            EnablePlayButton();
-
             _processTimerText.enabled = false;
             _gameEndMenu.SetActive(false);
             _aiSkipInfoText.enabled = false;
-            _aiSkipInfoText.enabled = false;
+            _confirmProductChoiceButton.interactable = false;
+
+            if (GameManager.Instance.FirstTimePlaying)
+            {
+                _tutorialUI.GetComponent<Tutorial.GameTutorial>().StartTutorial();
+                return; // Dont activate the play button before the tutorial is done for the first time.
+            }
+
+            EnablePlayButtonOrProductSelection();
+
+
         }
 
         private void Update()
@@ -77,6 +104,11 @@ namespace Factory
             if (GameManager.Instance.GameLengthInSeconds <= 60f)
             {
                 _timerText.color = Color.red;
+                if (!_soundPlaying)
+                {
+                    _soundEffectPlayer.PlaySoundEffect(0);
+                    _soundPlaying = true;
+                }
             }
             else
             {
@@ -91,7 +123,13 @@ namespace Factory
 
         public void LoadNextMinigame()
         {
-            SceneManager.LoadSceneAsync(GameManager.Instance.ActiveMiniGameName);
+            if (GameManager.Instance.CurrentGameState == "ProductSelection")
+            {
+                Debug.LogError("Product selection is not a minigame!");
+                return;
+            }
+
+            SceneManager.LoadSceneAsync(GameManager.Instance.CurrentGameState);
         }
 
         public void UseAISkip()
@@ -101,27 +139,27 @@ namespace Factory
             _aiSkipButton.GetComponent<ButtonAnimation>().enabled = false;
             GameManager.Instance.AddToGameScore(_scoreFromAiSkip);
             GameManager.Instance.ChangeActiveMiniGame();
-            EnablePlayButton();
+            EnablePlayButtonOrProductSelection();
             if (_aiSkipInfoText.enabled)
             {
                 _aiSkipInfoText.enabled = false;
             }
         }
 
-        public void EnablePlayButton()
+        public void EnablePlayButtonOrProductSelection()
         {
-            if (GameManager.Instance.ActiveMiniGameName == "Minigame1")
+            if (GameManager.Instance.CurrentGameState == "Minigame1")
             {
                 _playButton1.interactable = true;
                 _playButton2.interactable = false;
 
                 _playButton1.GetComponent<ButtonAnimation>().enabled = true;
                 _playButton2.GetComponent<ButtonAnimation>().enabled = false;
-                _processTimerAndInfo.transform.SetParent(_processLine1.transform);
-                _processTimerAndInfo.GetComponent<RectTransform>().anchoredPosition = new Vector2(200, 150);
+                _processTimerAndInfo.transform.SetParent(_processLine1.transform); // Sets the process timer and info to be a child of the correct process line.
+                _processTimerAndInfo.GetComponent<RectTransform>().anchoredPosition = new Vector2(200, 150); // Sets the position of the process timer and info.
             }
 
-            else if (GameManager.Instance.ActiveMiniGameName == "Minigame2")
+            else if (GameManager.Instance.CurrentGameState == "Minigame2")
             {
                 _playButton1.interactable = false;
                 _playButton2.interactable = true;
@@ -129,10 +167,70 @@ namespace Factory
                 _playButton1.GetComponent<ButtonAnimation>().enabled = false;
                 _playButton2.GetComponent<ButtonAnimation>().enabled = true;
                 _processTimerAndInfo.transform.SetParent(_processLine2.transform);
-                _processTimerAndInfo.GetComponent<RectTransform>().anchoredPosition = new Vector2(200, 150); // :D
+                _processTimerAndInfo.GetComponent<RectTransform>().anchoredPosition = new Vector2(200, 150); // Sets the position of the process timer and info.
+            }
+
+            else if (GameManager.Instance.CurrentGameState == "ProductSelection")
+            {
+                _playButton1.interactable = false;
+                _playButton2.interactable = false;
+
+                _playButton1.GetComponent<ButtonAnimation>().enabled = false;
+                _playButton2.GetComponent<ButtonAnimation>().enabled = false;
+
+                Debug.Log("Product selection menu enabled");
+                _productSelectionMenu.SetActive(true);
+
             }
 
             CheckAISkipStatus();
+        }
+
+        public void SelectProduct1()
+        {
+            if (_currentlySelectedProduct == "Product1")
+            {
+                _currentlySelectedProduct = "None";
+                GameObject.Find("Product1Button").GetComponent<ButtonAnimation>().enabled = false;
+                _confirmProductChoiceButton.interactable = false;
+                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = _confirmProductChoiceButton.colors.disabledColor;
+            }
+            else
+            {
+                _currentlySelectedProduct = "Product1";
+                GameObject.Find("Product1Button").GetComponent<ButtonAnimation>().enabled = true;
+                GameObject.Find("Product2Button").GetComponent<ButtonAnimation>().enabled = false;
+                _confirmProductChoiceButton.interactable = true;
+                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = _confirmProductChoiceButton.colors.normalColor;
+
+            }
+        }
+
+        public void SelectProduct2()
+        {
+            if (_currentlySelectedProduct == "Product2")
+            {
+                _currentlySelectedProduct = "None";
+                GameObject.Find("Product2Button").GetComponent<ButtonAnimation>().enabled = false;
+                _confirmProductChoiceButton.interactable = false;
+                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = _confirmProductChoiceButton.colors.disabledColor;
+            }
+            else
+            {
+                _currentlySelectedProduct = "Product2";
+                GameObject.Find("Product2Button").GetComponent<ButtonAnimation>().enabled = true;
+                GameObject.Find("Product1Button").GetComponent<ButtonAnimation>().enabled = false;
+                _confirmProductChoiceButton.interactable = true;
+                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = _confirmProductChoiceButton.colors.normalColor;
+            }
+        }
+
+        public void ConfirmProductChoice()
+        {
+            GameManager.Instance.CurrentProduct = _currentlySelectedProduct;
+            _productSelectionMenu.SetActive(false);
+            GameManager.Instance.ChangeActiveMiniGame();
+            EnablePlayButtonOrProductSelection();
         }
 
         public void CheckAISkipStatus()

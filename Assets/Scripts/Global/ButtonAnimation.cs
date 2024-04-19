@@ -12,7 +12,7 @@ public class ButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     private Vector3 originalScale;
     private bool isButtonPressed = false;
 
-    void Start()
+    void Awake()
     {
         _button = GetComponent<Button>();
         originalScale = _button.transform.localScale;
@@ -41,5 +41,10 @@ public class ButtonAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public void OnPointerUp(PointerEventData eventData)
     {
         isButtonPressed = false;
+    }
+
+    void OnDisable()
+    {
+        _button.transform.localScale = originalScale;
     }
 }

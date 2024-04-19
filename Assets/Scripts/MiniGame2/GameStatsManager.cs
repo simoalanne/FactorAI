@@ -15,10 +15,8 @@ namespace Minigame2
         private float _score;
         private int _collected;
         private int _fails;
-        private string _minigameTime;
         private bool _gameActive = true;
 
-        public string MinigameTime => _minigameTime;
         public float Score => _score;
         public int Collected => _collected;
         public int HowManyForWin => _howManyForWin;
@@ -29,6 +27,13 @@ namespace Minigame2
         {
             _scorePopUp = GetComponent<ScorePopUp>();
             _onMinigameEnd = GetComponent<OnMinigameEnd>();
+
+            if (GameManager.Instance.CurrentProduct == "Product2")
+            {
+                _maxFails -= 2;
+                _scoreFromCatch *= 2f;
+                _scorePenaltyFromFail *= 2f;
+            }
         }
 
         public void UpdateStats(bool scored, Vector2 collisionPosition)

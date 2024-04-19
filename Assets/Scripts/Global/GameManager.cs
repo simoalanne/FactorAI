@@ -8,15 +8,17 @@ namespace Global
     {
         [SerializeField] private float _gameLengthInSeconds = 600f;
         [SerializeField] private float _processLengthInSeconds = 180f;
-        [SerializeField] private string _activeMiniGameName = "Minigame1";
-        [SerializeField] private float _scoreRequiredForAISkip = 50000;
+        [SerializeField] private string _currentGameState = "ProductSelection";
+        [SerializeField] private float _scoreRequiredForAISkip = 81000f;
         [SerializeField] private float _scorefromWaitingOutMinigame = 10000f;
         [SerializeField] private float _scoreGatheredForAISkip = 0;
         [SerializeField] private float _gameScore;
+        [SerializeField] private bool _isAISkipReady = false;
         private string _gameTimer;
         private string _processTimer;
         private float _originalProcessLength;
-        [SerializeField] private bool _isAISkipReady = false;
+        private string _currentProduct;
+        [SerializeField] private bool _firstTimePlaying = true;
 
         public float GameLengthInSeconds => _gameLengthInSeconds;
         public float GameScore => _gameScore;
@@ -25,10 +27,16 @@ namespace Global
         public float ScoreRequiredForAISkip => _scoreRequiredForAISkip;
         public float ScoreGatheredForAISkip => _scoreGatheredForAISkip;
 
-        public string ActiveMiniGameName
+        public bool FirstTimePlaying
         {
-            get { return _activeMiniGameName; }
-            set { _activeMiniGameName = value; }
+            get => _firstTimePlaying;
+            set => _firstTimePlaying = value;
+        }
+
+        public string CurrentGameState
+        {
+            get { return _currentGameState; }
+            set { _currentGameState = value; }
         }
 
         public bool IsAiSkipReady
@@ -37,13 +45,21 @@ namespace Global
             set { _isAISkipReady = value; }
         }
 
+        public string CurrentProduct
+        {
+            get { return _currentProduct; }
+            set { _currentProduct = value; }
+        }
+
         // Keys for PlayerPrefs
         private readonly string gameLengthInSecondsKey = "GameLengthInSeconds";
         private readonly string processLengthInSecondsKey = "ProcessLengthInSeconds";
         private readonly string gameScoreKey = "GameScore";
         private readonly string isAiSkipReadyKey = "IsAiSkipReady";
         private readonly string aiSkipGatheredScoreKey = "AiSkipGatheredScore";
-        private readonly string activeMiniGameNameKey = "ActiveMiniGameName";
+        private readonly string currentGameStateKey = "currentGameState";
+        private readonly string currentProductKey = "CurrentProduct";
+        private readonly string firstTimePlayingKey = "FirstTimePlaying";
 
         public static GameManager Instance;
 
@@ -60,37 +76,33 @@ namespace Global
             _originalProcessLength = _processLengthInSeconds;
 
             LoadSaveData();
-
         }
 
         private void Update()
         {
-            if (SceneManager.GetActiveScene().name != "Title")
+            int minutes = Mathf.FloorToInt(_gameLengthInSeconds / 60);
+            int seconds = Mathf.FloorToInt(_gameLengthInSeconds % 60);
+            _gameTimer = string.Format("{0}:{1:00}", minutes, seconds);
+            int processMinutes = Mathf.FloorToInt(_processLengthInSeconds / 60);
+            int processSeconds = Mathf.FloorToInt(_processLengthInSeconds % 60);
+            _processTimer = string.Format("{0}:{1:00}", processMinutes, processSeconds);
+
+            if (SceneManager.GetActiveScene().name != "Title" && _currentGameState != "ProductSelection")
             {
                 _gameLengthInSeconds -= Time.deltaTime;
-                int minutes = Mathf.FloorToInt(_gameLengthInSeconds / 60);
-                int seconds = Mathf.FloorToInt(_gameLengthInSeconds % 60);
-                _gameTimer = string.Format("{0}:{1:00}", minutes, seconds);
             }
 
-            if (SceneManager.GetActiveScene().name == "Factory")
+            if (SceneManager.GetActiveScene().name == "Factory" && _currentGameState != "ProductSelection")
             {
-
                 _processLengthInSeconds -= Time.deltaTime;
-                int processMinutes = Mathf.FloorToInt(_processLengthInSeconds / 60);
-                int processSeconds = Mathf.FloorToInt(_processLengthInSeconds % 60);
-                _processTimer = string.Format("{0}:{1:00}", processMinutes, processSeconds);
-
-
             }
 
             if (_processLengthInSeconds <= 0f && SceneManager.GetActiveScene().name == "Factory")
             {
                 AddToGameScore(_scorefromWaitingOutMinigame);
-                AddAiSkipProgress(_scorefromWaitingOutMinigame);
                 ChangeActiveMiniGame();
                 _processLengthInSeconds = _originalProcessLength;
-                FindObjectOfType<UIManager>().EnablePlayButton();
+                FindObjectOfType<UIManager>().EnablePlayButtonOrProductSelection();
             }
         }
 
@@ -101,6 +113,11 @@ namespace Global
 
         public void AddAiSkipProgress(float minigameScore)
         {
+            if (_currentProduct == "Product2")
+            {
+                minigameScore /= 2; // Product2 doubles points but ai skip progressing speed stays the same
+            }
+
             _scoreGatheredForAISkip += minigameScore;
 
             if (_scoreGatheredForAISkip >= _scoreRequiredForAISkip && _isAISkipReady == false)
@@ -113,20 +130,23 @@ namespace Global
             {
                 _scoreGatheredForAISkip = 0;
             }
-
         }
 
         public void ChangeActiveMiniGame()
         {
             _processLengthInSeconds = _originalProcessLength;
 
-            if (ActiveMiniGameName == "Minigame1")
+            if (_currentGameState == "Minigame1")
             {
-                ActiveMiniGameName = "Minigame2";
+                _currentGameState = "Minigame2";
             }
-            else
+            else if (_currentGameState == "Minigame2")
             {
-                ActiveMiniGameName = "Minigame1";
+                _currentGameState = "ProductSelection";
+            }
+            else if (_currentGameState == "ProductSelection")
+            {
+                _currentGameState = "Minigame1";
             }
         }
 
@@ -140,14 +160,16 @@ namespace Global
             SaveGameData();
         }
 
-        private void SaveGameData()
+        public void SaveGameData()
         {
             PlayerPrefs.SetFloat(gameLengthInSecondsKey, _gameLengthInSeconds);
             PlayerPrefs.SetFloat(processLengthInSecondsKey, _processLengthInSeconds);
             PlayerPrefs.SetFloat(gameScoreKey, _gameScore);
             PlayerPrefs.SetInt(isAiSkipReadyKey, _isAISkipReady ? 1 : 0);
             PlayerPrefs.SetFloat(aiSkipGatheredScoreKey, _scoreGatheredForAISkip);
-            PlayerPrefs.SetString(activeMiniGameNameKey, _activeMiniGameName);
+            PlayerPrefs.SetString(currentGameStateKey, _currentGameState);
+            PlayerPrefs.SetString(currentProductKey, _currentProduct);
+            PlayerPrefs.SetInt(firstTimePlayingKey, _firstTimePlaying ? 1 : 0);
 
         }
 
@@ -158,7 +180,10 @@ namespace Global
             _processLengthInSeconds = PlayerPrefs.GetFloat(processLengthInSecondsKey, _processLengthInSeconds);
             _isAISkipReady = PlayerPrefs.GetInt(isAiSkipReadyKey, 0) == 1;
             _scoreGatheredForAISkip = PlayerPrefs.GetFloat(aiSkipGatheredScoreKey, _scoreGatheredForAISkip);
-            _activeMiniGameName = PlayerPrefs.GetString(activeMiniGameNameKey, "Minigame1");
+            _currentGameState = PlayerPrefs.GetString(currentGameStateKey, "ProductSelection");
+            _currentProduct = PlayerPrefs.GetString(currentProductKey, "Product1");
+            _firstTimePlaying = PlayerPrefs.GetInt(firstTimePlayingKey, 1) == 1;
+
         }
 
         public void ResetSaveData()
@@ -168,7 +193,7 @@ namespace Global
             PlayerPrefs.DeleteKey(gameScoreKey);
             PlayerPrefs.DeleteKey(isAiSkipReadyKey);
             PlayerPrefs.DeleteKey(aiSkipGatheredScoreKey);
-            PlayerPrefs.DeleteKey(activeMiniGameNameKey);
+            PlayerPrefs.DeleteKey(currentGameStateKey);
             PlayerPrefs.Save();
             Destroy(gameObject);
         }

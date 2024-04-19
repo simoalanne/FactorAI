@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1123595767808
-    m_Localized: 'Score:'
+    m_Localized: Score
     m_Metadata:
       m_Items: []
   - m_Id: 1307780239360
@@ -39,9 +39,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 10500125937664
-    m_Localized: 'RESTART
-
-      GAME'
+    m_Localized: reset game
     m_Metadata:
       m_Items: []
   - m_Id: 190892179116032
@@ -83,12 +81,10 @@ MonoBehaviour:
       delete the current save.
     m_Metadata:
       m_Items: []
-  - m_Id: 950374207246336
-    m_Localized: Yes, I'm sure
-    m_Metadata:
-      m_Items: []
-  - m_Id: 950490519490560
-    m_Localized: No, cancel
+  - m_Id: 5999785249525760
+    m_Localized: Before you can start the minigame action, you'll need to choose
+      a product to manufacture. Choose wisely because you won't be able to switch
+      until both mini-games are successfully completed.
     m_Metadata:
       m_Items: []
   - m_Id: 951310040354816
@@ -129,6 +125,79 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1973911181250560
     m_Localized: Highscores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209652342476800
+    m_Localized: Choose product
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209757007138816
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209926176002048
+    m_Localized: Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5210119717965824
+    m_Localized: Double points!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317214375170048
+    m_Localized: Welcome to the Factory! Looks like it's your first time here, so
+      let's kick things off with a quick tutorial to get you started.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317676767825920
+    m_Localized: If you ever need a refresher, you can easily access this tutorial
+      again from the pause menu, found on the top right corner.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318150132781056
+    m_Localized: Your mission is to rack up as many points as possible within a ten-minute
+      window. Points are earned by completing minigames, and the better you perform,
+      the more points you'll earn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318761943322624
+    m_Localized: 'Don''t worry if you can''t complete the game during one session.
+      Your progress gets saved automatically so you can easily continue right from
+      where you left off last time. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5319325309652992
+    m_Localized: Remember to keep an eye on your progress towards earning an AI-Skip,
+      located in the bottom left corner. Every time you've accrued enough points
+      from minigames, you'll unlock the option to utilize it once.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5465071363215360
+    m_Localized: Ai-Skip is a handy feature that automatically completes a minigame,
+      scoring you a hefty sum of points in return.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6006853670981632
+    m_Localized: 'Pro tip: If you find a mini-game particularly challenging, you
+      can just opt to wait for its timer to run out. Just keep in mind that you''ll
+      get significantly less points compared to completing the minigame yourself.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010838599520256
+    m_Localized: You can check the remanining minigame time by clicking the timer
+      icon located at the top of the currently active manufacturing line. Just beware
+      that the timer won't run while you're playing the minigame.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014155232825344
+    m_Localized: confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014205195374592
+    m_Localized: cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6012544414568448
+    m_Localized: That was all you needed to know. Good luck and have fun!
     m_Metadata:
       m_Items: []
   references:

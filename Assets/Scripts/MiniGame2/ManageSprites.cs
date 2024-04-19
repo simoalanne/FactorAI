@@ -1,20 +1,25 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using Global;
 
 namespace Minigame2
 {
     public class ManageSprites : MonoBehaviour
     {
-        [SerializeField] private GameObject[] _spawnedObjects;
+        [SerializeField] private GameObject[] _spawnedObjects1;
+        [SerializeField] private GameObject[] _spawnedObjects2;
+
         [SerializeField] private float _gravityScale = 0.5f;
         [SerializeField] private float _dropIntervalInitial = 3.0f;
         [SerializeField] private float _dropIntervalFastest = 0.75f;
         [SerializeField] private int _maxConsecutiveWrongObjects = 3;
         [SerializeField] private int _preventSpawnToRecents = 5;
 
-        public GameObject[] SpawnedObjects => _spawnedObjects;
+        public GameObject[] SpawnedObjects => _spawnedObjects1;
+        public GameObject[] SpawnedObjects2 => _spawnedObjects2;
 
+        private GameObject[] _spawnedObjects;
         private Camera _mainCamera;
         private float _cameraWidth, _yPosition;
         private bool _gameActive = true;
@@ -23,11 +28,35 @@ namespace Minigame2
 
         public bool GameActive => _gameActive;
 
+        private void Awake()
+        {
+            if (GameManager.Instance.CurrentProduct == "Product1" || GameManager.Instance == null)
+            {
+                _spawnedObjects = _spawnedObjects1;
+            }
+            else if (GameManager.Instance.CurrentProduct == "Product2")
+            {
+                _spawnedObjects = _spawnedObjects2;
+                _dropIntervalFastest -= 0.1f;
+
+            }
+        }
+
         private void Start()
         {
             _mainCamera = Camera.main;
             _cameraWidth = _mainCamera.orthographicSize * _mainCamera.aspect;
             _yPosition = _mainCamera.orthographicSize + 5f;
+
+            int maxSpawnPoints = Mathf.RoundToInt(_cameraWidth * 2 - 4f);
+
+            if (maxSpawnPoints < _preventSpawnToRecents)
+            {
+                Debug.LogError("PreventSpawnToRecents is greater than the possible spawn points. Game will freeze.");
+                Debug.Log("Setting PreventSpawnToRecents to " + (maxSpawnPoints - 1) + ".");
+                _preventSpawnToRecents = maxSpawnPoints - 1; // Prevents possible infinite loop that will freeze the game.
+            }
+
             _recentXPositions = new int[_preventSpawnToRecents];
 
             // Now first oject spawn can be at x-coordinate zero.
@@ -35,6 +64,8 @@ namespace Minigame2
             {
                 _recentXPositions[i] = (int)_cameraWidth;
             }
+
+
 
             StartCoroutine(StartSpawnLoop());
         }

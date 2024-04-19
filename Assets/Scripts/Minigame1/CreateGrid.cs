@@ -85,7 +85,6 @@ namespace Minigame1
                     Instantiate(_gridtile, tilePosition, Quaternion.identity, transform).transform.localScale = new(tileWidth, tileHeight);
 
                     _objectSpawner.AvailablePositions.Add(transform.GetChild(transform.childCount - 1));
-                    Debug.Log(transform.GetChild(transform.childCount - 1).localPosition);
                 }
 
             }

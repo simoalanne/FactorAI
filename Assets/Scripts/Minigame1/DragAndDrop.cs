@@ -57,7 +57,7 @@ public class DragAndDrop : MonoBehaviour
     void Update()
     {
         if (Time.timeScale == 0) return;
-        
+
         if (isDragging)
         {
             Vector3 targetPos = GetMouseWorldPos() + offset;
@@ -95,7 +95,7 @@ public class DragAndDrop : MonoBehaviour
         else
         {
             float scoreValue = 1000;
-            if (_replacementTag == "Shovel")
+            if (_replacementTag == "Shovel" || _replacementTag == "Pillow")
             {
                 _gameStatsManager.IncreaseCompletedProducts();
                 scoreValue *= 2;

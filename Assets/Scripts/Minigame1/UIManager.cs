@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using Global;
+using UnityEngine.UI;
 
 namespace Minigame1
 {
@@ -12,9 +14,20 @@ namespace Minigame1
 
         private GameStatsManager _gameStatsManager;
 
-        void Start()
+        void Awake()
         {
             _gameStatsManager = GetComponent<GameStatsManager>();
+
+            if (GameManager.Instance.CurrentProduct == "Product1" || GameManager.Instance == null)
+            {
+                GameObject.Find("ProductImage").GetComponent<Image>().sprite = FindObjectOfType<ObjectSpawner>().Product1Objects[6].ObjectToSpawn.GetComponent<SpriteRenderer>().sprite;
+            }
+            else if (GameManager.Instance.CurrentProduct == "Product2")
+            {
+                GameObject.Find("ProductImage").GetComponent<Image>().sprite = FindObjectOfType<ObjectSpawner>().Product2Objects[4].ObjectToSpawn.GetComponent<SpriteRenderer>().sprite;
+            }
+
+   
         }
 
         void Update()

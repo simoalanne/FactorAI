@@ -1,4 +1,3 @@
-using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,12 +7,16 @@ namespace Global
     public class PauseMenu : MonoBehaviour
     {
         [SerializeField] private string _sceneToLoadFromQuit = "Factory";
-        [SerializeField] private Canvas[] _canvasesToDisableRaycasting;
+        [SerializeField] private Button _tutorialButton;
         private GameObject _pauseButton;
         private GameObject _gamePausedMenu;
         private GameObject _confirmRestartMenu;
         private bool _gamePaused = false;
         public bool GamePaused => _gamePaused;
+        private RaycastManager _raycastManager;
+        private bool _rayCastEnabled = true;
+
+
 
 
         void Awake()
@@ -24,7 +27,7 @@ namespace Global
             _confirmRestartMenu = foundTransform != null ? foundTransform.gameObject : null;
             _pauseButton.SetActive(true);
             _gamePausedMenu.SetActive(false);
-
+            _raycastManager = GetComponent<RaycastManager>();
         }
 
         public void PauseGame()
@@ -32,27 +35,31 @@ namespace Global
             if (!_gamePaused)
             {
                 Time.timeScale = 0;
+                _raycastManager.DisableOtherCanvasesRaycasting();
                 _gamePaused = true;
-                DisableOrEnableRaycastingForOtherCanvases();
                 _gamePausedMenu.SetActive(true);
-                MusicPlayer.Instance.PauseMusic();
             }
             else
             {
                 Time.timeScale = 1;
-                DisableOrEnableRaycastingForOtherCanvases();
-                _gamePausedMenu.SetActive(false);
+                _raycastManager.EnableOtherCanvasesRaycasting();
                 _gamePaused = false;
-                MusicPlayer.Instance.UnpauseMusic();
+                _gamePausedMenu.SetActive(false);
             }
         }
 
         public void ResumeGame()
         {
             Time.timeScale = 1;
-            DisableOrEnableRaycastingForOtherCanvases();
+            _raycastManager.EnableOtherCanvasesRaycasting();
             _gamePausedMenu.SetActive(false);
             _gamePaused = false;
+        }
+
+        public void OpenTutorialDialog()
+        {
+            ResumeGame();
+            FindObjectOfType<Tutorial.GameTutorial>().StartTutorial();
         }
 
         public void Quit()
@@ -81,25 +88,6 @@ namespace Global
             Time.timeScale = 1;
             GameManager.Instance.ResetSaveData();
             SceneManager.LoadSceneAsync("Title");
-        }
-
-        private void DisableOrEnableRaycastingForOtherCanvases()
-        {
-            if (_canvasesToDisableRaycasting.Length < 0) return;
-
-            foreach (Canvas canvas in _canvasesToDisableRaycasting)
-            {
-                if (canvas.GetComponent<GraphicRaycaster>().enabled == true)
-                {
-                    canvas.GetComponent<GraphicRaycaster>().enabled = false;
-                }
-                else if (canvas.GetComponent<GraphicRaycaster>().enabled == false)
-                {
-                    canvas.GetComponent<GraphicRaycaster>().enabled = true;
-                }
-
-                Debug.Log("Raycasting enabled:" + canvas.GetComponent<GraphicRaycaster>().enabled);
-            }
         }
     }
 }

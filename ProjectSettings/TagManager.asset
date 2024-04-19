@@ -7,14 +7,24 @@ TagManager:
   - TargetObject
   - DesiredProduct
   - UndesiredProduct
-  - Wood
-  - Plank
-  - Head
   - Shovel
-  - Handle
-  - Metal
   - Bar
+  - Wood
+  - Metal
+  - Handle
+  - Head
+  - Plank
   - Chick
+  - Chicken
+  - Egg
+  - Shears
+  - Sheep
+  - SpinningWheel
+  - Tweezers
+  - Wool
+  - Feather
+  - Twine
+  - Pillow
   layers:
   - Default
   - TransparentFX

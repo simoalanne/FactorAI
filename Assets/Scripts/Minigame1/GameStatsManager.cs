@@ -15,12 +15,25 @@ namespace Minigame1
         private int _completedProducts;
         private bool _gameActive = true;
         private ScorePopUp _scorePopUp;
+        private int _scoreMultiplier = 1;
 
-        public string MinigameTime => _minigameTime;
         public float Score => _score;
+        public string MinigameTime => _minigameTime;
         public int MinCompletedProducts => _minCompletedProducts;
         public int CompletedProducts => _completedProducts;
 
+        void Awake()
+        {
+            if (GameManager.Instance.CurrentProduct == "Product1" || GameManager.Instance == null)
+            {
+                _minCompletedProducts = 3;
+            }
+            else if (GameManager.Instance.CurrentProduct == "Product2")
+            {
+                _minCompletedProducts = 6;
+                _scoreMultiplier = 2;
+            }
+        }
         void Start()
         {
             _onMinigameEnd = GetComponent<OnMinigameEnd>();
@@ -58,6 +71,7 @@ namespace Minigame1
 
         public void IncreaseScore(float score, Transform transform)
         {
+            score *= _scoreMultiplier;
             _score += score;
             _scorePopUp.ShowPopUp(transform.position, score);
         }

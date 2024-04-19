@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Global;
 using UnityEngine;
 
 namespace Minigame1
@@ -7,7 +8,7 @@ namespace Minigame1
     public class SpawnableObject
     {
         public GameObject ObjectToSpawn;
-        public int AmountToSpawn;
+        public int AmountToSpawnInitially;
         public float _percentageOfTileSize = 75f;
     }
 
@@ -17,9 +18,11 @@ namespace Minigame1
         [SerializeField] private SpawnableObject[] _product2Objects;
         private readonly List<Transform> _availablePositions = new();
         private readonly Dictionary<Transform, GameObject> _occupiedPositions = new();
+        private SpawnableObject[] _productObjects;
 
         public SpawnableObject[] Product1Objects => _product1Objects;
         public SpawnableObject[] Product2Objects => _product2Objects;
+
         public List<Transform> AvailablePositions => _availablePositions;
         public Dictionary<Transform, GameObject> OccupiedPositions => _occupiedPositions;
 
@@ -29,13 +32,24 @@ namespace Minigame1
         void Awake()
         {
             _createGrid = FindObjectOfType<CreateGrid>();
+
+            if (GameManager.Instance.CurrentProduct == "Product1")
+            {
+                _productObjects = _product1Objects;
+            }
+            else if (GameManager.Instance.CurrentProduct == "Product2")
+            {
+                _productObjects = _product2Objects;
+                Camera.main.backgroundColor = new Color(240f / 255f, 210f / 255f, 175f / 255f);
+            }
+
         }
 
         public void SpawnObjects()
         {
-            foreach (SpawnableObject spawnableObject in _product1Objects)
+            foreach (SpawnableObject spawnableObject in _productObjects)
             {
-                for (int i = 0; i < spawnableObject.AmountToSpawn; i++)
+                for (int i = 0; i < spawnableObject.AmountToSpawnInitially; i++)
                 {
                     Transform randomPosition = _availablePositions[Random.Range(0, _availablePositions.Count)];
                     if (!_occupiedPositions.ContainsKey(randomPosition))
@@ -59,14 +73,14 @@ namespace Minigame1
 
         public void SpawnReplacementObject(Transform pos, string replacementTag)
         {
-            foreach (SpawnableObject spawnableObject in _product1Objects)
+            foreach (SpawnableObject spawnableObject in _productObjects)
             {
                 if (spawnableObject.ObjectToSpawn.CompareTag(replacementTag))
                 {
                     GameObject instance = Instantiate(spawnableObject.ObjectToSpawn, pos.position, Quaternion.identity);
                     instance.transform.localScale = _createGrid.GridTileScale * (spawnableObject._percentageOfTileSize / 100f);
                     _occupiedPositions.Add(pos, instance);
-                    if (replacementTag == "Shovel")
+                    if (replacementTag == "Shovel" || replacementTag == "Pillow")
                     {
                         SpawnObjects();
                         _occupiedPositions.Remove(pos);
