@@ -41,7 +41,7 @@ namespace Factory
         [SerializeField] private float _scoreFromAiSkip = 100000f;
 
         private SoundEffectPlayer _soundEffectPlayer;
-        private bool _soundPlaying = false;
+        private bool _colorSwitched = false;
         private string _currentlySelectedProduct = "None";
 
 
@@ -101,18 +101,9 @@ namespace Factory
             _timerText.text = GameManager.Instance.GameTimer;
             _processTimerText.text = GameManager.Instance.ProcessTimer;
 
-            if (GameManager.Instance.GameLengthInSeconds <= 60f)
+            if (GameManager.Instance.GameLengthInSeconds <= 60f && !_colorSwitched)
             {
-                _timerText.color = Color.red;
-                if (!_soundPlaying)
-                {
-                    _soundEffectPlayer.PlaySoundEffect(0);
-                    _soundPlaying = true;
-                }
-            }
-            else
-            {
-                _timerText.color = Color.white;
+                _timerText.color = new Color(196f / 255f, 44f / 255f, 54f / 255f); // Red color in the palette
             }
 
             if (GameManager.Instance.GameLengthInSeconds <= 0f)

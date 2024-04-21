@@ -2,16 +2,32 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
+
+[Serializable]
+public class HighScore
+{
+    public string PlayerName;
+    public float Score;
+    public DateTime Date;
+
+    public HighScore(string playerName, float score)
+    {
+        PlayerName = playerName;
+        Score = score;
+        Date = DateTime.Now;
+    }
+}
 
 public class HighScoreManager : MonoBehaviour
 {
     public static HighScoreManager Instance;
 
     private const string HighScoreFileName = "/highscores.dat";
-    private List<float> _highScores;
+    private List<HighScore> _highScores;
     private bool _newHighScore = false;
 
-    public List<float> HighScores => _highScores;
+    public List<HighScore> HighScores => _highScores;
     public bool NewHighScore => _newHighScore;
 
     private void Awake()
@@ -28,30 +44,36 @@ public class HighScoreManager : MonoBehaviour
         }
 
         _highScores = LoadHighScores();
-        _highScores.Sort();
-        _highScores.Reverse();
+        _highScores.Sort((a, b) => b.Score.CompareTo(a.Score)); // Sort in descending order
     }
 
-    public void SaveHighScores(List<float> highScores)
+    public void SaveHighScores(List<HighScore> highScores)
     {
         string path = Application.persistentDataPath + HighScoreFileName;
         using Stream stream = new FileStream(path, FileMode.OpenOrCreate);
         new BinaryFormatter().Serialize(stream, highScores);
     }
 
-    private List<float> LoadHighScores()
+    private List<HighScore> LoadHighScores()
     {
         string path = Application.persistentDataPath + HighScoreFileName;
 
         if (!File.Exists(path))
         {
-            return new List<float>();
+            return new List<HighScore>();
         }
 
-        using Stream stream = new FileStream(path, FileMode.Open);
-        return (List<float>)new BinaryFormatter().Deserialize(stream);
+        try
+        {
+            using Stream stream = new FileStream(path, FileMode.Open);
+            return (List<HighScore>)new BinaryFormatter().Deserialize(stream);
+        }
+        catch (InvalidCastException)
+        {
+            Debug.LogWarning("Failed to load high scores due to incompatible saved data. Returning a new high score list."); 
+            return new List<HighScore>();
+        }
     }
-
     public void CheckForHighScore(float score)
     {
         _newHighScore = false;
@@ -59,27 +81,21 @@ public class HighScoreManager : MonoBehaviour
         // if there are less than 3 high scores add score instantly
         if (_highScores.Count < 3)
         {
-            AddHighScore(score);
+            _newHighScore = true;
         }
 
-        // if score is higher than the lowest high score, remove the lowest and add the new score
-        else if (HighScores[2] < score)
+        // if score is higher than the lowest high score, set _newHighScore to true
+        else if (_highScores[2].Score < score)
         {
-            _highScores.RemoveAt(2);
-            AddHighScore(score);
+            _newHighScore = true;
         }
     }
 
-    private void AddHighScore(float score)
+    public void AddHighScore(string playerName, float score)
     {
-        _newHighScore = true;
-        _highScores.Add(score);
-        _highScores.Sort();
-        _highScores.Reverse();
+        _highScores.Add(new HighScore(playerName, score));
+        _highScores.Sort((a, b) => b.Score.CompareTo(a.Score)); // Sort in descending order
         SaveHighScores(_highScores);
         _highScores = LoadHighScores();
     }
 }
-
-
-

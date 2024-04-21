@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using Global;
 
 namespace Tutorial
 {
@@ -13,9 +14,12 @@ namespace Tutorial
         [SerializeField] private GameObject _minigame1Tutorial;
         [SerializeField] private GameObject _minigame2Tutorial;
         private GameObject _tutorialMenu;
+        private RaycastManager _raycastManager;
 
         void Awake()
         {
+            _raycastManager = GetComponent<RaycastManager>();
+
             if (SceneManager.GetActiveScene().name == "Minigame1")
             {
                 _tutorialMenu = _minigame1Tutorial;
@@ -35,7 +39,7 @@ namespace Tutorial
 
             List<Sprite> objectSprites = new();
 
-            if (Global.GameManager.Instance.CurrentProduct == "Product1" || Global.GameManager.Instance == null)
+            if (GameManager.Instance.CurrentProduct == "Product1" || Global.GameManager.Instance == null)
             {
                 GameObject.Find("ValueText1").GetComponent<TMP_Text>().text =
                 FindObjectOfType<Minigame1.GameStatsManager>().MinCompletedProducts.ToString();
@@ -69,10 +73,10 @@ namespace Tutorial
                 _tutorialMenu.SetActive(false);
             }
 
-            else if (Global.GameManager.Instance.CurrentProduct == "Product2")
+            else if (GameManager.Instance.CurrentProduct == "Product2")
             {
                 GameObject.Find("ValueText1").GetComponent<TMP_Text>().text =
-                (FindObjectOfType<Minigame1.GameStatsManager>().MinCompletedProducts + 4).ToString();
+                (FindObjectOfType<Minigame1.GameStatsManager>().MinCompletedProducts * 2).ToString(); // Double the amount of products needed for Product2
                 foreach (var product in FindObjectOfType<Minigame1.ObjectSpawner>().Product2Objects)
                 {
                     objectSprites.Add(product.ObjectToSpawn.GetComponent<SpriteRenderer>().sprite);
@@ -106,40 +110,64 @@ namespace Tutorial
 
         private void Minigame2Tutorial()
         {
-            GameObject.Find("ValueText2").GetComponent<TMP_Text>().text =
-            FindObjectOfType<Minigame2.GameStatsManager>().HowManyForWin.ToString();
+            GameObject.Find("ValueText2").GetComponent<TMP_Text>().text = FindObjectOfType<Minigame2.GameStatsManager>().HowManyForWin.ToString();
 
             if (Global.GameManager.Instance.CurrentProduct == "Product1" || Global.GameManager.Instance == null)
             {
-                GameObject.Find("ProductImage2").GetComponent<Image>().sprite = FindObjectOfType<Minigame2.ManageSprites>().SpawnedObjects[0].GetComponent<SpriteRenderer>().sprite;
-                GameObject.Find("Rule3Text").GetComponent<TMP_Text>().text = "X X X X X";
+                GameObject.Find("TargetProduct2").GetComponent<Image>().sprite = FindObjectOfType<Minigame2.ManageSprites>().SpawnedObjects[0].GetComponent<SpriteRenderer>().sprite;
+                GameObject.Find("Rule3Text").GetComponent<TMP_Text>().text = "<color=#C42C36FF>x x x x x</color><color=#DBE0E7FF> -> fail</color>"; // x chars are redish and "-> fail" is grayish 
             }
             else if (Global.GameManager.Instance.CurrentProduct == "Product2")
             {
-                GameObject.Find("ProductImage2").GetComponent<Image>().sprite = FindObjectOfType<Minigame2.ManageSprites>().SpawnedObjects2[0].GetComponent<SpriteRenderer>().sprite;
-                GameObject.Find("Rule3Text").GetComponent<TMP_Text>().text = "X X X"; // Less fails allowed
+                GameObject.Find("TargetProduct2").GetComponent<Image>().sprite = FindObjectOfType<Minigame2.ManageSprites>().SpawnedObjects2[0].GetComponent<SpriteRenderer>().sprite;
+                GameObject.Find("Rule3Text").GetComponent<TMP_Text>().text = "<color=#C42C36FF>x x x</color><color=#DBE0E7FF> -> fail</color>"; // less fails allowed for Product2
             }
-            
+
+            // Find Rule1Text and Rule2Text
+            TMP_Text rule1Text = GameObject.Find("Rule1Text").GetComponent<TMP_Text>();
+            TMP_Text rule2Text = GameObject.Find("Rule2Text").GetComponent<TMP_Text>();
+
+            // Set their color
+            rule1Text.text = SetLastCharacterColor(rule1Text.text, "#DBE0E7FF", "#C42C36FF");
+            rule2Text.text = SetLastCharacterColor(rule2Text.text, "#DBE0E7FF", "#C42C36FF");
+
             _tutorialMenu.SetActive(false);
+        }
+
+        private string SetLastCharacterColor(string text, string color1, string color2)
+        {
+            Debug.Log(text);
+            print("Method called");
+            if (string.IsNullOrEmpty(text)) return text;
+
+            string allButLast = $"<color={color1}>{text[..^1]}</color>"; // Get all but the last character and wrap them in color1
+
+            string last = $"<color={color2}>{text[^1]}</color>"; // Get the last character and wrap it in color2
+
+            // Combine the colored parts
+            return allButLast + last;
         }
 
         public void OpenTutorial()
         {
-            Time.timeScale = 0;
-            _openTutorialButton.gameObject.SetActive(false);
-            _tutorialMenu.SetActive(true);
+            if (_tutorialMenu.activeSelf)
+            {
+                _raycastManager.EnableOtherCanvasesRaycasting();
+                _tutorialMenu.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                _raycastManager.DisableOtherCanvasesRaycasting();
+                Time.timeScale = 0;
+                _tutorialMenu.SetActive(true);
+            }
         }
 
         public void CloseTutorial()
         {
-            _openTutorialButton.gameObject.SetActive(true);
+            _raycastManager.EnableOtherCanvasesRaycasting();
             _tutorialMenu.SetActive(false);
-            StartCoroutine(ResumeGame());
-        }
-
-        private IEnumerator ResumeGame()
-        {
-            yield return new WaitForSecondsRealtime(0.5f);
             Time.timeScale = 1;
         }
     }

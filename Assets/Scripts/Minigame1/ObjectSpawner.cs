@@ -40,9 +40,7 @@ namespace Minigame1
             else if (GameManager.Instance.CurrentProduct == "Product2")
             {
                 _productObjects = _product2Objects;
-                Camera.main.backgroundColor = new Color(240f / 255f, 210f / 255f, 175f / 255f);
             }
-
         }
 
         public void SpawnObjects()

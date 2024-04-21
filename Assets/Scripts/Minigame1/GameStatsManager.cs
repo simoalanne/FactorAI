@@ -51,10 +51,9 @@ namespace Minigame1
             }
 
             _miniGameLengthInSeconds -= Time.deltaTime;
-            int minutes = Mathf.FloorToInt(_miniGameLengthInSeconds / 60);
             int seconds = Mathf.FloorToInt(_miniGameLengthInSeconds % 60);
             float fraction = _miniGameLengthInSeconds * 100 % 100;
-            _minigameTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, Mathf.FloorToInt(fraction));
+            _minigameTime = string.Format("{0}:{1:00}", seconds, Mathf.FloorToInt(fraction));
         }
 
         private void CheckGameEnd()

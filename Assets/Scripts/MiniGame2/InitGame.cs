@@ -9,7 +9,7 @@ namespace Minigame2
     {
 
         [SerializeField] private float _gameStartDelay = 3f;
-        [SerializeField] private TMP_Text _swipeText;
+        [SerializeField] private TMP_Text _tapText;
         [SerializeField] private TMP_Text _getReadyText;
         [SerializeField] private TMP_Text _countdownText;
         private bool _gameStarted;
@@ -24,14 +24,13 @@ namespace Minigame2
 
         void Awake()
         {
-            _swipeText.enabled = true;
+            _tapText.enabled = true;
             _getReadyText.enabled = false;
             _countdownText.enabled = false;
             _playerMovement = GetComponentInParent<PlayerMovement>();
             _playerMovement.enabled = false;
             _manageSprites = FindObjectOfType<ManageSprites>();
             _manageSprites.enabled = false;
-            FindObjectOfType<PauseMenu>().GetComponentInChildren<Button>().interactable = false;
         }
 
         void Update()
@@ -46,7 +45,7 @@ namespace Minigame2
 
         private void StartGameCountdown()
         {
-            _swipeText.enabled = false;
+            _tapText.enabled = false;
             _getReadyText.enabled = true;
             _countdownText.enabled = true;
             _countdownText.text = (_gameStartDelay - _gameStartCountdown).ToString();
@@ -60,7 +59,6 @@ namespace Minigame2
                 _manageSprites.enabled = true;
                 _gameStarted = true;
                 _playerMovement.enabled = true;
-                FindObjectOfType<PauseMenu>().GetComponentInChildren<Button>().interactable = true;
             }
         }
     }

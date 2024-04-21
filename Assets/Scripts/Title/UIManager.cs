@@ -15,6 +15,7 @@ namespace Title
         [SerializeField] private GameObject _titleMenu;
         [SerializeField] private GameObject _settingsPanel;
         [SerializeField] private GameObject _highScorePanel;
+        [SerializeField] private GameObject _creditsPanel;
 
         [Header("Buttons")]
         [SerializeField] private Button _playButton;
@@ -27,9 +28,6 @@ namespace Title
 
         [SerializeField] private Sprite _playButtonIconEnglish;
         [SerializeField] private Sprite _pelaaButtonIconFinnish;
-
-        [SerializeField] private Sprite _englishIcon;
-        [SerializeField] private Sprite _finnishIcon;
 
         [SerializeField] private Sprite _musicOnIcon;
         [SerializeField] private Sprite _musicOffIcon;
@@ -45,6 +43,9 @@ namespace Title
 
         [Header("Texts")]
 
+        [SerializeField] private TMP_Text _playerNameText1;
+        [SerializeField] private TMP_Text _playerNameText2;
+        [SerializeField] private TMP_Text _playerNameText3;
         [SerializeField] private TMP_Text _highScoreText1;
         [SerializeField] private TMP_Text _highScoreText2;
         [SerializeField] private TMP_Text _highScoreText3;
@@ -73,6 +74,7 @@ namespace Title
             _titleMenu.SetActive(true);
             _settingsPanel.SetActive(false);
             _highScorePanel.SetActive(false);
+            _creditsPanel.SetActive(false);
 
             _languageIcon = _changeLanguageButton.transform.Find("LanguageIcon").GetComponent<Image>();
             _musicIcon = _toggleMusicButton.transform.Find("MusicIcon").GetComponent<Image>();
@@ -111,16 +113,6 @@ namespace Title
             {
                 _audioIcon.sprite = _audioOffIcon;
             }
-
-            if (_currentLanguage.Equals("english"))
-            {
-                _languageIcon.sprite = _englishIcon;
-            }
-            else
-            {
-                _languageIcon.sprite = _finnishIcon;
-            }
-
         }
 
         private void ChangePlayButtonIcon()
@@ -184,24 +176,28 @@ namespace Title
             }*/
         }
 
-        public void ChangeLanguage()
+        public void ChangeToFinnish()
         {
-            if (_currentLanguage.Equals("english"))
-            {
-                LocalizationSettings.SelectedLocale = _finnishLocale;
-                _languageIcon.sprite = _finnishIcon;
-                _currentLanguage = "finnish";
-            }
-            else if (_currentLanguage.Equals("finnish"))
-            {
-                LocalizationSettings.SelectedLocale = _englishLocale;
-                _languageIcon.sprite = _englishIcon;
-                _currentLanguage = "english";
-            }
-            ChangePlayButtonIcon();
+            if (_currentLanguage.Equals("finnish")) return;
+
+            _currentLanguage = "finnish";
             PlayerPrefs.SetString(_currentLanguageKey, _currentLanguage);
             PlayerPrefs.Save();
+            LocalizationSettings.SelectedLocale = _finnishLocale;
+            ChangePlayButtonIcon();
         }
+
+        public void ChangeToEnglish()
+        {
+            if (_currentLanguage.Equals("english")) return;
+
+            _currentLanguage = "english";
+            PlayerPrefs.SetString(_currentLanguageKey, _currentLanguage);
+            PlayerPrefs.Save();
+            LocalizationSettings.SelectedLocale = _englishLocale;
+            ChangePlayButtonIcon();
+        }
+
 
         public void ToggleMusic()
         {
@@ -238,6 +234,7 @@ namespace Title
             }
             PlayerPrefs.SetInt(_audioEnabledKey, _audioEnabled ? 1 : 0);
             PlayerPrefs.Save();
+            MusicPlayer.Instance.ToggleMusic();
 
         }
 
@@ -254,33 +251,51 @@ namespace Title
             _titleMenu.SetActive(true);
         }
 
+        public void OpenCreditsPanel()
+        {
+            _titleMenu.SetActive(false);
+            _creditsPanel.SetActive(true);
+        }
+
+        public void CloseCreditsPanel()
+        {
+            _creditsPanel.SetActive(false);
+            _titleMenu.SetActive(true);
+        }
+
         private void WriteHighScores()
         {
             if (HighScoreManager.Instance.HighScores.Count > 0)
             {
-                _highScoreText1.text = "1. " + HighScoreManager.Instance.HighScores[0];
+                _playerNameText1.text = HighScoreManager.Instance.HighScores[0].PlayerName;
+                _highScoreText1.text = HighScoreManager.Instance.HighScores[0].Score.ToString();
             }
             else
             {
-                _highScoreText1.text = "1.";
+                _playerNameText1.text = "";
+                _highScoreText1.text = "";
             }
 
             if (HighScoreManager.Instance.HighScores.Count > 1)
             {
-                _highScoreText2.text = "2. " + HighScoreManager.Instance.HighScores[1];
+                _playerNameText2.text = HighScoreManager.Instance.HighScores[1].PlayerName;
+                _highScoreText2.text = HighScoreManager.Instance.HighScores[1].Score.ToString();
             }
             else
             {
-                _highScoreText2.text = "2.";
+                _playerNameText2.text = "";
+                _highScoreText2.text = "";
             }
 
             if (HighScoreManager.Instance.HighScores.Count > 2)
             {
-                _highScoreText3.text = "3. " + HighScoreManager.Instance.HighScores[2];
+                _playerNameText3.text = HighScoreManager.Instance.HighScores[2].PlayerName;
+                _highScoreText3.text = HighScoreManager.Instance.HighScores[2].Score.ToString();
             }
             else
             {
-                _highScoreText3.text = "3.";
+                _playerNameText3.text = "";
+                _highScoreText3.text = "";
             }
         }
     }

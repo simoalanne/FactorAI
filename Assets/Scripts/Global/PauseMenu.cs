@@ -1,23 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace Global
 {
     public class PauseMenu : MonoBehaviour
     {
         [SerializeField] private string _sceneToLoadFromQuit = "Factory";
-        [SerializeField] private Button _tutorialButton;
         private GameObject _pauseButton;
         private GameObject _gamePausedMenu;
         private GameObject _confirmRestartMenu;
         private bool _gamePaused = false;
         public bool GamePaused => _gamePaused;
         private RaycastManager _raycastManager;
-        private bool _rayCastEnabled = true;
-
-
-
 
         void Awake()
         {

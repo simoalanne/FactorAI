@@ -20,8 +20,6 @@ namespace Minigame2
 
         private void Update()
         {
-            if (Time.timeScale == 0) return;
-            
             if (Input.touchCount > 0)
             {
                 StartDragging();
@@ -61,7 +59,7 @@ namespace Minigame2
             }
 
             // Calculate the offset between the start of the drag and the current position
-            _dragOffset = (Vector2) Camera.main.ScreenToWorldPoint(_dragInputReader.DragValue) - _startDragPosition;
+            _dragOffset = (Vector2)Camera.main.ScreenToWorldPoint(_dragInputReader.DragValue) - _startDragPosition;
             // Only add the x-component of the drag offset to the x-component of the original position
             _newPosition = new Vector2(_originalPosition.x + _dragOffset.x, _originalPosition.y);
             transform.position = new Vector2(_newPosition.x, transform.position.y);

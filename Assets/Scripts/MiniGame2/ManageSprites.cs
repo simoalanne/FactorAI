@@ -37,7 +37,7 @@ namespace Minigame2
             else if (GameManager.Instance.CurrentProduct == "Product2")
             {
                 _spawnedObjects = _spawnedObjects2;
-                _dropIntervalFastest -= 0.1f;
+                _dropIntervalFastest -= 0.12f;
 
             }
         }
@@ -136,6 +136,11 @@ namespace Minigame2
 
             _recentXPositions[_recentXPositions.Length - 1] = xToCheck;
             return false;
+        }
+
+        public void OnDisable()
+        {
+            _gameActive = false;
         }
     }
 }

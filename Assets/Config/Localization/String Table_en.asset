@@ -43,13 +43,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190892179116032
-    m_Localized: FAILED
+    m_Localized: failure!
     m_Metadata:
       m_Items: []
   - m_Id: 191123784388608
-    m_Localized: 'RETURNING TO
-
-      FACTORY IN:'
+    m_Localized: returning back to factory in
     m_Metadata:
       m_Items: []
   - m_Id: 191698269818880
@@ -69,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 195100215267328
-    m_Localized: 'TOTAL SCORE:'
+    m_Localized: TOTAL SCORE
     m_Metadata:
       m_Items: []
   - m_Id: 196383689068544
@@ -100,15 +98,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1121393823895552
-    m_Localized: 'Get ready in:'
+    m_Localized: get ready in
     m_Metadata:
       m_Items: []
   - m_Id: 1221950492299264
     m_Localized: NEW HIGHSCORE!
     m_Metadata:
       m_Items: []
-  - m_Id: 1896480365793280
-    m_Localized: Language
+  - m_Id: 7074718759178240
+    m_Localized: in finnish
     m_Metadata:
       m_Items: []
   - m_Id: 1960342217740288
@@ -198,6 +196,48 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 6012544414568448
     m_Localized: That was all you needed to know. Good luck and have fun!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6397763109965824
+    m_Localized: goal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924493381881856
+    m_Localized: save and exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924574646521856
+    m_Localized: exit without saving
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924678711398400
+    m_Localized: exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924723091329024
+    m_Localized: enter your name...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7029215744937984
+    m_Localized: exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046464824332288
+    m_Localized: "wrong item \ncollected -> x"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046640523726848
+    m_Localized: 'correct item
+
+      missed -> x'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074834895261696
+    m_Localized: in english
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7087867549896704
+    m_Localized: in cooperation with
     m_Metadata:
       m_Items: []
   references:

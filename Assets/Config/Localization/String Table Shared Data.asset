@@ -89,10 +89,6 @@ MonoBehaviour:
     m_Key: NewHighScoreKey
     m_Metadata:
       m_Items: []
-  - m_Id: 1896480365793280
-    m_Key: LanguageKey
-    m_Metadata:
-      m_Items: []
   - m_Id: 1960342217740288
     m_Key: TutorialKey
     m_Metadata:
@@ -177,6 +173,54 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 6014205195374592
     m_Key: CancelKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6397763109965824
+    m_Key: GoalKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924493381881856
+    m_Key: SaveAndExitKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924574646521856
+    m_Key: ExitWithoutSavingKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924678711398400
+    m_Key: ExitKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924723091329024
+    m_Key: EnterNameKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7029215744937984
+    m_Key: ReturnKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046464824332288
+    m_Key: wrongItemKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046640523726848
+    m_Key: correctItemKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074718759178240
+    m_Key: InFinnishKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074834895261696
+    m_Key: InEnglishKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7087850210643968
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7087867549896704
+    m_Key: InCooperationKey
     m_Metadata:
       m_Items: []
   m_Metadata:

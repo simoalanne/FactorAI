@@ -16,6 +16,12 @@ namespace Minigame2
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (_gameStatsManager.GameActive == false)
+            {
+                Destroy(collision.gameObject);
+                return; // If the game is not active, no need to do anything else other than destroying the object
+            }
+
             if (collision.gameObject.CompareTag("DesiredProduct"))
             {
                 _gameStatsManager.UpdateStats(false, collision.transform.position);

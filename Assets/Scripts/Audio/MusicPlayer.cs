@@ -31,10 +31,11 @@ namespace Audio
             _audioSource.volume = _volumeFromZeroToOne;
             _audioSource.loop = false;
 
-            if (PlayerPrefs.GetInt("MusicEnabled", 1) == 0)
+            if (PlayerPrefs.GetInt("MusicEnabled", 1) == 0 || PlayerPrefs.GetInt("AudioEnabled", 1) == 0)
             {
                 _audioSource.mute = true;
             }
+
             if (_shuffleMusic)
             {
                 ShuffleList();
@@ -76,7 +77,14 @@ namespace Audio
 
         public void ToggleMusic()
         {
-            _audioSource.mute = !_audioSource.mute;
+            if (PlayerPrefs.GetInt("MusicEnabled", 1) == 0 || PlayerPrefs.GetInt("AudioEnabled", 1) == 0)
+            {
+                _audioSource.mute = true;
+            }
+            else
+            {
+                _audioSource.mute = false;
+            }
         }
 
         public void PauseMusic()

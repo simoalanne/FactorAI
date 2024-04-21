@@ -13,7 +13,6 @@ namespace Tutorial
         private int _counter = 0;
         private int _currentPart = 0; // Index of the current tutorial part
         private Coroutine _revealTextCoroutine; // Reference to the coroutine
-        private bool _rayCastEnabled = true;
 
         void Awake()
         {
@@ -58,7 +57,6 @@ namespace Tutorial
             {
                 _tutorialDialog.SetActive(false);
                 GetComponent<RaycastManager>().EnableOtherCanvasesRaycasting();
-                _rayCastEnabled = true;
 
                 if (GameManager.Instance.FirstTimePlaying)
                 {

@@ -22,6 +22,7 @@ namespace Minigame2
         public int HowManyForWin => _howManyForWin;
         public int Fails => _fails;
         public int MaxFails => _maxFails;
+        public bool GameActive => _gameActive;
 
         private void Start()
         {
@@ -56,11 +57,13 @@ namespace Minigame2
             {
                 _onMinigameEnd.OnGameWon(_score);
                 _gameActive = false;
+                FindObjectOfType<PlayerMovement>().enabled = false;
             }
             else if (_fails >= _maxFails)
             {
                 _onMinigameEnd.OnGameLost();
                 _gameActive = false;
+                FindObjectOfType<PlayerMovement>().enabled = false;
             }
         }
 

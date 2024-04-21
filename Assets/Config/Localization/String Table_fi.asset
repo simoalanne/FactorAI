@@ -43,11 +43,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 190892179116032
-    m_Localized: MOKASIT
+    m_Localized: feilasit!
     m_Metadata:
       m_Items: []
   - m_Id: 191123784388608
-    m_Localized: "SIIRRYT\xC4\xC4N TAKAISIN\nTEHTAALLE:"
+    m_Localized: palataan takaisin tehtaalle
     m_Metadata:
       m_Items: []
   - m_Id: 191698269818880
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 195100215267328
-    m_Localized: 'YHTEISPISTEESI:'
+    m_Localized: YHTEISPISTEET
     m_Metadata:
       m_Items: []
   - m_Id: 196383689068544
@@ -98,15 +98,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1121393823895552
-    m_Localized: 'Valmistaudu:'
+    m_Localized: valmistaudu
     m_Metadata:
       m_Items: []
   - m_Id: 1221950492299264
     m_Localized: "UUSI ENN\xC4TYS!"
     m_Metadata:
       m_Items: []
-  - m_Id: 1896480365793280
-    m_Localized: Kieli
+  - m_Id: 7074718759178240
+    m_Localized: suomeksi
     m_Metadata:
       m_Items: []
   - m_Id: 1960342217740288
@@ -122,9 +122,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1973911181250560
-    m_Localized: 'Parhaat
-
-      tulokset'
+    m_Localized: "Enn\xE4tykset"
     m_Metadata:
       m_Items: []
   - m_Id: 5209652342476800
@@ -203,6 +201,48 @@ MonoBehaviour:
   - m_Id: 6012544414568448
     m_Localized: "Siin\xE4 kaikki mit\xE4 sinun tarvitsee tiet\xE4\xE4. Onnea matkaan
       ja pid\xE4 hauskaa!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6397763109965824
+    m_Localized: tavoite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924493381881856
+    m_Localized: tallenna ja poistu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924574646521856
+    m_Localized: poistu tallentamatta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924678711398400
+    m_Localized: poistu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924723091329024
+    m_Localized: "sy\xF6t\xE4 nimesi..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7029215744937984
+    m_Localized: poistu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046464824332288
+    m_Localized: "v\xE4\xE4r\xE4 esine\nker\xE4tty -> x"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046640523726848
+    m_Localized: 'oikea esine
+
+      huti -> x'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074834895261696
+    m_Localized: englanniksi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7087867549896704
+    m_Localized: "yhteisty\xF6ss\xE4"
     m_Metadata:
       m_Items: []
   references:

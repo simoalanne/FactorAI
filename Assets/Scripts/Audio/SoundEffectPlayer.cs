@@ -40,5 +40,10 @@ namespace Audio
                 _audioSource.Play();
             }
         }
+
+        public void StopSoundEffect()
+        {
+            _audioSource.Stop();
+        }
     }
 }
