@@ -37,7 +37,7 @@ namespace Minigame2
             else if (GameManager.Instance.CurrentProduct == "Product2")
             {
                 _spawnedObjects = _spawnedObjects2;
-                _dropIntervalFastest -= 0.12f;
+                _dropIntervalFastest -= 0.1f;
 
             }
         }
@@ -52,7 +52,7 @@ namespace Minigame2
 
             if (maxSpawnPoints < _preventSpawnToRecents)
             {
-                Debug.LogError("PreventSpawnToRecents is greater than the possible spawn points. Game will freeze.");
+                Debug.LogWarning("PreventSpawnToRecents is greater than the possible spawn points. Game will freeze.");
                 Debug.Log("Setting PreventSpawnToRecents to " + (maxSpawnPoints - 1) + ".");
                 _preventSpawnToRecents = maxSpawnPoints - 1; // Prevents possible infinite loop that will freeze the game.
             }

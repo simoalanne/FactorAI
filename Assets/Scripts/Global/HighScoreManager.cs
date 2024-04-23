@@ -70,7 +70,7 @@ public class HighScoreManager : MonoBehaviour
         }
         catch (InvalidCastException)
         {
-            Debug.LogWarning("Failed to load high scores due to incompatible saved data. Returning a new high score list."); 
+            Debug.LogWarning("Failed to load high scores due to incompatible saved data. Returning a new high score list.");
             return new List<HighScore>();
         }
     }
@@ -95,6 +95,13 @@ public class HighScoreManager : MonoBehaviour
     {
         _highScores.Add(new HighScore(playerName, score));
         _highScores.Sort((a, b) => b.Score.CompareTo(a.Score)); // Sort in descending order
+        SaveHighScores(_highScores);
+        _highScores = LoadHighScores();
+    }
+
+    public void ResetHighScores()
+    {
+        _highScores.Clear();
         SaveHighScores(_highScores);
         _highScores = LoadHighScores();
     }

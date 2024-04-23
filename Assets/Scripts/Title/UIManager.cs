@@ -19,9 +19,9 @@ namespace Title
 
         [Header("Buttons")]
         [SerializeField] private Button _playButton;
-        [SerializeField] private Button _changeLanguageButton;
         [SerializeField] private Button _toggleMusicButton;
         [SerializeField] private Button _toggleAudioButton;
+        [SerializeField] private Button _resetHighScoresButton;
 
 
         [Header("Sprites")]
@@ -76,7 +76,6 @@ namespace Title
             _highScorePanel.SetActive(false);
             _creditsPanel.SetActive(false);
 
-            _languageIcon = _changeLanguageButton.transform.Find("LanguageIcon").GetComponent<Image>();
             _musicIcon = _toggleMusicButton.transform.Find("MusicIcon").GetComponent<Image>();
             _audioIcon = _toggleAudioButton.transform.Find("AudioIcon").GetComponent<Image>();
 
@@ -92,6 +91,16 @@ namespace Title
             else if (PlayerPrefs.GetString("CurrentLanguage").Equals("finnish"))
             {
                 LocalizationSettings.SelectedLocale = _finnishLocale;
+            }
+
+            if (HighScoreManager.Instance.HighScores.Count > 0)
+            {
+                _resetHighScoresButton.interactable = true;
+            }
+            else
+            {
+                _resetHighScoresButton.interactable = false;
+                _resetHighScoresButton.GetComponentInChildren<TMP_Text>().color = new Color(219f / 255f, 224f / 255f, 231f / 255f, 0.5f);
             }
 
             ChangePlayButtonIcon();
@@ -235,7 +244,13 @@ namespace Title
             PlayerPrefs.SetInt(_audioEnabledKey, _audioEnabled ? 1 : 0);
             PlayerPrefs.Save();
             MusicPlayer.Instance.ToggleMusic();
+        }
 
+        public void ResetHighScores()
+        {
+            HighScoreManager.Instance.ResetHighScores();
+            _resetHighScoresButton.interactable = false;
+            _resetHighScoresButton.GetComponentInChildren<TMP_Text>().color = new Color(219f / 255f, 224f / 255f, 231f / 255f, 0.5f);
         }
 
         public void OpenHighScorePanel()

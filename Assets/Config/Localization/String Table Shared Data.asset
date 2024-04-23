@@ -215,12 +215,16 @@ MonoBehaviour:
     m_Key: InEnglishKey
     m_Metadata:
       m_Items: []
-  - m_Id: 7087850210643968
-    m_Key: New Entry
-    m_Metadata:
-      m_Items: []
   - m_Id: 7087867549896704
     m_Key: InCooperationKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7643293360685056
+    m_Key: ResetHighscoresKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7658376237252608
+    m_Key: AISkipReadyKey
     m_Metadata:
       m_Items: []
   m_Metadata:

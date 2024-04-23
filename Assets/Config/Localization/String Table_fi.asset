@@ -228,13 +228,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 7046464824332288
-    m_Localized: "v\xE4\xE4r\xE4 esine\nker\xE4tty -> x"
+    m_Localized: "<color=#DBE0E7FF>v\xE4\xE4r\xE4 esine ker\xE4tty -> </color><color=#C42C36FF>x</color>"
     m_Metadata:
       m_Items: []
   - m_Id: 7046640523726848
-    m_Localized: 'oikea esine
-
-      huti -> x'
+    m_Localized: <color=#DBE0E7FF>oikea esine huti -> </color><color=#C42C36FF>x</color>
     m_Metadata:
       m_Items: []
   - m_Id: 7074834895261696
@@ -243,6 +241,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7087867549896704
     m_Localized: "yhteisty\xF6ss\xE4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7643293360685056
+    m_Localized: "resetoi\nenn\xE4tykset"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7658376237252608
+    m_Localized: valmis!
     m_Metadata:
       m_Items: []
   references:

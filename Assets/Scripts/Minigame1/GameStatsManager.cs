@@ -1,5 +1,6 @@
 using Global;
 using UnityEngine;
+using Audio;
 
 namespace Minigame1
 {
@@ -7,8 +8,9 @@ namespace Minigame1
     {
 
         [SerializeField] float _miniGameLengthInSeconds = 60.0f;
-        [SerializeField] int _minCompletedProducts = 2;
+        [SerializeField] int _minCompletedProducts = 3;
 
+        private SoundEffectPlayer _soundEffectPlayer;
         private OnMinigameEnd _onMinigameEnd;
         private string _minigameTime;
         private float _score;
@@ -24,6 +26,8 @@ namespace Minigame1
 
         void Awake()
         {
+            _soundEffectPlayer = GetComponent<SoundEffectPlayer>();
+
             if (GameManager.Instance.CurrentProduct == "Product1" || GameManager.Instance == null)
             {
                 _minCompletedProducts = 3;
@@ -73,6 +77,7 @@ namespace Minigame1
             score *= _scoreMultiplier;
             _score += score;
             _scorePopUp.ShowPopUp(transform.position, score);
+            _soundEffectPlayer.PlaySoundEffect(0);
         }
 
         public void IncreaseCompletedProducts()

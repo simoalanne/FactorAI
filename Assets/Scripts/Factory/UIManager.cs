@@ -22,6 +22,7 @@ namespace Factory
         [SerializeField] private TMP_Text _scoreText;
         [SerializeField] private TMP_Text _processTimerText;
         [SerializeField] private TMP_Text _aiSkipInfoText;
+        [SerializeField] private TMP_Text _aiSkipReadyText;
 
         [Header("Sprites")]
         [SerializeField] private Sprite _playButtonIconEnglish;
@@ -66,6 +67,7 @@ namespace Factory
             _processTimerText.enabled = false;
             _gameEndMenu.SetActive(false);
             _aiSkipInfoText.enabled = false;
+            _aiSkipReadyText.enabled = false;
             _confirmProductChoiceButton.interactable = false;
 
             if (GameManager.Instance.FirstTimePlaying)
@@ -135,6 +137,10 @@ namespace Factory
             {
                 _aiSkipInfoText.enabled = false;
             }
+            if (_aiSkipReadyText.enabled)
+            {
+                _aiSkipReadyText.enabled = false;
+            }
         }
 
         public void EnablePlayButtonOrProductSelection()
@@ -184,7 +190,7 @@ namespace Factory
                 _currentlySelectedProduct = "None";
                 GameObject.Find("Product1Button").GetComponent<ButtonAnimation>().enabled = false;
                 _confirmProductChoiceButton.interactable = false;
-                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = _confirmProductChoiceButton.colors.disabledColor;
+                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = new Color(219f / 255f, 224f / 255f, 231f / 255f, 0.5f);
             }
             else
             {
@@ -192,8 +198,7 @@ namespace Factory
                 GameObject.Find("Product1Button").GetComponent<ButtonAnimation>().enabled = true;
                 GameObject.Find("Product2Button").GetComponent<ButtonAnimation>().enabled = false;
                 _confirmProductChoiceButton.interactable = true;
-                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = _confirmProductChoiceButton.colors.normalColor;
-
+                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = new Color(219f / 255f, 224f / 255f, 231f / 255f, 1f);
             }
         }
 
@@ -204,7 +209,7 @@ namespace Factory
                 _currentlySelectedProduct = "None";
                 GameObject.Find("Product2Button").GetComponent<ButtonAnimation>().enabled = false;
                 _confirmProductChoiceButton.interactable = false;
-                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = _confirmProductChoiceButton.colors.disabledColor;
+                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = new Color(219f / 255f, 224f / 255f, 231f / 255f, 0.5f);
             }
             else
             {
@@ -212,7 +217,7 @@ namespace Factory
                 GameObject.Find("Product2Button").GetComponent<ButtonAnimation>().enabled = true;
                 GameObject.Find("Product1Button").GetComponent<ButtonAnimation>().enabled = false;
                 _confirmProductChoiceButton.interactable = true;
-                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = _confirmProductChoiceButton.colors.normalColor;
+                _confirmProductChoiceButton.GetComponentInChildren<TMP_Text>().color = new Color(219f / 255f, 224f / 255f, 231f / 255f, 1f);
             }
         }
 
@@ -234,8 +239,10 @@ namespace Factory
                 if (_aiSkipInfoText.enabled)
                 {
                     _aiSkipInfoText.enabled = false;
-                    _aiSkipInfoText.enabled = false;
-
+                }
+                if (_aiSkipReadyText.enabled)
+                {
+                    _aiSkipReadyText.enabled = false;
                 }
             }
             else
@@ -253,30 +260,27 @@ namespace Factory
                 return;
             }
 
-            _aiSkipInfoText.enabled = true;
-
-            if (_aiSkipButton.interactable)
+            if (_aiSkipReadyText.enabled)
             {
-                if (LocalizationSettings.SelectedLocale.Identifier == LocalizationSettings.AvailableLocales.GetLocale("en").Identifier)
-                {
-                    _aiSkipInfoText.text = "Ready!";
-                }
-                else if (LocalizationSettings.SelectedLocale.Identifier == LocalizationSettings.AvailableLocales.GetLocale("fi").Identifier)
-                {
-                    _aiSkipInfoText.text = "Valmis!";
-                }
-
-                _aiSkipInfoText.color = Color.green;
+                _aiSkipReadyText.enabled = false;
                 return;
             }
 
+            if (_aiSkipButton.interactable)
+            {
+                _aiSkipReadyText.enabled = true;
+                return;
+            }
+
+            _aiSkipInfoText.enabled = true;
+
             if (GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip < 0.5)
             {
-                _aiSkipInfoText.color = Color.red;
+                _aiSkipInfoText.color = new Color(196f / 255f, 44f / 255f, 54f / 255f); // Red color in the palette
             }
             else
             {
-                _aiSkipInfoText.color = new Color(1f, 0.5f, 0f); // RGB for orange
+                _aiSkipInfoText.color = new Color(229f / 255f, 112f / 255f, 40f / 255f, 1f); // Orange color in the palette
             }
 
             _aiSkipInfoText.text = Mathf.FloorToInt(GameManager.Instance.ScoreGatheredForAISkip / GameManager.Instance.ScoreRequiredForAISkip * 100) + "/100%";
