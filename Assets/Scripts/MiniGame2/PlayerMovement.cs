@@ -20,7 +20,7 @@ namespace Minigame2
 
         private void Update()
         {
-            if (Input.touchCount > 0)
+            if (Input.touchCount > 0 && Time.timeScale != 0)
             {
                 StartDragging();
             }

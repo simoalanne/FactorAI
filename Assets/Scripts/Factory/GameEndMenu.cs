@@ -11,7 +11,7 @@ namespace Factory
         [SerializeField] private TMP_Text _newHighScoreText;
         [SerializeField] private TMP_Text _scoreText;
         [SerializeField] private float _scorePerInvoke = 10000f;
-        [SerializeField] private float _scoreCountDownRate = 0.05f;
+        [SerializeField] private float _scoreCountDownRate = 0.005f;
         [SerializeField] private Button _saveAndExitButton;
         [SerializeField] private Button _exitWithoutSavingButton;
         [SerializeField] private GameObject[] _canvasesToDisable;
@@ -26,9 +26,6 @@ namespace Factory
 
         private void Awake()
         {
-            _originalInputFieldText = _inputFieldText.text;
-            Debug.Log(_originalInputFieldText);
-
             foreach (GameObject canvas in _canvasesToDisable)
             {
                 canvas.SetActive(false);
@@ -41,7 +38,7 @@ namespace Factory
                 {
                     return '\0'; // Reject the input if the text length is greater than the max name length
                 }
-                else if (char.IsLetter(addedChar)) 
+                else if (char.IsLetter(addedChar))
                 {
                     return addedChar; // Accept the input if it's a letter or a digit
                 }

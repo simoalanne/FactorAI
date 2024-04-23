@@ -27,7 +27,7 @@ public class DragAndDrop : MonoBehaviour
         Transform currentTransform = null;
         foreach (var pair in _objectSpawner.OccupiedPositions)
         {
-            if (pair.Value == gameObject)
+            if (pair.Value == gameObject) // Find the current position of the object
             {
                 currentTransform = pair.Key;
                 break;
@@ -35,7 +35,7 @@ public class DragAndDrop : MonoBehaviour
         }
         if (currentTransform != null)
         {
-            _objectSpawner.OccupiedPositions.Remove(currentTransform);
+            _objectSpawner.OccupiedPositions.Remove(currentTransform); // Remove the object from the occupied positions.
         }
     }
 
@@ -56,7 +56,10 @@ public class DragAndDrop : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
 
         if (isDragging)
         {

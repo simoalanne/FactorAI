@@ -976,6 +976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 8053870797159468588, guid: c1cbfd7328e60484abcd845fb22e7078, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8257680283387730671, guid: c1cbfd7328e60484abcd845fb22e7078, type: 3}
       propertyPath: canvasGroups.Array.data[0]
       value: 

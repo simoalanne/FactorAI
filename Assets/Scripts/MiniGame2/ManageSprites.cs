@@ -37,7 +37,7 @@ namespace Minigame2
             else if (GameManager.Instance.CurrentProduct == "Product2")
             {
                 _spawnedObjects = _spawnedObjects2;
-                _dropIntervalFastest -= 0.1f;
+                _dropIntervalFastest -= 0.125f;
 
             }
         }
@@ -78,7 +78,7 @@ namespace Minigame2
 
                 if (_dropIntervalInitial > _dropIntervalFastest)
                 {
-                    _dropIntervalInitial -= 0.05f;
+                    _dropIntervalInitial -= 0.025f;
                 }
                 yield return new WaitForSeconds(_dropIntervalInitial);
             }

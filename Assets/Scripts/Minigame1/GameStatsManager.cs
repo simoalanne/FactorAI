@@ -70,6 +70,12 @@ namespace Minigame1
             {
                 _onMinigameEnd.OnGameLost();
             }
+
+            DragAndDrop[] dragAndDropInstances = FindObjectsOfType<DragAndDrop>();
+            foreach (DragAndDrop instance in dragAndDropInstances)
+            {
+                instance.enabled = false;
+            }
         }
 
         public void IncreaseScore(float score, Transform transform)
