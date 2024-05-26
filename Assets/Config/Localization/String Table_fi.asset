@@ -1,0 +1,256 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: String Table_fi
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fi
+  m_SharedData: {fileID: 11400000, guid: ef3ecfde5aad1f343b8cc963887cbd59, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1961375731994624
+    m_Localized: Asetukset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1123595767808
+    m_Localized: Pisteet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1307780239360
+    m_Localized: "PYS\xC4YTETTY"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2977482330112
+    m_Localized: JATKA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10307561246720
+    m_Localized: "P\xC4\xC4-\nVALIKKO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10500125937664
+    m_Localized: resetoi peli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190892179116032
+    m_Localized: feilasit!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191123784388608
+    m_Localized: palataan takaisin tehtaalle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191698269818880
+    m_Localized: "YRIT\xC4\nUUDELLEEN!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194001085321216
+    m_Localized: 'PROSESSI
+
+      SUORITETTU'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194278467227648
+    m_Localized: 'TAKAISIN
+
+      TEHTAALLE'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195100215267328
+    m_Localized: YHTEISPISTEET
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196383689068544
+    m_Localized: "P\xC4\xC4VALIKKO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 949826020102144
+    m_Localized: "Haluatko varmasti aloittaa pelin alusta? T\xE4m\xE4n tekeminen
+      poistaa nykyisen tallenteen pysyv\xE4sti."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5999785249525760
+    m_Localized: "Ennen kun voit aloittaa minipelien pelaamisen, tulee sinun valita
+      valmistettava tuote. Valitse viisasti, koska et voi vaihtaa tuotetta ennen
+      kun molemmat minipelit on suoritettu hyv\xE4ksystysti."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951310040354816
+    m_Localized: 'Tila:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108327652577280
+    m_Localized: Lopeta minipeli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1110956281614336
+    m_Localized: "Paina mist\xE4 tahansa aloittaaksesi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1121393823895552
+    m_Localized: valmistaudu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1221950492299264
+    m_Localized: "UUSI ENN\xC4TYS!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074718759178240
+    m_Localized: suomeksi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960342217740288
+    m_Localized: Ohjeet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960406315094016
+    m_Localized: Musiikki
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960564767510528
+    m_Localized: "\xC4\xE4net"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1973911181250560
+    m_Localized: "Enn\xE4tykset"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209652342476800
+    m_Localized: Valitse tuote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209757007138816
+    m_Localized: Helppo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209926176002048
+    m_Localized: Vaikea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5210119717965824
+    m_Localized: Tuplapisteet!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317214375170048
+    m_Localized: "Tervetuloa tehtaalle! N\xE4ytt\xE4\xE4 silt\xE4, ett\xE4 olet t\xE4\xE4ll\xE4
+      ensimm\xE4ist\xE4 kertaa, joten k\xE4yd\xE4\xE4np\xE4 nopeasti ohjeet l\xE4pi,
+      jotta p\xE4\xE4set alkuun."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317676767825920
+    m_Localized: " Jos koskaan kaipaat muistinvirkistyst\xE4 ohjeisiin, saat ne helposti
+      uudestaan auki taukovalikosta, jonka l\xF6yd\xE4t oikeasta yl\xE4kulmasta."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318150132781056
+    m_Localized: "Teht\xE4v\xE4n\xE4si on ker\xE4t\xE4 niin paljon pisteit\xE4 kuin
+      pystyt kymmenen minuutin aikana. Saat pisteit\xE4 l\xE4p\xE4isem\xE4ll\xE4
+      minipelej\xE4, ja mit\xE4 paremmin niiss\xE4 suoriudut sit\xE4 enemm\xE4n pisteit\xE4
+      saat."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318761943322624
+    m_Localized: "\xC4l\xE4 huoli, jos et ehdi pelata peli\xE4 loppuun yhdell\xE4
+      kertaa. Edistymisesi tallennetaan automaattisesti ja voit helposti jatkaa juuri
+      siit\xE4 kohtaa mihin edellisell\xE4 kertaa j\xE4it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5319325309652992
+    m_Localized: "Muista pit\xE4\xE4 silm\xE4ll\xE4 vasenta alakulmaa, josta saat
+      n\xE4kyviin edistymisesi AI-Skipin avausta kohti. Joka kerta ker\xE4tty\xE4si
+      tarpeeksi pisteit\xE4 minipeleist\xE4 saat siihen yhden k\xE4ytt\xF6kerran."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5465071363215360
+    m_Localized: "AI-Skip on k\xE4tev\xE4 toiminto, joka suorittaa minipelin puolestasi
+      automaattisesti ja antaa j\xE4ttim\xE4\xE4r\xE4n pisteit\xE4 palkkioksi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6006853670981632
+    m_Localized: "Vinkki! Jos minipeli tuntuu tosi haastavalta, voit my\xF6s tyyty\xE4
+      odottamaan sen ajastimen loppuun. Pid\xE4 vain mieless\xE4, ett\xE4 silloin
+      saat paljon v\xE4hemm\xE4n pisteit\xE4 verrattuna siihen, ett\xE4 l\xE4p\xE4isisit
+      minipelin itse."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010838599520256
+    m_Localized: "Voit tarkistaa j\xE4ljell\xE4 olevan minipelin ajan klikkaamalla
+      pient\xE4 kellon kuvaa, joka l\xF6ytyy sill\xE4 hetkell\xE4 aktiviisena olevan
+      tuotantolinjan p\xE4\xE4lt\xE4. Huomiothan, ett\xE4 aika ei v\xE4hene sillon
+      kun olet pelaamassa minipeli\xE4."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014155232825344
+    m_Localized: vahvista
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014205195374592
+    m_Localized: peruuta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6012544414568448
+    m_Localized: "Siin\xE4 kaikki mit\xE4 sinun tarvitsee tiet\xE4\xE4. Onnea matkaan
+      ja pid\xE4 hauskaa!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6397763109965824
+    m_Localized: tavoite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924493381881856
+    m_Localized: tallenna ja poistu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924574646521856
+    m_Localized: poistu tallentamatta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924678711398400
+    m_Localized: poistu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924723091329024
+    m_Localized: kirjoita nimesi...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7029215744937984
+    m_Localized: poistu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046464824332288
+    m_Localized: "<color=#DBE0E7FF>v\xE4\xE4r\xE4 esine ker\xE4tty -> </color><color=#C42C36FF>x</color>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046640523726848
+    m_Localized: <color=#DBE0E7FF>oikea esine huti -> </color><color=#C42C36FF>x</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074834895261696
+    m_Localized: englanniksi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7087867549896704
+    m_Localized: "yhteisty\xF6ss\xE4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7643293360685056
+    m_Localized: "resetoi\nenn\xE4tykset"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7658376237252608
+    m_Localized: valmis!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,34 @@
+{
+    "name": "Inputs",
+    "maps": [
+        {
+            "name": "Minigames",
+            "id": "c1dd424c-38cb-4234-953f-ebeafd317663",
+            "actions": [
+                {
+                    "name": "Drag",
+                    "type": "PassThrough",
+                    "id": "ee3e736a-3deb-47c2-ac9d-95e88cac400a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a65086ca-26e0-4a34-8e18-8c24ce9fbbf2",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drag",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -1,0 +1,253 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: String Table_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: ef3ecfde5aad1f343b8cc963887cbd59, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 1961375731994624
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1123595767808
+    m_Localized: Score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1307780239360
+    m_Localized: PAUSED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2977482330112
+    m_Localized: RESUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10307561246720
+    m_Localized: MAIN MENU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10500125937664
+    m_Localized: reset game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190892179116032
+    m_Localized: failure!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191123784388608
+    m_Localized: returning back to factory in
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191698269818880
+    m_Localized: TRY AGAIN!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194001085321216
+    m_Localized: 'PROCESS
+
+      COMPLETE'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194278467227648
+    m_Localized: 'BACK TO
+
+      FACTORY'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195100215267328
+    m_Localized: TOTAL SCORE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196383689068544
+    m_Localized: MAIN MENU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 949826020102144
+    m_Localized: Are you sure you wish to restart the game? Doing this will permanently
+      delete the current save.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5999785249525760
+    m_Localized: Before you can start the minigame action, you'll need to choose
+      a product to manufacture. Choose wisely because you won't be able to switch
+      until both mini-games are successfully completed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951310040354816
+    m_Localized: 'Status:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108327652577280
+    m_Localized: Quit minigame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1110956281614336
+    m_Localized: Tap anywhere to start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1121393823895552
+    m_Localized: get ready in
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1221950492299264
+    m_Localized: NEW HIGHSCORE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074718759178240
+    m_Localized: in finnish
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960342217740288
+    m_Localized: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960406315094016
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960564767510528
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1973911181250560
+    m_Localized: Highscores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209652342476800
+    m_Localized: Choose product
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209757007138816
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209926176002048
+    m_Localized: Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5210119717965824
+    m_Localized: Double points!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317214375170048
+    m_Localized: Welcome to the Factory! Looks like it's your first time here, so
+      let's kick things off with a quick tutorial to get you started.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317676767825920
+    m_Localized: If you ever need a refresher, you can easily access this tutorial
+      again from the pause menu, found on the top right corner.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318150132781056
+    m_Localized: Your mission is to rack up as many points as possible within a ten-minute
+      window. Points are earned by completing minigames, and the better you perform,
+      the more points you'll earn.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318761943322624
+    m_Localized: 'Don''t worry if you can''t complete the game during one session.
+      Your progress gets saved automatically so you can easily continue right from
+      where you left off last time. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5319325309652992
+    m_Localized: Remember to keep an eye on your progress towards earning an AI-Skip,
+      located in the bottom left corner. Every time you've accrued enough points
+      from minigames, you'll unlock the option to utilize it once.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5465071363215360
+    m_Localized: Ai-Skip is a handy feature that automatically completes a minigame,
+      scoring you a hefty sum of points in return.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6006853670981632
+    m_Localized: 'Pro tip: If you find a mini-game particularly challenging, you
+      can just opt to wait for its timer to run out. Just keep in mind that you''ll
+      get significantly less points compared to completing the minigame yourself.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010838599520256
+    m_Localized: You can check the remanining minigame time by clicking the timer
+      icon located at the top of the currently active manufacturing line. Just beware
+      that the timer won't run while you're playing the minigame.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014155232825344
+    m_Localized: confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014205195374592
+    m_Localized: cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6012544414568448
+    m_Localized: That was all you needed to know. Good luck and have fun!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6397763109965824
+    m_Localized: goal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924493381881856
+    m_Localized: save and exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924574646521856
+    m_Localized: exit without saving
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924678711398400
+    m_Localized: exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924723091329024
+    m_Localized: enter your name...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7029215744937984
+    m_Localized: exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046464824332288
+    m_Localized: <color=#DBE0E7FF>wrong item collected -> </color><color=#C42C36FF>x</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046640523726848
+    m_Localized: <color=#DBE0E7FF>correct item missed -> </color><color=#C42C36FF>x</color>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074834895261696
+    m_Localized: in english
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7087867549896704
+    m_Localized: in cooperation with
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7643293360685056
+    m_Localized: 'reset
+
+      highscores'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7658376237252608
+    m_Localized: ready!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

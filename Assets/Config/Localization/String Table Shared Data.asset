@@ -1,0 +1,240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: String Table Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: String Table
+  m_TableCollectionNameGuidString: ef3ecfde5aad1f343b8cc963887cbd59
+  m_Entries:
+  - m_Id: 1123595767808
+    m_Key: ScoreKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1307780239360
+    m_Key: PausedKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2977482330112
+    m_Key: ResumeKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10307561246720
+    m_Key: MainMenuKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10500125937664
+    m_Key: RestartGameKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 190892179116032
+    m_Key: FailedKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191123784388608
+    m_Key: ReturningToFactoryKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 191698269818880
+    m_Key: TryAgainKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194001085321216
+    m_Key: ProcessCompleteKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 194278467227648
+    m_Key: BackToFactoryKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195100215267328
+    m_Key: TotalPointsKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 196383689068544
+    m_Key: MainMenuOnOneLineKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 949826020102144
+    m_Key: RestartGameWarningText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951310040354816
+    m_Key: 'AISkipStatusKey
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1108327652577280
+    m_Key: QuitMinigameKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1110956281614336
+    m_Key: TapKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1121393823895552
+    m_Key: ReadyKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1221950492299264
+    m_Key: NewHighScoreKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960342217740288
+    m_Key: TutorialKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960406315094016
+    m_Key: MusicKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1960564767510528
+    m_Key: AudioKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1961375731994624
+    m_Key: SettingsKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1973911181250560
+    m_Key: HighScoresKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209652342476800
+    m_Key: ChooseProdcutKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209757007138816
+    m_Key: EasyKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5209926176002048
+    m_Key: HardKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5210119717965824
+    m_Key: DoublePointsKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317214375170048
+    m_Key: Part1Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5317676767825920
+    m_Key: 'Part2Key
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318150132781056
+    m_Key: Part3Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5318761943322624
+    m_Key: Part4Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5319325309652992
+    m_Key: Part5Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5465071363215360
+    m_Key: Part6Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5999785249525760
+    m_Key: Part7Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6006853670981632
+    m_Key: Part8Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6010838599520256
+    m_Key: Part9Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6012544414568448
+    m_Key: Part10Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014155232825344
+    m_Key: ConfirmKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6014205195374592
+    m_Key: CancelKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6397763109965824
+    m_Key: GoalKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924493381881856
+    m_Key: SaveAndExitKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924574646521856
+    m_Key: ExitWithoutSavingKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924678711398400
+    m_Key: ExitKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6924723091329024
+    m_Key: EnterNameKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7029215744937984
+    m_Key: ReturnKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046464824332288
+    m_Key: wrongItemKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7046640523726848
+    m_Key: correctItemKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074718759178240
+    m_Key: InFinnishKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7074834895261696
+    m_Key: InEnglishKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7087867549896704
+    m_Key: InCooperationKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7643293360685056
+    m_Key: ResetHighscoresKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7658376237252608
+    m_Key: AISkipReadyKey
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 4105683124216922136
+  references:
+    version: 2
+    RefIds:
+    - rid: 4105683124216922136
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1712047398528

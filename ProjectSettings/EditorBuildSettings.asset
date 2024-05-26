@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
+    path: Assets/Scenes/Factory.unity
+    guid: 34f0032bb6c39ff4ab65ad9deadfb573
+  - enabled: 1
+    path: Assets/Scenes/Minigame1.unity
+    guid: 65d94e7a079fefa4da5cd06fb9f48b44
+  - enabled: 1
+    path: Assets/Scenes/Minigame2.unity
+    guid: 129d31c3e9635f549a80de6a49d520b1
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 213cff5d5c8bd2c4d97015808e741c0f, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 332d84324fd7d8a4c8bcbaed4d9297a7, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 47c6f4a33a1b3324cb98dc892b8e36ba, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: b8fd35d552ede9e4687950ea82834857, type: 2}
