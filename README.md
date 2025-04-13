@@ -37,14 +37,23 @@
 ## 📸 Screenshots
 
 <div align="center">
-  <img src="screenshots/main-menu.png" width="200" style="margin: 10px;">
-  <img src="screenshots/falling-items-game.png" width="200" style="margin: 10px;">
-  <img src="screenshots/merge-items-game.png" width="200" style="margin: 10px;">
-  <img src="screenshots/game-end-screen.png" width="200" style="margin: 10px;">
+    <img src="screenshots/main-menu.png" width="200" style="margin: 10px;">
+    <img src="screenshots/falling-items-game.png" width="200" style="margin: 10px;">
+    <img src="screenshots/merge-items-game.png" width="200" style="margin: 10px;">
+    <img src="screenshots/game-end-screen.png" width="200" style="margin: 10px;">
 </div>
 
 ---
 
 ## 🎥 FactorAI trailer
 
-[![FactorAI trailer](https://img.youtube.com/vi/VCJYTfasfw8/0.jpg)](https://www.youtube.com/watch?v=VCJYTfasfw8&t=2s)
+<div align="center">
+    <a href="https://www.youtube.com/watch?v=VCJYTfasfw8&t=2s">
+        <img src="https://img.youtube.com/vi/VCJYTfasfw8/0.jpg" alt="FactorAI trailer">
+    </a>
+</div>
+
+
+## 🌐 Website
+
+Check out the **FactorAI** website for additional information: [https://webpages.tuni.fi/23tiko2c/](https://webpages.tuni.fi/23tiko2c/)
