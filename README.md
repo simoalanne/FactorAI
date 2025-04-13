@@ -21,7 +21,7 @@
 
 - Developed as a first-year university group project
 - Built for a client [FairDatAct](https://projects.tuni.fi/fairdatact/)
-- The goal was to showcase in a fun and engaging way how artificial intelligence can help industrial fields’ productivity in the future
+- The goal was to showcase in a fun and engaging way how artificial intelligence can help industrial fields productivity in the future
 
 ---
 
